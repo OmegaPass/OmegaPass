@@ -92,5 +92,3 @@ function check_password_strength($password) {
     }
     return $strenghtMessage;
 }
-
-echo check_password_strength(generate_password(18, true, true));
