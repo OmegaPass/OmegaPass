@@ -13,7 +13,7 @@ function generate_password ($length, $digits, $special) {
     $letters = 'abcdefghijklmnopqrstuvwxyz';
     $lettersUpper = strtoupper($letters);
     $digitsChars = '1234567890';
-$specialChars = '#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
+    $specialChars = '#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
 
     $factory = new RandomLib\Factory;
     $generator = $factory->getMediumStrengthGenerator();
@@ -27,7 +27,7 @@ $specialChars = '#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
         }
     } else {
         if ($special) {
-            $options = $letters . $lettersUpper . $puntion;
+            $options = $letters . $lettersUpper . $special;
         } else {
             $options = $letters . $lettersUpper;
         }
