@@ -7,6 +7,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+use ZxcvbnPhp\Zxcvbn;
 
 function generate_password ($length, $digits, $special) {
     $letters = 'abcdefghijklmnopqrstuvwxyz';
@@ -59,3 +60,37 @@ function check_pw ($string, $hash) {
     
     return password_verify($string, $hash);
 }
+
+function check_password_strength($password) {
+    $zxcvbn = new Zxcvbn();
+    $strenght = $zxcvbn->passwordStrength($password)['score'];
+    $strenghtMessage = '';
+    switch ($strenght) {
+        case 0:
+            $strenghtMessage = 'very weak';
+            break;
+        
+        case 1:
+            $strenghtMessage = 'weak';
+            break;
+        
+        case 2:
+            $strenghtMessage = 'medium';
+            break;
+            
+        case 3:
+            $strenghtMessage = 'strong';
+            break;
+            
+        case 4:
+            $strenghtMessage = 'very strong';
+            break;
+            
+        default:
+            $strenghtMessage = 'calc not avaliable';
+            break;
+    }
+    return $strenghtMessage;
+}
+
+echo check_password_strength(generate_password(18, true, true));
