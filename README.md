@@ -4,8 +4,7 @@ The last password - Omega Pass
 
 ### Installing
 
-* Executables for Windows in thr respective release
-* Database connection not possible from wan until now
+* Webbased Password Manager
 
 ## Authors
 
