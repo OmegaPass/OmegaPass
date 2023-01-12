@@ -4,11 +4,15 @@ The last password - Omega Pass
 
 ### Installing
 
- 1. Clone repository to your local machine.
- 2. To run, you need [Composer](https://getcomposer.org/download/).
- 3. `composer install` to install all packages.
- 4. (optional) `php -S localhost:8000` to start web server with the folder. *localhost:8000/file.php* takes you to your file.php and executes it.
+**Required tools:** Git, Docker Desktop 
 
+ 1. Clone repository to your local machine.
+ 2. `cd OmegaPass`
+ 3. `docker-compose up --build` to first build OmegaPass and to startup the containers.
+ 4. Open [localhost:8000](localhost:8000)
+
+### Developing
+After you created the Docker containers You can start them with `docker-compose start web` again.
 
 ## Authors
 
