@@ -8,8 +8,6 @@ services:
     command: composer install
 
   web:
-    depends_on:
-      - composer_install
     build:
       dockerfile: Dockerfile
     volumes:
