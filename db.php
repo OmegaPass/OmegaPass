@@ -57,7 +57,6 @@ function get_password($website) {
 
 function get_all_websites($userid) {
     global $database;
-    global $database;
     $result = $database->select('passwords', [
                 'website'
         ], [
@@ -78,3 +77,20 @@ function get_all_entries($userid) {
         ]);
     return json_encode($result);
 }
+
+function login($username, $password) {
+    global $database;
+
+    $query = $database->select('users', ['password'], ['username' => $username]);
+    if ($query !== []) {
+        if (check_pw($password, $query[0])) {
+            return "Sucess";
+        } else {
+            return "Wrong password";
+        }
+    } else {
+        return "Username not found";
+    }
+}
+
+echo login("test", "test");
