@@ -8,6 +8,7 @@
 
 require_once 'vendor/autoload.php';
 use ZxcvbnPhp\Zxcvbn;
+use Fernet\Fernet;
 
 function generate_password ($length, $digits, $special) {
     $letters = 'abcdefghijklmnopqrstuvwxyz';
@@ -91,4 +92,27 @@ function check_password_strength($password) {
             break;
     }
     return $strenghtMessage;
+}
+
+function encrypt($password, $masterPass) {
+    $key = hash('sha256', $masterPass, true);
+    $fernet = new Fernet(base64url_encode($key));
+
+    return $fernet->encode($password);
+}
+
+function decrypt($encryted, $masterPass) {
+    $key = hash('sha256', $masterPass, true);
+    $fernet = new Fernet(base64url_encode($key));
+
+    return $fernet->decode($encryted);
+}
+
+function base64url_encode($data) {
+
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+  
+}  
+function base64url_decode($data) {  
+    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
 }

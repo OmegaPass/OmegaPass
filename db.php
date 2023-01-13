@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'vendor/autoload.php';
 include 'crypt.php';
 
@@ -17,14 +18,11 @@ $database = new Medoo([
 
 function add_password($userid, $website, $username, $password) {
     global $database;
-    // TODO: Password encryption
-    return encrypt($password);
-
     $database->insert('passwords', [
         'user_id' => $userid,
         'website' => $website,
         'username' => $username,
-        'password' => encrypt($password)
+        'password' => encrypt($password, $_SESSION['masterpass'])
     ]);
 }
 
@@ -68,13 +66,19 @@ function get_all_websites($userid) {
 
 function get_all_entries($userid) {
     global $database;
-    // TODO: Password decryption
-    $result = $database->select('passwords', [
+    $results = $database->select('passwords', [
                 'website',
                 'username',
                 'password'
         ], [
                 'user_id' => $userid
-        ]);
-    return json_encode($result);
+    ]);
+
+    foreach ($results as &$result) {
+        if ($result['password'] != '') {
+            $result['password'] = decrypt($result['password'], $_SESSION['masterpass']);
+        }
+    }
+
+    return json_encode($results);
 }
