@@ -18,7 +18,7 @@ The last password - Omega Pass
 2. ```cd OmegaPass```
 3. ``docker-compose up --build`` to build OmegaPass and to startup the containers.
 4. Create a ``.env`` file.
-5. Put 
+5. Paste this code in the .env file.
 ````
 HOST="db"
 DATABASE="pwmanager"
