@@ -87,7 +87,7 @@ function login($username, $password) {
 
     $query = $database->select('users', ['password'], ['username' => $username]);
     if ($query !== []) {
-        if (check_pw($password, $query[0])) {
+        if (check_pw($password, $query[0]['password'])) {
             return "Sucess";
         } else {
             return "Wrong password";
@@ -96,5 +96,3 @@ function login($username, $password) {
         return "Username not found";
     }
 }
-
-echo login("test", "test");
