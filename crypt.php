@@ -10,33 +10,33 @@ require_once 'vendor/autoload.php';
 use ZxcvbnPhp\Zxcvbn;
 use Fernet\Fernet;
 
-function generate_password ($length, $digits, $special) {
-    $letters = 'abcdefghijklmnopqrstuvwxyz';
-    $lettersUpper = strtoupper($letters);
+function generate_password($length, $digits, $special) {
+    $letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $digitsChars = '1234567890';
     $specialChars = '#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
 
     $factory = new RandomLib\Factory;
     $generator = $factory->getMediumStrengthGenerator();
-    $options = '';
-
-    if ($digits) {
-        if ($special) {
-            $options = $letters . $lettersUpper . $specialChars;
-        } else {
-            $options = $letters . $lettersUpper . $digitsChars;
-        }
-    } else {
-        if ($special) {
-            $options = $letters . $lettersUpper . $special;
-        } else {
-            $options = $letters . $lettersUpper;
-        }
+    
+    switch (true) {
+        case ($digits && $special):
+            $options = $letters . $digitsChars . $specialChars;
+            break;
+        case ($digits):
+            $options = $letters . $digitsChars;
+            break;
+        case ($special):
+            $options = $letters . $specialChars;
+            break;
+        default:
+            $options = $letters;
+            break;
     }   
     
     $randpass = $generator->generateString($length, $options);
-    return utf8_encode($randpass);
+    return $randpass;
 }
+
 
 function generate_userid () {
 
@@ -58,40 +58,22 @@ function hash_pw ($string) {
 }
 
 function check_pw ($string, $hash) {
-    
+
     return password_verify($string, $hash);
 }
 
 function check_password_strength($password) {
     $zxcvbn = new Zxcvbn();
-    $strenght = $zxcvbn->passwordStrength($password)['score'];
-    $strenghtMessage = '';
-    switch ($strenght) {
-        case 0:
-            $strenghtMessage = 'very weak';
-            break;
-        
-        case 1:
-            $strenghtMessage = 'weak';
-            break;
-        
-        case 2:
-            $strenghtMessage = 'medium';
-            break;
-            
-        case 3:
-            $strenghtMessage = 'strong';
-            break;
-            
-        case 4:
-            $strenghtMessage = 'very strong';
-            break;
-            
-        default:
-            $strenghtMessage = 'calc not avaliable';
-            break;
-    }
-    return $strenghtMessage;
+    $strength = $zxcvbn->passwordStrength($password)['score'];
+    $strengthMessage = [
+        'very weak',
+        'weak',
+        'medium',
+        'strong',
+        'very strong'
+    ];
+    
+    return $strengthMessage[$strength] ?? 'calc not avaliable';
 }
 
 function encrypt($password, $masterPass) {
@@ -109,9 +91,7 @@ function decrypt($encryted, $masterPass) {
 }
 
 function base64url_encode($data) {
-
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
-  
 }  
 function base64url_decode($data) {  
     return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
