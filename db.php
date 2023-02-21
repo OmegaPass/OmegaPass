@@ -98,3 +98,20 @@ function login($username, $password) {
         return "Username not found";
     }
 }
+
+function changeMasterPass($userId, $oldPassword, $newPassword) {
+    global $database;
+
+    $pw = $database->select('users', ['password'], ['user_id' => $userId]);
+    if (check_pw($oldPassword, $pw[0]['password'])) {
+        $database->update('users', [
+            'password' => hash_pw($newPassword)
+        ], [
+            'user_id' => $userId
+        ]);
+
+        return 'changed';
+    } else {
+        return 'wrong entered password';
+    }
+}
