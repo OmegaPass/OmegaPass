@@ -37,8 +37,8 @@ Contributors names and contact info
   
 * [@Armin Burger](https://github.com/techmaved)
 * [@Johannes Thiem](https://github.com/Fovty)
-* [@Tom Vendolsky](https://github.com/lvlcn-t)
-* [@WildeHilde6](https://github.com/wildehilde6)
+* [@Tom](https://github.com/lvlcn-t)
+* [@Dennis](https://github.com/wildehilde6)
 
 ## Version History
 
