@@ -1,7 +1,6 @@
 version: "3"
 services:
   composer_install:
-    container_name: composer_install
     image: composer
     volumes:
       - ./:/app
