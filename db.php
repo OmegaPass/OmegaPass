@@ -98,3 +98,13 @@ function login($username, $password) {
         return "Username not found";
     }
 }
+
+function changeUsername($userId, $newUsername) {
+    global $database;
+
+    $database->update('users', [
+        'username' => $newUsername
+    ], [
+        'user_id' => $userId
+    ]);
+}
