@@ -16,3 +16,10 @@ services:
     command: php -S 0.0.0.0:8000
     ports:
       - 7999:8000
+
+    environment:
+    - HOST
+    - DATABASE
+    - USERNAME
+    - PASSWORD
+    - PORT
