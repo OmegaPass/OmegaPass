@@ -14,6 +14,9 @@
 </head>
 
 <body>
+
+    <h1>😀</h1>
+
     <form method="post" action="">
         <input type="password" name="masterpass">
         <input type="submit">
