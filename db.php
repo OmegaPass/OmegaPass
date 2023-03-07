@@ -116,3 +116,13 @@ function changeMasterPass($userId, $oldPassword, $newPassword) {
         return 'wrong entered password';
     }
 }
+
+function changeUsername($userId, $newUsername) {
+    global $database;
+
+    $database->update('users', [
+        'username' => $newUsername
+    ], [
+        'user_id' => $userId
+    ]);
+}
