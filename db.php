@@ -110,3 +110,13 @@ function getUserId() {
 
     return $query[0]['user_id'];
 }
+
+function changeUsername($userId, $newUsername) {
+    global $database;
+
+    $database->update('users', [
+        'username' => $newUsername
+    ], [
+        'user_id' => $userId
+    ]);
+}
