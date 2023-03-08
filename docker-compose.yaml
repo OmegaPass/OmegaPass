@@ -7,14 +7,20 @@ services:
     command: composer install
 
   web:
+    image: nginx:latest
+    volumes:
+      - .:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8000:80
+    links:
+      - php-fpm
+
+  php-fpm:
     build:
       dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
-    working_dir: /var/www/html
-    command: php -S 0.0.0.0:8000
-    ports:
-      - 8000:8000
     env_file:
     - .env
   
