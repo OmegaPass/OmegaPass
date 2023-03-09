@@ -37,4 +37,9 @@ $(document).ready(function() {
         }
         
     });
+
+    $('#add-password').click(function() {
+        window.location.href = '/add-password/add-password.php';
+    });
+
 });

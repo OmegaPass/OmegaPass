@@ -9,7 +9,10 @@ $entries = get_all_entries(getUserId());
     </div>
 
     <div class="overview-passwords">
-        <h3>Passwörter</h4>
+        <div class="overview-passwords-header">
+            <h3>Passwörter</h4>
+            <button id="add-password">+</button>
+        </div>
 
         <table boarder='1' class="overview-password-table">
             <tr>
