@@ -20,6 +20,7 @@ $(document).ready(function() {
             $('#details-username').text(res.username);
             $('#details-password').text('*********');
             showPass.password = res.password;
+            showPass.show = false;
         })
     });
 
@@ -32,12 +33,12 @@ $(document).ready(function() {
     });
 
     $('#show-password').click(function() {
-        if (showPass.show) {
+        if (!showPass.show) {
             $('#details-password').text(showPass.password);
-            showPass.show = false;
+            showPass.show = true;
         } else {
             $('#details-password').text('*********');
-            showPass.show = true;
+            showPass.show = false;
         }
         
     });
