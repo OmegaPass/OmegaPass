@@ -2,8 +2,6 @@
 session_start();
 require 'vendor/autoload.php';
 include 'crypt.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 // Using Medoo namespace.
 use Medoo\Medoo;
@@ -11,11 +9,11 @@ use Medoo\Medoo;
 // Connect the database.
 $database = new Medoo([
     'type' => 'mysql',
-    'host' => $_ENV['HOST'],
-    'database' => $_ENV['DATABASE'],
-    'username' => $_ENV['USERNAME'],
-    'password' => $_ENV['PASSWORD'],
-    'port' => $_ENV['PORT']
+    'host' => getenv('HOST'),
+    'database' => getenv('DATABASE'),
+    'username' => getenv('USERNAME'),
+    'password' => getenv('PASSWORD'),
+    'port' => getenv('PORT')
 ]);
 
 function add_password($userid, $website, $username, $password) {
@@ -109,4 +107,14 @@ function getUserId() {
     ]);
 
     return $query[0]['user_id'];
+}
+
+function changeUsername($userId, $newUsername) {
+    global $database;
+
+    $database->update('users', [
+        'username' => $newUsername
+    ], [
+        'user_id' => $userId
+    ]);
 }
