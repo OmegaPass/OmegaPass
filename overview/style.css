@@ -1,0 +1,45 @@
+body {
+    margin: 0px;
+}
+
+.overview {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.overview-sidebar {
+    width: 20%;
+    background-color: lightcyan;
+    padding: 10px 10px 10px 10px;
+}
+
+.overview-passwords {
+    width: 50%;
+    padding: 10px 10px 10px 10px;
+    background-color: lightgray;
+}
+
+.overview-details {
+    border-left: 1.5px solid black;
+    width: 25%;
+    padding: 10px 10px 10px 10px;
+    background-color: lightgray;
+    
+}
+
+.overview-password-table {
+    width: 100%;
+}
+
+.deatils-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, Helvetica, sans-serif;
+}

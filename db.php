@@ -79,7 +79,7 @@ function get_all_entries($userid) {
         }
     }
 
-    return json_encode($results);
+    return $results;
 }
 
 function login($username, $password) {
@@ -88,13 +88,25 @@ function login($username, $password) {
     $query = $database->select('users', ['password'], ['username' => $username]);
     if ($query !== []) {
         if (check_pw($password, $query[0]['password'])) {
-            return "Sucess";
+            return "Success";
         } else {
             return "Wrong password";
         }
     } else {
         return "Username not found";
     }
+}
+
+function getUserId() {
+    global $database;
+
+    $query = $database->select('users', [
+        'user_id'
+    ], [
+        'username' => $_SESSION['username']
+    ]);
+
+    return $query[0]['user_id'];
 }
 
 function changeUsername($userId, $newUsername) {
