@@ -4,11 +4,11 @@ include 'db.php';
 
 if (isset($_POST['username']) && isset($_POST['masterpass'])) {
 
-    $_SESSION['masterpass'] = $_POST['masterpass'];
-    $_SESSION['username'] = $_POST['username'];
-
     switch (login($_POST['username'], $_SESSION['masterpass'])) {
         case 'Success':
+            $_SESSION['masterpass'] = $_POST['masterpass'];
+            $_SESSION['username'] = $_POST['username'];
+
             header("Location: /overview/overview.php");
             exit();
             break;
