@@ -1,15 +1,16 @@
 <?php
-include 'db.php';
 session_start();
-$_SESSION['masterpass'] = $_POST['masterpass'];
-$_SESSION['username'] = $_POST['username'];
-
+include 'db.php';
 
 if (isset($_POST['username']) && isset($_POST['masterpass'])) {
+
     switch (login($_POST['username'], $_SESSION['masterpass'])) {
         case 'Success':
-            echo "<script> location.href='/overview/overview.php'; </script>";
-            exit;
+            $_SESSION['masterpass'] = $_POST['masterpass'];
+            $_SESSION['username'] = $_POST['username'];
+
+            header("Location: /overview/overview.php");
+            exit();
             break;
         case 'Wrong password':
             echo 'Wrong password';
@@ -21,6 +22,12 @@ if (isset($_POST['username']) && isset($_POST['masterpass'])) {
             echo 'error';
     }
 }
+
+if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
+    header("Location: /overview/overview.php");
+    exit();
+}
+
 ?>
 
 <form method="post" action="index.php">
