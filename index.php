@@ -2,9 +2,11 @@
 session_start();
 include 'db.php';
 
+$errormsg = "";
+
 if (isset($_POST['username']) && isset($_POST['pswd'])) 
 {
-    if(isset($_POST['signup_s']))
+    if(isset($_POST['btnSignup']))
     {
         switch (add_user($_POST['username'], $_POST['pswd'])) {
             case 'Success':
@@ -15,14 +17,14 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                 exit();
                 break;
             case 'Username already taken':
-                echo 'Username already taken';
+                $errormsg = 'Username already taken';
                 break;
             default:
-                echo 'error';
+                $errormsg = 'error';
         }
     }
 
-    if(isset($_POST['login_s']))
+    if(isset($_POST['btnLogin']))
     {
         switch (login($_POST['username'], $_POST['pswd'])) {
             case 'Success':
@@ -33,13 +35,13 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                 exit();
                 break;
             case 'Wrong password':
-                echo 'Wrong password';
+                $errormsg = 'Wrong password';
                 break;
             case 'Username not found':
-                echo 'Username not found';
+                $errormsg = 'Username not found';
                 break;
             default:
-                echo 'error';
+                $errormsg = 'error';
         }
     }
 }
@@ -63,25 +65,28 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 </head>
 
 <body>
-	<div class="main">  	
+	<div class="main">
+          	
 		<input type="checkbox" id="chk" aria-hidden="true">
 
-			<div class="signup" method="post" action="index.php">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="username" placeholder="Username" required="">
+			<div class="signup">
+				<form method="post" action="index.php">
+					<label for="chk" id="lblSignup" aria-hidden="true">Sign up</label>
+                    <label for="lblSignup" class="errormsg"><?php if (isset($_POST['btnSignup'])){echo $errormsg;} ?></label>
+					<input type="text" name="username" placeholder="Username" required=""> 
 					<input type="email" name="email" placeholder="Email" required="">
 					<input type="password" name="pswd" placeholder="Password" required="">
-					<button type="submit" name="signup_s"> Sign up </button>
+					<button type="submit" name="btnSignup">Sign up</button>
 				</form>
 			</div>
 
-			<div class="login" method="post" action="index.php">
-				<form>
-					<label for="chk" aria-hidden="true">Login</label>
+			<div class="login">
+				<form method="post" action="index.php">
+					<label for="chk" id="lblLogin" aria-hidden="true">Login</label>
+                    <label for="lblLogin" class="errormsg"><?php if (isset($_POST['btnLogin'])){echo $errormsg;} ?></label>
 					<input type="text" name="username" placeholder="Username" required="">
 					<input type="password" name="pswd" placeholder="Password" required="">
-					<button type="submit" name="login_s"> Login </button>
+					<button type="submit" name="btnLogin">Login</button>
 				</form>
 			</div>
 	</div>

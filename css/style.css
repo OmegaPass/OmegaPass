@@ -88,3 +88,29 @@ button:hover{
 #chk:checked ~ .signup label{
 	transform: scale(.6);
 }
+
+.signup label {
+	margin-bottom: 20px;
+}
+
+.signup .errormsg {
+	font-size: initial;
+	cursor: default;
+	transition: none;
+	margin: 0;
+	display: flex;
+	color: #f00;
+}
+
+.login label {
+	margin-bottom: 20px;
+}
+
+.login .errormsg {
+	font-size: initial;
+	cursor: default;
+	transition: none;
+	margin: 0;
+	display: flex;
+	color: #f00;
+}
