@@ -4,7 +4,7 @@ include 'db.php';
 
 if (isset($_POST['username']) && isset($_POST['masterpass'])) {
 
-    switch (login($_POST['username'], $_SESSION['masterpass'])) {
+    switch (login($_POST['username'], $_POST['masterpass'])) {
         case 'Success':
             $_SESSION['masterpass'] = $_POST['masterpass'];
             $_SESSION['username'] = $_POST['username'];
