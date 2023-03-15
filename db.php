@@ -39,7 +39,7 @@ function add_user($username, $password) {
             'username' => $username,
             'password' => hash_pw($password)
         ]);
-        return "Sucess";
+        return "Success";
     }
 }
 
