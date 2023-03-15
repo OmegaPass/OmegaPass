@@ -1,11 +1,23 @@
 <?php
 include '../db.php';
 $entries = get_all_entries(getUserId());
+
+if (isset($_POST['logout'])) {
+    session_start();
+    session_destroy();
+    header("Location: /index.php");
+    exit();
+}
+
+
 ?>
 <link rel="stylesheet" type="text/css" href="./style.css">
 <div class="overview">
     <div class="overview-sidebar">
         <h3>Übersicht</h3>
+        <form action="" method="post">
+            <button type="submit" name="logout">Ausloggen</button>
+        </form>
     </div>
 
     <div class="overview-passwords">

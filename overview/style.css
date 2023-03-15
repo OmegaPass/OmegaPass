@@ -12,6 +12,10 @@ body {
     width: 20%;
     background-color: lightcyan;
     padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .overview-passwords {
