@@ -14,7 +14,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                     $_SESSION['masterpass'] = $_POST['pswd'];
                     $_SESSION['username'] = $_POST['username'];
         
-                    header("Location: /overview/overview.php");
+                    header("Location: /overview/index.php");
                     exit();
                     break;
                 case 'Username already taken':
@@ -36,7 +36,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                 $_SESSION['masterpass'] = $_POST['pswd'];
                 $_SESSION['username'] = $_POST['username'];
 
-                header("Location: /overview/overview.php");
+                header("Location: /overview/index.php");
                 exit();
                 break;
             case 'Wrong password':
@@ -52,7 +52,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
 }
 
 if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
-    header("Location: /overview/overview.php");
+    header("Location: /overview/index.php");
     exit();
 }
 
@@ -65,7 +65,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>OmegaPass</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
 
