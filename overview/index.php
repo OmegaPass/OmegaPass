@@ -5,7 +5,7 @@ $entries = get_all_entries(getUserId());
 if (isset($_POST['logout'])) {
     session_start();
     session_destroy();
-    header("Location: /index.php");
+    header("Location: /");
     exit();
 }
 

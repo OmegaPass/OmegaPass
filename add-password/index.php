@@ -3,7 +3,7 @@ include "../db.php";
 
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password'])) {
     add_password(getUserId(), trim($_POST['website']), trim($_POST['username']), trim($_POST['password']));
-    echo "<script> location.href='/overview/index.php'; </script>";
+    echo "<script> location.href='/overview/'; </script>";
 }
 
 ?>

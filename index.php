@@ -14,7 +14,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                     $_SESSION['masterpass'] = $_POST['pswd'];
                     $_SESSION['username'] = $_POST['username'];
         
-                    header("Location: /overview/index.php");
+                    header("Location: /overview/");
                     exit();
                     break;
                 case 'Username already taken':
@@ -36,7 +36,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                 $_SESSION['masterpass'] = $_POST['pswd'];
                 $_SESSION['username'] = $_POST['username'];
 
-                header("Location: /overview/index.php");
+                header("Location: /overview/");
                 exit();
                 break;
             case 'Wrong password':
@@ -52,7 +52,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
 }
 
 if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
-    header("Location: /overview/index.php");
+    header("Location: /overview/");
     exit();
 }
 
