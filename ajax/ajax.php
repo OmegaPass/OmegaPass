@@ -10,6 +10,6 @@ if ($_POST['generate']) {
     echo generate_password($_POST['length'], $_POST['numbers'], $_POST['special']);
 }
 
-if ($_POST['passwordStregth'] && is_string($_POST['password'])) {
+if ($_POST['passwordStrength'] && is_string($_POST['password'])) {
     echo check_password_strength($_POST['password']);
 }
