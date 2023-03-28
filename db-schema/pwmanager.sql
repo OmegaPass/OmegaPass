@@ -12,7 +12,8 @@ CREATE TABLE `passwords` (
   `user_id` varchar(12) NOT NULL,
   `website` varchar(50) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `password` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `password` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+   `id` varchar(32) PRIMARY KEY DEFAULT (UUID())
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `users` (
