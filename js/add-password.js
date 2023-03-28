@@ -64,7 +64,7 @@ $(document).ready(function () {
     let passwordInput = $('#form-password').val();
 
     let validate = {
-      'passwordStregth': true,
+      'passwordStrength': true,
       'password': passwordInput
     };
 
@@ -88,18 +88,18 @@ $(document).ready(function () {
 
           let strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
 
-          let strenghtMapping = strengthWords.indexOf(response);
+          let strengthMapping = strengthWords.indexOf(response);
 
           const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred']
-          let strengthColor = strengthColors[strenghtMapping];
+          let strengthColor = strengthColors[strengthMapping];
 
-          if (strenghtMapping !== 0) {
-            streghtPercentage = 100 / strenghtMapping;
-            $('#progressBar').css('width', String(streghtPercentage) + '%');
+          if (strengthMapping !== 0) {
+            strengthPercentage = 100 / strengthMapping;
+            $('#progressBar').css('width', String(strengthPercentage) + '%');
             $('#progressBar').css('background-color', strengthColor);
           }
 
-          if (strenghtMapping === 0) {
+          if (strengthMapping === 0) {
             $('#progressBar').css('width', '100%');
             $('#progressBar').css('background-color', 'darkred');
           }
