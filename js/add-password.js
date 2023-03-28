@@ -58,6 +58,8 @@ $(document).ready(function () {
 
   });
 
+  const strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
+  const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred'];
   let timeout = null;
   $('#form-password').on('input', function () {
 
@@ -77,39 +79,29 @@ $(document).ready(function () {
       return;
     }
 
-    timeout = setTimeout(getStrength, 3000);
-
+    timeout = setTimeout(getStrength, 20);
+    
     function getStrength() {
       $.ajax({
         type: 'POST',
         url: '/ajax/ajax.php',
         data: validate,
-        success: function (response) {
-
-          let strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
-
-          let strengthMapping = strengthWords.indexOf(response);
-
-          const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred']
-          let strengthColor = strengthColors[strengthMapping];
-
+        success: response => {
+          const strengthMapping = strengthWords.indexOf(response);
+          const strengthColor = strengthColors[strengthMapping];
+    
           if (strengthMapping !== 0) {
-            strengthPercentage = 100 / strengthMapping;
-            $('#progressBar').css('width', String(strengthPercentage) + '%');
-            $('#progressBar').css('background-color', strengthColor);
+            const strengthPercentage = 100 / strengthMapping;
+            $('#progressBar').css({width: `${strengthPercentage}%`, backgroundColor: strengthColor});
+          } else {
+            $('#progressBar').css({width: '100%', backgroundColor: 'darkred'});
           }
-
-          if (strengthMapping === 0) {
-            $('#progressBar').css('width', '100%');
-            $('#progressBar').css('background-color', 'darkred');
-          }
-
+    
           $('#progressBar').css('display', 'block');
         },
-        error: function (error) {
-          console.log('Error posting data: ' + error);
+        error: error => {
+          console.log(`Error posting data: ${error}`);
         }
-
       });
     }
 
