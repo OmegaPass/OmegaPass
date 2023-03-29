@@ -4,5 +4,8 @@
         "bjeavons/zxcvbn-php": "^1.3",
         "catfan/medoo": "^2.1",
         "kelvinmo/fernet-php": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9"
     }
 }
