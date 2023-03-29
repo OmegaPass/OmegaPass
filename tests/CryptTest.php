@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-require_once '../crypt.php';
+require_once  __DIR__ . '/../crypt.php';
 
 use PHPUnit\Framework\TestCase;
 

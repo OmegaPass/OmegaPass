@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
-include 'crypt.php';
+include_once 'crypt.php';
 
 // Using Medoo namespace.
 use Medoo\Medoo;
@@ -13,7 +13,8 @@ $database = new Medoo([
     'database' => getenv('DATABASE'),
     'username' => getenv('USERNAME'),
     'password' => getenv('PASSWORD'),
-    'port' => getenv('PORT')
+    'port' => getenv('PORT'),
+    'testMode' => false // change this to to when you want to run phpunit
 ]);
 
 function add_password($userid, $website, $username, $password) {
