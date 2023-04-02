@@ -2,8 +2,6 @@
 session_start();
 require 'vendor/autoload.php';
 include 'crypt.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 // Using Medoo namespace.
 use Medoo\Medoo;
@@ -11,11 +9,11 @@ use Medoo\Medoo;
 // Connect the database.
 $database = new Medoo([
     'type' => 'mysql',
-    'host' => $_ENV['HOST'],
-    'database' => $_ENV['DATABASE'],
-    'username' => $_ENV['USERNAME'],
-    'password' => $_ENV['PASSWORD'],
-    'port' => $_ENV['PORT']
+    'host' => getenv('HOST'),
+    'database' => getenv('DATABASE'),
+    'username' => getenv('USERNAME'),
+    'password' => getenv('PASSWORD'),
+    'port' => getenv('PORT')
 ]);
 
 function add_password($userid, $website, $username, $password) {
@@ -41,7 +39,7 @@ function add_user($username, $password) {
             'username' => $username,
             'password' => hash_pw($password)
         ]);
-        return "Sucess";
+        return "Success";
     }
 }
 
@@ -81,7 +79,7 @@ function get_all_entries($userid) {
         }
     }
 
-    return json_encode($results);
+    return $results;
 }
 
 function login($username, $password) {
@@ -90,7 +88,7 @@ function login($username, $password) {
     $query = $database->select('users', ['password'], ['username' => $username]);
     if ($query !== []) {
         if (check_pw($password, $query[0]['password'])) {
-            return "Sucess";
+            return "Success";
         } else {
             return "Wrong password";
         }
@@ -115,6 +113,18 @@ function changeMasterPass($userId, $oldPassword, $newPassword) {
     } else {
         return 'wrong entered password';
     }
+}
+
+function getUserId() {
+    global $database;
+
+    $query = $database->select('users', [
+        'user_id'
+    ], [
+        'username' => $_SESSION['username']
+    ]);
+
+    return $query[0]['user_id'];
 }
 
 function changeUsername($userId, $newUsername) {
