@@ -7,7 +7,10 @@ if (isset($_GET['getPass'])) {
 }
 
 if ($_POST['generate']) {
-    echo generate_password($_POST['length'], $_POST['numbers'], $_POST['special']);
+    $digits = filter_var($_POST['digits'], FILTER_VALIDATE_BOOLEAN);
+    $special = filter_var($_POST['special'], FILTER_VALIDATE_BOOLEAN);
+    
+    echo generate_password($_POST['length'], $digits, $special);
 }
 
 if ($_POST['passwordStrength'] && is_string($_POST['password'])) {
