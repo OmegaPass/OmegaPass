@@ -68,7 +68,8 @@ function get_all_entries($userid) {
     $results = $database->select('passwords', [
                 'website',
                 'username',
-                'password'
+                'password',
+                'id'
         ], [
                 'user_id' => $userid
     ]);
@@ -134,5 +135,18 @@ function changeUsername($userId, $newUsername) {
         'username' => $newUsername
     ], [
         'user_id' => $userId
+    ]);
+}
+
+function changeEntry($userId, $website, $username, $newPassword, $entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'website' => $website,
+        'username' => $username,
+        'password' => encrypt($newPassword, $_SESSION['masterpass'])
+    ],
+    [
+        'id' => $entryId
     ]);
 }
