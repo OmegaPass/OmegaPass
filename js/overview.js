@@ -7,6 +7,7 @@ $(document).ready(function() {
 
         $('#clear-details').show();
         $('#show-password').show();
+        $('#details-edit').show();
 
         fetch(`/ajax/ajax.php?getPass=${id}`)
         .then((response) => response.json())
@@ -19,6 +20,7 @@ $(document).ready(function() {
             }
             $('#details-username').text(res.username);
             $('#details-password').text('*********');
+            $('#entryId').val(res.id);
             showPass.password = res.password;
             showPass.show = false;
         })
@@ -45,6 +47,14 @@ $(document).ready(function() {
 
     $('#add-password').click(function() {
         window.location.href = '/add-password/';
+    });
+
+    $('#details-edit').click(function() {
+        $('#edit-modal').show();
+    });
+
+    $('#modal-close').click(function() {
+        $('#edit-modal').hide();
     });
 
 });

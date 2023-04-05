@@ -9,6 +9,11 @@ if (isset($_POST['logout'])) {
     exit();
 }
 
+if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
+    changeEntry(getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
+    header('Refresh: 0');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +70,24 @@ if (isset($_POST['logout'])) {
                 <h4>Password</h4>
                 <h5 id="details-password"></h5>
                 <button id="show-password" style="display: none">Zeigen</button>
+                <button id="details-edit" style="display: none">Bearbeiten</button>
             </section>
+        </div>
+
+        <div id="edit-modal" style="display: none">
+            <div class="modal">
+                <button id="modal-close">X</button>
+                <form class="edit-modal-content" method="post" action="">
+                    <label>Webseite</label>
+                    <input type="text" name="website" required>
+                    <label>Benutzername</label>
+                    <input type="text" name="username" required>
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                    <input type="hidden" name="id" id="entryId">
+                    <button type="submit">Ändern</button>
+                </form>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
