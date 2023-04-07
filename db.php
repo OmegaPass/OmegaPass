@@ -110,9 +110,30 @@ function changeMasterPass($userId, $oldPassword, $newPassword) {
             'user_id' => $userId
         ]);
 
-        return 'changed';
+        $_SESSION['masterpass'] = $newPassword;
+
+        reEncryptPasswords($userId, $oldPassword);
+
+        return true;
     } else {
-        return 'wrong entered password';
+        return false;
+    }
+}
+
+
+function reEncryptPasswords($userId, $oldMasterPass) {
+    global $database;
+
+    $passwords = $database->select('passwords', ['id', 'password'], ['user_id' => $userId]);
+
+    foreach ($passwords as $password) {
+        $decryptedPassword = decrypt($password['password'], $oldMasterPass);
+
+        $database->update('passwords', [
+            'password' => encrypt($decryptedPassword, $_SESSION['masterpass'])
+        ], [
+            'id' => $password['id']
+        ]);
     }
 }
 
