@@ -14,7 +14,7 @@ $database = new Medoo([
     'username' => getenv('USERNAME'),
     'password' => getenv('PASSWORD'),
     'port' => getenv('PORT'),
-    'testMode' => false // change this to to when you want to run phpunit
+    'testMode' => $phpUnitTestMode ?? false
 ]);
 
 function add_password($userid, $website, $username, $password) {

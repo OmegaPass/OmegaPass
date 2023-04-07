@@ -2,6 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 
+$phpUnitTestMode = true;
+
 require_once __DIR__ . '/../db.php';
 
 class PasswordManagerTest extends TestCase {
