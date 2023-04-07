@@ -30,6 +30,8 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
         <div class="overview">
             <div class="overview-sidebar">
                 <h3>Übersicht</h3>
+                <!-- TODO: change to link or change logout to link -->
+                <button onclick="window.location.href='/account-settings/'">Account settings</button>
                 <form action="" method="post">
                     <button type="submit" name="logout">Ausloggen</button>
                 </form>
