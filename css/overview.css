@@ -105,3 +105,12 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff;
     border-radius: 5px; 
 }
+
+#trash-form {
+    display: inline;
+}
+
+.overview-sidebar a {
+    text-decoration: none;
+    color: #000;
+}

@@ -1,6 +1,5 @@
 <?php
 include '../db.php';
-$entries = get_all_entries(getUserId());
 
 if (isset($_POST['logout'])) {
     session_start();
@@ -12,6 +11,27 @@ if (isset($_POST['logout'])) {
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
     changeEntry(getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
     header('Refresh: 0');
+}
+
+if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
+    switch ($_GET['mode']) {
+        case 'trash':
+            moveEntryOutOfTrash($_POST['id']);
+            break;
+
+        default:
+            moveEntryToTrash($_POST['id']);
+            break;
+    }
+}
+
+switch ($_GET['mode']) {
+    case 'trash':
+        $entries = get_all_entries(getUserId(), 'trash');
+        break;
+
+    default:
+        $entries = get_all_entries(getUserId());
 }
 
 ?>
@@ -29,7 +49,10 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
     <body>
         <div class="overview">
             <div class="overview-sidebar">
-                <h3>Übersicht</h3>
+                <a href="/overview/" target="_self">
+                    <h3>Übersicht</h3>
+                </a>
+                <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
                 <!-- TODO: change to link or change logout to link -->
                 <button onclick="window.location.href='/account-settings/'">Account settings</button>
                 <form action="" method="post">
@@ -73,6 +96,19 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
                 <h5 id="details-password"></h5>
                 <button id="show-password" style="display: none">Zeigen</button>
                 <button id="details-edit" style="display: none">Bearbeiten</button>
+                <form id="trash-form" method="post" style="display: none">
+                    <input type="hidden" name="id" class="entryId">
+                    <input type="hidden" name="trash" value="trash">
+                    <button type="submit">
+                        <?php
+                        if ($_GET['mode'] === 'trash') {
+                            echo 'Move out of trash';
+                        } else {
+                            echo 'Move to trash';
+                        }
+                        ?>
+                    </button>
+                </form>
             </section>
         </div>
 
@@ -86,7 +122,7 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
                     <input type="text" name="username" required>
                     <label>Password</label>
                     <input type="password" name="password" required>
-                    <input type="hidden" name="id" id="entryId">
+                    <input type="hidden" name="id" class="entryId">
                     <button type="submit">Ändern</button>
                 </form>
             </div>
