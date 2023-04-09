@@ -53,7 +53,6 @@ switch ($_GET['mode']) {
                     <h3>Übersicht</h3>
                 </a>
                 <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
-                <!-- TODO: change to link or change logout to link -->
                 <button onclick="window.location.href='/account-settings/'">Account settings</button>
                 <form action="" method="post">
                     <button type="submit" name="logout">Ausloggen</button>

@@ -99,7 +99,6 @@ function login($username, $password) {
     }
 }
 
-// TODO: Vorher gespeicherte Passwörter neu mit verschlüsseln
 function changeMasterPass($userId, $oldPassword, $newPassword) {
     global $database;
 
