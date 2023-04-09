@@ -3,7 +3,7 @@ include "../db.php";
 include_once "../crypt.php";
 
 if (isset($_GET['getPass'])) {
-    echo json_encode(get_all_entries(getUserId())[$_GET['getPass']]);
+    echo json_encode(get_all_entries(getUserId(), $_GET['mode'])[$_GET['getPass']]);
 }
 
 if ($_POST['generate']) {
