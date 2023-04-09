@@ -8,8 +8,19 @@ $(document).ready(function() {
         $('#clear-details').show();
         $('#show-password').show();
         $('#details-edit').show();
+        $('#trash-form').show();
 
-        fetch(`/ajax/ajax.php?getPass=${id}`)
+        let currentUrl = new URL(window.location);
+        let currentUrlParams = new URLSearchParams(currentUrl.search);
+        let mode = null;
+        let ajaxUrl = `/ajax/ajax.php?getPass=${id}`;
+
+        if (currentUrlParams.has('mode')) {
+            mode = '&mode=' + currentUrlParams.get('mode');
+            ajaxUrl =  ajaxUrl + mode;
+        }
+
+        fetch(ajaxUrl)
         .then((response) => response.json())
         .then((res) => {
             $('#details-website-link').text(res.website);
@@ -20,7 +31,7 @@ $(document).ready(function() {
             }
             $('#details-username').text(res.username);
             $('#details-password').text('*********');
-            $('#entryId').val(res.id);
+            $('input.entryId').val(res.id);
             showPass.password = res.password;
             showPass.show = false;
         })
@@ -32,6 +43,8 @@ $(document).ready(function() {
         $('#details-password').text('');
         $('#clear-details').hide();
         $('#show-password').hide();
+        $('#details-edit').hide();
+        $('#trash-form').hide();
     });
 
     $('#show-password').click(function() {

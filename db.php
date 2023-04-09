@@ -63,7 +63,7 @@ function get_all_websites($userid) {
     return json_encode($result);
 }
 
-function get_all_entries($userid) {
+function get_all_entries($userid, $mode = null) {
     global $database;
     $results = $database->select('passwords', [
                 'website',
@@ -71,7 +71,8 @@ function get_all_entries($userid) {
                 'password',
                 'id'
         ], [
-                'user_id' => $userid
+                'user_id' => $userid,
+                'trash' => $mode === 'trash' ? true : null
     ]);
 
     foreach ($results as &$result) {
@@ -129,6 +130,26 @@ function changeEntry($userId, $website, $username, $newPassword, $entryId) {
         'password' => encrypt($newPassword, $_SESSION['masterpass'])
     ],
     [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryToTrash($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'trash' => true
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryOutOfTrash($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'trash' => null
+    ], [
         'id' => $entryId
     ]);
 }
