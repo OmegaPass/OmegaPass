@@ -60,7 +60,7 @@ switch ($_GET['mode']) {
 
             <div class="overview-passwords">
                 <div class="overview-passwords-header">
-                    <h3>Passwörter</h4>
+                    <h3>Passwörter</h3>
                     <button id="add-password">+</button>
                 </div>
 
