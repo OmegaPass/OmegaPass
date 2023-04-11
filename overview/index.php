@@ -25,11 +25,27 @@ if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
     }
 }
 
+if (isset($_POST['id']) && $_POST['favorite'] === 'favorite') {
+    switch ($_GET['mode']) {
+        case 'favorite':
+            moveEntryOutOfFavorite($_POST['id']);
+            break;
+
+        default:
+            moveEntryToFavorite($_POST['id']);
+            break;
+    }
+}
+
 deleteAfterThirtyDays();
 
 switch ($_GET['mode']) {
     case 'trash':
         $entries = get_all_entries(getUserId(), 'trash');
+        break;
+
+    case 'favorite':
+        $entries = get_all_entries(getUserId(), 'favorite');
         break;
 
     default:
@@ -55,6 +71,7 @@ switch ($_GET['mode']) {
                     <h3>Übersicht</h3>
                 </a>
                 <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
+                <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
                 <form action="" method="post">
                     <button type="submit" name="logout">Ausloggen</button>
                 </form>
@@ -114,6 +131,18 @@ switch ($_GET['mode']) {
                             echo 'Move out of trash';
                         } else {
                             echo 'Move to trash';
+                        }
+                        ?>
+                    </button>
+                </form>
+                <form id="favorite-form" method="post" action="" style="display: none">
+                    <input type="hidden" name="id" class="entryId">
+                    <button type="submit" name="favorite" value="favorite">
+                        <?php
+                        if ($_GET['mode'] === 'favorite') {
+                            echo 'Unfavorite';
+                        } else {
+                            echo 'Favorite';
                         }
                         ?>
                     </button>

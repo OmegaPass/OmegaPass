@@ -72,7 +72,8 @@ function get_all_entries($userid, $mode = null) {
                 'id'
         ], [
                 'user_id' => $userid,
-                'trash' => $mode === 'trash' ? true : null
+                'trash' => $mode === 'trash' ? true : null,
+                'favorite' => $mode === 'favorite' ? true : null
     ]);
 
     foreach ($results as &$result) {
@@ -151,6 +152,26 @@ function moveEntryOutOfTrash($entryId) {
     $database->update('passwords', [
         'trash' => null,
         'trashDate' => null
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryToFavorite($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'favorite' => true
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryOutOfFavorite($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'favorite' => null
     ], [
         'id' => $entryId
     ]);
