@@ -176,7 +176,8 @@ function moveEntryToTrash($entryId) {
     global $database;
 
     $database->update('passwords', [
-        'trash' => true
+        'trash' => true,
+        'trashDate' => (new DateTime())->format('Y-m-d H:i:s')
     ], [
         'id' => $entryId
     ]);
@@ -186,8 +187,31 @@ function moveEntryOutOfTrash($entryId) {
     global $database;
 
     $database->update('passwords', [
-        'trash' => null
+        'trash' => null,
+        'trashDate' => null
     ], [
         'id' => $entryId
     ]);
+}
+
+function deleteAfterThirtyDays() {
+    global $database;
+
+    $trashedPasswords = $database->select('passwords', [
+        'id',
+        'trashDate'
+    ], [
+        'trash' => true,
+        'user_id' => getUserId()
+    ]);
+
+    foreach ($trashedPasswords as $trashedPassword) {
+        if (strtotime($trashedPassword['trashDate']) < strtotime('-30 days')) {
+            $database->delete('passwords', [
+               "AND" => [
+                   'id' => $trashedPassword['id']
+               ]
+            ]);
+        }
+    }
 }
