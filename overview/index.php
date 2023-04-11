@@ -37,6 +37,8 @@ if (isset($_POST['id']) && $_POST['favorite'] === 'favorite') {
     }
 }
 
+deleteAfterThirtyDays();
+
 switch ($_GET['mode']) {
     case 'trash':
         $entries = get_all_entries(getUserId(), 'trash');
@@ -81,6 +83,16 @@ switch ($_GET['mode']) {
                     <button id="add-password">+</button>
                 </div>
 
+                <div class="overview-passwords-subheader">
+                    <?php
+                    if ($_GET['mode'] === 'trash') {
+                        echo '
+                            <p class="trash-delete-info">A password will be deleted after 30 days in the trash!</p>
+                        ';
+                    }
+                    ?>
+                </div>
+
                 <table boarder='1' class="overview-password-table">
                     <tr>
                         <th>Website</th>
@@ -113,8 +125,7 @@ switch ($_GET['mode']) {
                 <button id="details-edit" style="display: none">Bearbeiten</button>
                 <form id="trash-form" method="post" style="display: none">
                     <input type="hidden" name="id" class="entryId">
-                    <input type="hidden" name="trash" value="trash">
-                    <button type="submit">
+                    <button type="submit" name="trash" value="trash">
                         <?php
                         if ($_GET['mode'] === 'trash') {
                             echo 'Move out of trash';
