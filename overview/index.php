@@ -68,18 +68,18 @@ switch ($_GET['mode']) {
         <div class="overview">
             <div class="overview-sidebar">
                 <a href="/overview/" target="_self">
-                    <h3>Übersicht</h3>
+                    <h3>Overview</h3>
                 </a>
                 <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
                 <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
                 <form action="" method="post">
-                    <button type="submit" name="logout">Ausloggen</button>
+                    <button type="submit" name="logout">Logout</button>
                 </form>
             </div>
 
             <div class="overview-passwords">
                 <div class="overview-passwords-header">
-                    <h3>Passwörter</h3>
+                    <h3>Passwords</h3>
                     <button id="add-password">+</button>
                 </div>
 
@@ -121,8 +121,8 @@ switch ($_GET['mode']) {
                 <h5 id="details-username"></h5>
                 <h4>Password</h4>
                 <h5 id="details-password"></h5>
-                <button id="show-password" style="display: none">Zeigen</button>
-                <button id="details-edit" style="display: none">Bearbeiten</button>
+                <button id="show-password" style="display: none">Show</button>
+                <button id="details-edit" style="display: none">Edit</button>
                 <form id="trash-form" method="post" style="display: none">
                     <input type="hidden" name="id" class="entryId">
                     <button type="submit" name="trash" value="trash">
@@ -154,14 +154,14 @@ switch ($_GET['mode']) {
             <div class="modal">
                 <button id="modal-close">X</button>
                 <form class="edit-modal-content" method="post" action="">
-                    <label>Webseite</label>
+                    <label>Website</label>
                     <input type="text" name="website" required>
-                    <label>Benutzername</label>
+                    <label>Username</label>
                     <input type="text" name="username" required>
                     <label>Password</label>
                     <input type="password" name="password" required>
                     <input type="hidden" name="id" class="entryId">
-                    <button type="submit">Ändern</button>
+                    <button type="submit">Change</button>
                 </form>
             </div>
         </div>
