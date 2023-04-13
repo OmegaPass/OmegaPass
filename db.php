@@ -100,6 +100,44 @@ function login($username, $password) {
     }
 }
 
+function changeMasterPass($userId, $oldPassword, $newPassword) {
+    global $database;
+
+    $pw = $database->select('users', ['password'], ['user_id' => $userId]);
+    if (check_pw($oldPassword, $pw[0]['password'])) {
+        $database->update('users', [
+            'password' => hash_pw($newPassword)
+        ], [
+            'user_id' => $userId
+        ]);
+
+        $_SESSION['masterpass'] = $newPassword;
+
+        reEncryptPasswords($userId, $oldPassword);
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function reEncryptPasswords($userId, $oldMasterPass) {
+    global $database;
+
+    $passwords = $database->select('passwords', ['id', 'password'], ['user_id' => $userId]);
+
+    foreach ($passwords as $password) {
+        $decryptedPassword = decrypt($password['password'], $oldMasterPass);
+
+        $database->update('passwords', [
+            'password' => encrypt($decryptedPassword, $_SESSION['masterpass'])
+        ], [
+            'id' => $password['id']
+        ]);
+    }
+}
+
 function getUserId() {
     global $database;
 

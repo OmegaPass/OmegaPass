@@ -70,8 +70,9 @@ switch ($_GET['mode']) {
                 <a href="/overview/" target="_self">
                     <h3>Overview</h3>
                 </a>
-                <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
                 <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
+                <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
+                <button onclick="window.location.href='/account-settings/'">Account settings</button>
                 <form action="" method="post">
                     <button type="submit" name="logout">Logout</button>
                 </form>
