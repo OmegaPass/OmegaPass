@@ -9,6 +9,7 @@ $(document).ready(function() {
         $('#show-password').show();
         $('#details-edit').show();
         $('#trash-form').show();
+        $('#favorite-form').show();
 
         let currentUrl = new URL(window.location);
         let currentUrlParams = new URLSearchParams(currentUrl.search);
@@ -45,6 +46,7 @@ $(document).ready(function() {
         $('#show-password').hide();
         $('#details-edit').hide();
         $('#trash-form').hide();
+        $('#favorite-form').hide();
     });
 
     $('#show-password').click(function() {
