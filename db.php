@@ -26,17 +26,22 @@ function add_password($userid, $website, $username, $password) {
     ]);
 }
 
-function add_user($username, $password) {
+function add_user($username, $password, $email) {
     global $database;
 
-    $query = $database->select('users', ['username'], ['username' => $username]);
-
-    if ($query !== []) {
-        return "Username already taken";
-    } else {
+    $query['username'] = $database->select('users', ['username'], ['username' => $username]);
+    $query['email'] = $database->select('users', ['email'], ['email' => $email]);
+    if ($query['username'] !== []) {
+        return "This username already taken";
+    }
+    elseif ($query['email'] !== []) {
+        return "This email-address is already taken";
+    } 
+    else {
         $database->insert('users', [
             'user_id' => generate_userid(),
             'username' => $username,
+            'email' => $email,
             'password' => hash_pw($password)
         ]);
         return "Success";
@@ -91,7 +96,8 @@ function login($username, $password) {
     $query = $database->select('users', ['password'], ['username' => $username]);
     if ($query !== []) {
         if (check_pw($password, $query[0]['password'])) {
-            return "Success";
+            $email = $database->select(); // ToDo add db query to select the email address
+            return array("Success", $email);
         } else {
             return "Wrong password";
         }
