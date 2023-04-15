@@ -96,7 +96,8 @@ function login($username, $password) {
     $query = $database->select('users', ['password'], ['username' => $username]);
     if ($query !== []) {
         if (check_pw($password, $query[0]['password'])) {
-            $email = $database->select(); // ToDo add db query to select the email address
+            $email_query = $database->select('users', ['email'], ['username' => $username]);
+            $email = $email_query[0]['email'];
             return array("Success", $email);
         } else {
             return "Wrong password";
