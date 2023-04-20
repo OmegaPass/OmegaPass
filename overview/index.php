@@ -1,12 +1,55 @@
 <?php
 include '../db.php';
-$entries = get_all_entries(getUserId());
 
 if (isset($_POST['logout'])) {
     session_start();
     session_destroy();
     header("Location: /");
     exit();
+}
+
+if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
+    changeEntry(getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
+    header('Refresh: 0');
+}
+
+if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
+    switch ($_GET['mode']) {
+        case 'trash':
+            moveEntryOutOfTrash($_POST['id']);
+            break;
+
+        default:
+            moveEntryToTrash($_POST['id']);
+            break;
+    }
+}
+
+if (isset($_POST['id']) && $_POST['favorite'] === 'favorite') {
+    switch ($_GET['mode']) {
+        case 'favorite':
+            moveEntryOutOfFavorite($_POST['id']);
+            break;
+
+        default:
+            moveEntryToFavorite($_POST['id']);
+            break;
+    }
+}
+
+deleteAfterThirtyDays();
+
+switch ($_GET['mode']) {
+    case 'trash':
+        $entries = get_all_entries(getUserId(), 'trash');
+        break;
+
+    case 'favorite':
+        $entries = get_all_entries(getUserId(), 'favorite');
+        break;
+
+    default:
+        $entries = get_all_entries(getUserId());
 }
 
 ?>
@@ -24,16 +67,31 @@ if (isset($_POST['logout'])) {
     <body>
         <div class="overview">
             <div class="overview-sidebar">
-                <h3>Übersicht</h3>
+                <a href="/overview/" target="_self">
+                    <h3>Overview</h3>
+                </a>
+                <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
+                <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
+                <button onclick="window.location.href='/account-settings/'">Account settings</button>
                 <form action="" method="post">
-                    <button type="submit" name="logout">Ausloggen</button>
+                    <button type="submit" name="logout">Logout</button>
                 </form>
             </div>
 
             <div class="overview-passwords">
                 <div class="overview-passwords-header">
-                    <h3>Passwörter</h4>
+                    <h3>Passwords</h3>
                     <button id="add-password">+</button>
+                </div>
+
+                <div class="overview-passwords-subheader">
+                    <?php
+                    if ($_GET['mode'] === 'trash') {
+                        echo '
+                            <p class="trash-delete-info">A password will be deleted after 30 days in the trash!</p>
+                        ';
+                    }
+                    ?>
                 </div>
 
                 <table boarder='1' class="overview-password-table">
@@ -64,8 +122,49 @@ if (isset($_POST['logout'])) {
                 <h5 id="details-username"></h5>
                 <h4>Password</h4>
                 <h5 id="details-password"></h5>
-                <button id="show-password" style="display: none">Zeigen</button>
+                <button id="show-password" style="display: none">Show</button>
+                <button id="details-edit" style="display: none">Edit</button>
+                <form id="trash-form" method="post" style="display: none">
+                    <input type="hidden" name="id" class="entryId">
+                    <button type="submit" name="trash" value="trash">
+                        <?php
+                        if ($_GET['mode'] === 'trash') {
+                            echo 'Move out of trash';
+                        } else {
+                            echo 'Move to trash';
+                        }
+                        ?>
+                    </button>
+                </form>
+                <form id="favorite-form" method="post" action="" style="display: none">
+                    <input type="hidden" name="id" class="entryId">
+                    <button type="submit" name="favorite" value="favorite">
+                        <?php
+                        if ($_GET['mode'] === 'favorite') {
+                            echo 'Unfavorite';
+                        } else {
+                            echo 'Favorite';
+                        }
+                        ?>
+                    </button>
+                </form>
             </section>
+        </div>
+
+        <div id="edit-modal" style="display: none">
+            <div class="modal">
+                <button id="modal-close">X</button>
+                <form class="edit-modal-content" method="post" action="">
+                    <label>Website</label>
+                    <input type="text" name="website" required>
+                    <label>Username</label>
+                    <input type="text" name="username" required>
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                    <input type="hidden" name="id" class="entryId">
+                    <button type="submit">Change</button>
+                </form>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>

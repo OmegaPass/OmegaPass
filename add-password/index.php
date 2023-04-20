@@ -21,33 +21,33 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
     <body>
         <section>
             <form class="add-password-card" id="add-password-form" action="" method="post">
-                <label>Webseite</label>
-                <input type="text" placeholder="Webseite" required id="form-website" name="website">
-                <label>Benutzername</label>
-                <input type="text" placeholder="Benutzername" required id="form-username" name="username">
-                <label>Passwort</label>
+                <label>Website</label>
+                <input type="text" placeholder="Website" required id="form-website" name="website">
+                <label>Username</label>
+                <input type="text" placeholder="Username" required id="form-username" name="username">
+                <label>Password</label>
                 <div class="form-password-field">
                     <div>
-                        <input type="password" placeholder="Passwort" required id="form-password" name="password">
+                        <input type="password" placeholder="Password" required id="form-password" name="password">
                         <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
                     <div id="progress">
                         <div id="progressBar"></div>
                     </div>
-                    <p>Passwort generieren</p>
+                    <p>Generate a password</p>
                     <div class="gen-field">
                         <div>
                             <input type="number" id="gen-length">
-                            <label>Anzahl Buchstaben</label>
+                            <label>Number of characters</label>
                             <input type="checkbox" id="gen-digits">
-                            <label>Zahlen</label>
+                            <label>Numbers</label>
                             <input type="checkbox" id="gen-special">
-                            <label>Sonderzeichen</label>
+                            <label>Special characters</label>
                         </div>
-                        <button id="generate" type="button">Generieren und ausfüllen</button>
+                        <button id="generate" type="button">Generate and fill</button>
                     </div>
                 </div>
-                <button type="submit" id="submitButton">Speichern</button>
+                <button type="submit" id="submitButton">Save</button>
             </form>
         </section>
 

@@ -64,14 +64,17 @@ function get_all_websites($userid) {
     return json_encode($result);
 }
 
-function get_all_entries($userid) {
+function get_all_entries($userid, $mode = null) {
     global $database;
     $results = $database->select('passwords', [
                 'website',
                 'username',
-                'password'
+                'password',
+                'id'
         ], [
-                'user_id' => $userid
+                'user_id' => $userid,
+                'trash' => $mode === 'trash' ? true : null,
+                'favorite' => $mode === 'favorite' ? true : null
     ]);
 
     foreach ($results as &$result) {
@@ -98,6 +101,44 @@ function login($username, $password) {
     }
 }
 
+function changeMasterPass($userId, $oldPassword, $newPassword) {
+    global $database;
+
+    $pw = $database->select('users', ['password'], ['user_id' => $userId]);
+    if (check_pw($oldPassword, $pw[0]['password'])) {
+        $database->update('users', [
+            'password' => hash_pw($newPassword)
+        ], [
+            'user_id' => $userId
+        ]);
+
+        $_SESSION['masterpass'] = $newPassword;
+
+        reEncryptPasswords($userId, $oldPassword);
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function reEncryptPasswords($userId, $oldMasterPass) {
+    global $database;
+
+    $passwords = $database->select('passwords', ['id', 'password'], ['user_id' => $userId]);
+
+    foreach ($passwords as $password) {
+        $decryptedPassword = decrypt($password['password'], $oldMasterPass);
+
+        $database->update('passwords', [
+            'password' => encrypt($decryptedPassword, $_SESSION['masterpass'])
+        ], [
+            'id' => $password['id']
+        ]);
+    }
+}
+
 function getUserId() {
     global $database;
 
@@ -118,4 +159,81 @@ function changeUsername($userId, $newUsername) {
     ], [
         'user_id' => $userId
     ]);
+}
+
+function changeEntry($userId, $website, $username, $newPassword, $entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'website' => $website,
+        'username' => $username,
+        'password' => encrypt($newPassword, $_SESSION['masterpass'])
+    ],
+    [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryToTrash($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'trash' => true,
+        'trashDate' => (new DateTime())->format('Y-m-d H:i:s')
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryOutOfTrash($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'trash' => null,
+        'trashDate' => null
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryToFavorite($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'favorite' => true
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function moveEntryOutOfFavorite($entryId) {
+    global $database;
+
+    $database->update('passwords', [
+        'favorite' => null
+    ], [
+        'id' => $entryId
+    ]);
+}
+
+function deleteAfterThirtyDays() {
+    global $database;
+
+    $trashedPasswords = $database->select('passwords', [
+        'id',
+        'trashDate'
+    ], [
+        'trash' => true,
+        'user_id' => getUserId()
+    ]);
+
+    foreach ($trashedPasswords as $trashedPassword) {
+        if (strtotime($trashedPassword['trashDate']) < strtotime('-30 days')) {
+            $database->delete('passwords', [
+               "AND" => [
+                   'id' => $trashedPassword['id']
+               ]
+            ]);
+        }
+    }
 }

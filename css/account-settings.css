@@ -1,0 +1,25 @@
+.change-masterpass-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.change-masterpass-form-input, input {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    width: 100%;
+}
+
+.toggle-password {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+.errorMsg {
+    color: #ff0000;
+    margin: 10px;
+    text-align: center;
+}
