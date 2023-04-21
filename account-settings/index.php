@@ -1,12 +1,13 @@
 <?php
 
 include_once "../db.php";
+$database = new DataBase();
 
 $errorMsg = null;
 
 
 if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
-    $success =  changeMasterPass(getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
+    $success =  $database->changeMasterPass($database->getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
 
     if ($success) {
         unset($_SESSION['masterpass']);

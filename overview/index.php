@@ -1,5 +1,6 @@
 <?php
 include '../db.php';
+$database = new DataBase();
 
 if (isset($_POST['logout'])) {
     session_start();
@@ -9,18 +10,18 @@ if (isset($_POST['logout'])) {
 }
 
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
-    changeEntry(getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
+    $database->changeEntry($database->getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
     header('Refresh: 0');
 }
 
 if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
     switch ($_GET['mode']) {
         case 'trash':
-            moveEntryOutOfTrash($_POST['id']);
+            $database->moveEntryOutOfTrash($_POST['id']);
             break;
 
         default:
-            moveEntryToTrash($_POST['id']);
+            $database->moveEntryToTrash($_POST['id']);
             break;
     }
 }
@@ -28,28 +29,28 @@ if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
 if (isset($_POST['id']) && $_POST['favorite'] === 'favorite') {
     switch ($_GET['mode']) {
         case 'favorite':
-            moveEntryOutOfFavorite($_POST['id']);
+            $database->moveEntryOutOfFavorite($_POST['id']);
             break;
 
         default:
-            moveEntryToFavorite($_POST['id']);
+            $database->moveEntryToFavorite($_POST['id']);
             break;
     }
 }
 
-deleteAfterThirtyDays();
+$database->deleteAfterThirtyDays();
 
 switch ($_GET['mode']) {
     case 'trash':
-        $entries = get_all_entries(getUserId(), 'trash');
+        $entries = $database->get_all_entries($database->getUserId(), 'trash');
         break;
 
     case 'favorite':
-        $entries = get_all_entries(getUserId(), 'favorite');
+        $entries = $database->get_all_entries($database->getUserId(), 'favorite');
         break;
 
     default:
-        $entries = get_all_entries(getUserId());
+        $entries = $database->get_all_entries($database->getUserId());
 }
 
 ?>

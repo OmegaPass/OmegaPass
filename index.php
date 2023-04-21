@@ -1,19 +1,20 @@
 <?php
 session_start();
 include 'db.php';
+$database = new DataBase();
 
 $errormsg = "";
 
-if (isset($_POST['username']) && isset($_POST['pswd'])) 
+if (isset($_POST['username']) && isset($_POST['pswd']))
 {
     if(isset($_POST['btnSignup']))
     {
         if ($_POST['conf_pswd'] == $_POST['pswd']){
-            switch (add_user($_POST['username'], $_POST['pswd'])) {
+            switch ($database->add_user($_POST['username'], $_POST['pswd'])) {
                 case 'Success':
                     $_SESSION['masterpass'] = $_POST['pswd'];
                     $_SESSION['username'] = $_POST['username'];
-        
+
                     header("Location: /overview/");
                     exit();
                     break;
@@ -31,7 +32,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
 
     if(isset($_POST['btnLogin']))
     {
-        switch (login($_POST['username'], $_POST['pswd'])) {
+        switch ($database->login($_POST['username'], $_POST['pswd'])) {
             case 'Success':
                 $_SESSION['masterpass'] = $_POST['pswd'];
                 $_SESSION['username'] = $_POST['username'];
@@ -71,7 +72,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 
 <body>
 	<div class="main">
-          	
+
 		<input type="checkbox" id="chk" aria-hidden="true">
             <span id="errormsg"> <?php echo $errormsg; ?> </span>
 			<div class="login">
@@ -86,7 +87,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
             <div class="signup">
 				<form method="post" action="index.php">
 					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="username" placeholder="Username" required=""> 
+					<input type="text" name="username" placeholder="Username" required="">
                     <?php // For later implementation of reset password feature: <input type="email" name="email" placeholder="Email" required=""> ?>
 					<input type="password" name="pswd" placeholder="Password" required="">
                     <input type="password" name="conf_pswd" placeholder="Confirm password" required="">
