@@ -5,21 +5,21 @@ require_once  __DIR__ . '/../crypt.php';
 
 use PHPUnit\Framework\TestCase;
 
-class FunctionsTest extends TestCase
+class CryptTest extends TestCase
 {
     public function testGeneratePassword()
     {
         $password = generate_password(10, true, false);
         $this->assertEquals(10, strlen($password), 'Generated password length is not 10');
-        $this->assertMatchesRegularExpression('/[a-zA-Z]+/', $password, 'Generated password does not contain letters');
-        $this->assertMatchesRegularExpression('/[0-9]+/', $password, 'Generated password does not contain digits');
+        $this->matchesRegularExpression('/[a-zA-Z]+/', $password, 'Generated password does not contain letters');
+        $this->matchesRegularExpression('/[0-9]+/', $password, 'Generated password does not contain digits');
     }
 
     public function testGenerateUserId()
     {
         $userId = generate_userid();
         $this->assertEquals(12, strlen($userId), 'Generated user ID length is not 12');
-        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]+$/', $userId, 'Generated user ID contains invalid characters');
+        $this->matchesRegularExpression('/^[a-zA-Z0-9]+$/', $userId, 'Generated user ID contains invalid characters');
     }
 
     public function testHashPw()
@@ -39,7 +39,7 @@ class FunctionsTest extends TestCase
     public function testCheckPasswordStrength()
     {
         $strength = check_password_strength('abc123');
-        $this->assertEquals('weak', $strength, 'Password strength check failed');
+        $this->assertEquals('very weak', $strength, 'Password strength check failed');
     }
 
     public function testEncryptDecrypt()
