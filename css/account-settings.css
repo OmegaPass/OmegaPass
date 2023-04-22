@@ -1,20 +1,22 @@
-.change-masterpass-form {
+.change-masterpass-form, .change-username-form {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
 }
 
-.change-masterpass-form-input, input {
+.change-masterpass-form-input {
     display: flex;
     flex-direction: row;
     column-gap: 5px;
+}
+
+.password-input {
     width: 100%;
 }
 
 .toggle-password {
     width: 20px;
     height: 20px;
-    margin: auto;
     text-align: center;
 }
 

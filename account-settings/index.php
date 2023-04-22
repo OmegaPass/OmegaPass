@@ -6,7 +6,7 @@ $errorMsg = null;
 
 
 if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
-    $success =  changeMasterPass(getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
+    $success = changeMasterPass(getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
 
     if ($success) {
         unset($_SESSION['masterpass']);
@@ -14,6 +14,11 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
     }
 
     $errorMsg = "You entered the wrong password.";
+}
+
+if (isset($_POST['newUsername'])) {
+    changeUsername(getUserId(), trim($_POST['newUsername']));
+    header('Location: /overview/');
 }
 
 
@@ -32,6 +37,14 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
     </head>
     <body>
         <h1>Account</h1>
+        <section class="change-username">
+            <h2>Change your account username</h2>
+            <form class="change-username-form" method="post" action="">
+                <label>New username</label>
+                <input type="text" name="newUsername" required>
+                <button type="submit">Change</button>
+            </form>
+        </section>
         <section class="change-masterpass">
             <h2>Change your account password</h2>
             <?php echo "<p class='errorMsg'>$errorMsg</p>"?>
