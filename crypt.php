@@ -11,7 +11,7 @@ function generate_password($length, $digits, $special) {
 
     $factory = new RandomLib\Factory;
     $generator = $factory->getMediumStrengthGenerator();
-    
+
     switch (true) {
         case ($digits && $special):
             $options = $letters . $digitsChars . $specialChars;
@@ -25,9 +25,18 @@ function generate_password($length, $digits, $special) {
         default:
             $options = $letters;
             break;
-    }   
-    
-    $randpass = $generator->generateString($length, $options);
+    }
+
+    // TODO: issue that string without digits resolved with this. But don't know if this happens with other parameters
+
+    do {
+        $randpass = $generator->generateString($length, $options);
+    } while(
+        !is_string(
+            strpbrk($randpass, $digitsChars)
+        )
+    );
+
     return $randpass;
 }
 
@@ -66,7 +75,7 @@ function check_password_strength($password) {
         'strong',
         'very strong'
     ];
-    
+
     return $strengthMessage[$strength] ?? 'calc not avaliable';
 }
 
@@ -86,7 +95,7 @@ function decrypt($encryted, $masterPass) {
 
 function base64url_encode($data) {
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
-}  
-function base64url_decode($data) {  
+}
+function base64url_decode($data) {
     return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
 }
