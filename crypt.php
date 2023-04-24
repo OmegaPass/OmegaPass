@@ -12,30 +12,31 @@ function generate_password($length, $digits, $special) {
     $factory = new RandomLib\Factory;
     $generator = $factory->getMediumStrengthGenerator();
 
+    $options = [];
+
     switch (true) {
         case ($digits && $special):
-            $options = $letters . $digitsChars . $specialChars;
+            array_push($options, $letters, $digitsChars, $specialChars);
             break;
         case ($digits):
-            $options = $letters . $digitsChars;
+            array_push($options, $letters, $digitsChars);
             break;
         case ($special):
-            $options = $letters . $specialChars;
+            array_push($options, $letters, $specialChars);
             break;
         default:
-            $options = $letters;
+            $options[] = $letters;
             break;
     }
 
-    // TODO: issue that string without digits resolved with this. But don't know if this happens with other parameters
-
-    do {
-        $randpass = $generator->generateString($length, $options);
-    } while(
-        !is_string(
-            strpbrk($randpass, $digitsChars)
-        )
-    );
+    $randpass = '';
+    foreach ($options as $item) {
+        do {
+            $randpass = $generator->generateString($length, implode('', $options));
+        } while (
+            !is_string(strpbrk($randpass, $item))
+        );
+    }
 
     return $randpass;
 }
