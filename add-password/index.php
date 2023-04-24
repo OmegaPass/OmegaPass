@@ -1,8 +1,9 @@
 <?php
 include "../db.php";
+$database = new DataBase();
 
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password'])) {
-    add_password(getUserId(), trim($_POST['website']), trim($_POST['username']), trim($_POST['password']));
+    $database->add_password($database->getUserId(), trim($_POST['website']), trim($_POST['username']), trim($_POST['password']));
     echo "<script> location.href='/overview/'; </script>";
 }
 
