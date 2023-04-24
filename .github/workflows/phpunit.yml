@@ -1,0 +1,52 @@
+name: PHPUnit
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  phpunit:
+    name: PHPUnit
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Start MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: 'pwmanager'
+          mysql root password: 'root'
+          mysql user: 'root'
+          mysql password: 'root'
+          container name: mysql-unit
+
+
+      - name: Wait for 30 seconds
+        run: |
+          sleep 30
+
+      - name: Use schmea
+        run: |
+          mysql --password=root --user=root -h 127.0.0.1 pwmanager < ./db-schema/pwmanager.sql
+
+      - name: Setup PHP, with tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mysqli, pdo, pdo_mysql, dom, xml
+          tools: composer, phpunit:9
+
+      - name: Run composer install
+        run: composer install
+
+      - name: Run PHPUnit
+        run: composer test
+        env:
+          HOST: 127.0.0.1
