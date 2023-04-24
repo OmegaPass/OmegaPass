@@ -71,7 +71,7 @@ class DataBase {
         ], [
             'user_id' => $userid,
             'trash' => $mode === 'trash' ? true : null,
-            'favorite' => $mode === 'favorite' ? true : null
+            'favorite' => $mode === 'favorite' ? true : Medoo::raw('favorite IS NULL OR favorite = true')
         ]);
 
         foreach ($results as &$result) {
