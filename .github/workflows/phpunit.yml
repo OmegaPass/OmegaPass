@@ -30,7 +30,10 @@ jobs:
 
       - name: Wait for 30 seconds
         run: |
-          sleep 30
+          for i in {30..1}; do
+          echo "$i"
+          sleep 1
+          done
 
       - name: Use schmea
         run: |
@@ -50,3 +53,7 @@ jobs:
         run: composer test
         env:
           HOST: 127.0.0.1
+          DATABASE: pwmanager
+          USERNAME: root
+          PASSWORD: root
+          PORT: 3306
