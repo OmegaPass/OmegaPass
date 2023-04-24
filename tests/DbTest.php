@@ -6,8 +6,6 @@ $phpUnitTestMode = true;
 
 require_once __DIR__ . '/../db.php';
 
-// TODO: delete all records of previous created things
-
 class DbTest extends TestCase {
     private DataBase $database;
 
