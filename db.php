@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
-include 'crypt.php';
+include_once 'crypt.php';
 
 use Medoo\Medoo;
 
