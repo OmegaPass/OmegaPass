@@ -1,45 +1,62 @@
 <?php
 include '../db.php';
+
+// Create a new instance of the DataBase class
 $database = new DataBase();
 
+// Check if the user clicked the "Logout" button
 if (isset($_POST['logout'])) {
+    // Destroy the user's session and redirect to the home page
     session_start();
     session_destroy();
     header("Location: /");
     exit();
 }
 
+// Check if the user has submitted a form to change an entry's information
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
+    // Call the changeEntry() method to update the entry in the database
     $database->changeEntry($database->getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
     header('Refresh: 0');
 }
 
+// Check if the user has clicked the "Move to trash" or "Move out of trash" button
 if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
     switch ($_GET['mode']) {
         case 'trash':
+            // Call the moveEntryOutOfTrash() method to move the entry out of the trash
             $database->moveEntryOutOfTrash($_POST['id']);
             break;
 
         default:
+            // Call the moveEntryToTrash() method to move the entry to the trash
             $database->moveEntryToTrash($_POST['id']);
             break;
     }
 }
 
+// Check if the user has clicked the "Favorite" or "Unfavorite" button
 if (isset($_POST['id']) && $_POST['favorite'] === 'favorite') {
     switch ($_GET['mode']) {
         case 'favorite':
+            // Call the moveEntryOutOfFavorite() method to remove the entry from 
+            // the user's favorites
             $database->moveEntryOutOfFavorite($_POST['id']);
             break;
 
         default:
+            // Call the moveEntryToFavorite() method to add the entry to 
+            // the user's favorites
             $database->moveEntryToFavorite($_POST['id']);
             break;
     }
 }
 
+// Call the deleteAfterThirtyDays() method to delete any entries that have been 
+// in the trash for 30 days
 $database->deleteAfterThirtyDays();
 
+// Get the list of entries to display based on the mode specified in the URL
 switch ($_GET['mode']) {
     case 'trash':
         $entries = $database->get_all_entries($database->getUserId(), 'trash');
@@ -87,6 +104,8 @@ switch ($_GET['mode']) {
 
                 <div class="overview-passwords-subheader">
                     <?php
+                    // If the user is currently in "trash" mode, display a message 
+                    // about when entries will be deleted permanently
                     if ($_GET['mode'] === 'trash') {
                         echo '
                             <p class="trash-delete-info">A password will be deleted after 30 days in the trash!</p>
@@ -102,6 +121,7 @@ switch ($_GET['mode']) {
                     </tr>
 
                         <?php
+                        // Loop through the list of entries and display them in a table
                         foreach ($entries as $key => $entry) {
                             echo "<tr id='entry-{$key}' class='entries'>";
                             echo "<td>" . $entry['website'] . "</td>";
@@ -129,6 +149,9 @@ switch ($_GET['mode']) {
                     <input type="hidden" name="id" class="entryId">
                     <button type="submit" name="trash" value="trash">
                         <?php
+                        // If the user is currently in "trash" mode, display a button to move
+                        // the entry out of the trash; otherwise, display a button to move 
+                        // the entry to the trash
                         if ($_GET['mode'] === 'trash') {
                             echo 'Move out of trash';
                         } else {
@@ -141,6 +164,8 @@ switch ($_GET['mode']) {
                     <input type="hidden" name="id" class="entryId">
                     <button type="submit" name="favorite" value="favorite">
                         <?php
+                        // If the user has favorited the entry, display a button to remove it
+                        // from their favorites; otherwise, display a button to add it to their favorites
                         if ($_GET['mode'] === 'favorite') {
                             echo 'Unfavorite';
                         } else {
