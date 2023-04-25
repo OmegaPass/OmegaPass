@@ -62,7 +62,7 @@ jobs:
       - name: Comment coverage report
         uses: romeovs/lcov-reporter-action@v0.2.16
         with:
-          github-token: ${{ GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           delete-old-comments: true
           title: Coverage Report
         if: github.event_name == 'pull_request'
