@@ -59,21 +59,10 @@ jobs:
           PASSWORD: root
           PORT: 3306
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v2
+      - name: Comment coverage report
+        uses: romeovs/lcov-reporter-action@v0.2.16
         with:
-          name: coverage
-          path: ./coverage.xml
-
-      - name: Post coverage report comment
-        uses: unsplash/comment-on-pr@v1.3.0
-        with:
-          message: |
-            Code coverage report:
-
-            ```xml
-            ${{ steps.download-artifact.outputs.content }}
-            ```
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          github-token: ${{ GITHUB_TOKEN }}
+          delete-old-comments: true
+          title: Coverage Report
         if: github.event_name == 'pull_request'
