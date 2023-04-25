@@ -59,10 +59,16 @@ jobs:
           PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           PORT: 3306
 
-      - name: Comment coverage report
-        uses: romeovs/lcov-reporter-action@v0.2.16
+      - name: Upload PHPUnit coverage report artifact
+        uses: actions/upload-artifact@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          delete-old-comments: true
-          title: Coverage Report
-        if: github.event_name == 'pull_request'
+          name: phpunit-coverage-report
+          path: ./coverage
+
+      - name: Comment pull request with PHPUnit coverage report
+        uses: mshick/add-pr-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            ### PHPUnit Coverage Report
+            [View report](https://github.com/${{ github.repository }}/actions/artifacts/run/${{ github.run_id }}/phpunit-coverage-report)

@@ -9,6 +9,6 @@
         "phpunit/phpunit": "9"
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit --coverage-clover coverage.xml --whitelist ./ tests/"
+        "test": "./vendor/bin/phpunit --coverage-html /coverage --whitelist ./ tests/"
     }
 }
