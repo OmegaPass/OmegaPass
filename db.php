@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start a new or existing session
 require 'vendor/autoload.php'; // Include the Composer-generated autoload file
-include 'crypt.php'; // Include the file with the encryption and decryption functions
+include_once 'crypt.php'; // Include the file with the encryption and decryption functions
 use Medoo\Medoo; // Import the Medoo namespace, which provides a simple database API
 
 class DataBase {
