@@ -22,9 +22,9 @@ jobs:
         uses: mirromutth/mysql-action@v1.1
         with:
           mysql database: 'pwmanager'
-          mysql root password: 'root'
-          mysql user: 'root'
-          mysql password: 'root'
+          mysql root password: ${{ secrets.MYSQL_PASSWORD }}
+          mysql user: ${{ secrets.MYSQL_USER }}
+          mysql password: ${{ secrets.MYSQL_PASSWORD }}
           container name: mysql-unit
 
 
@@ -55,8 +55,8 @@ jobs:
         env:
           HOST: 127.0.0.1
           DATABASE: pwmanager
-          USERNAME: root
-          PASSWORD: root
+          USERNAME: ${{ secrets.MYSQL_USER }}
+          PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           PORT: 3306
 
       - name: Comment coverage report
