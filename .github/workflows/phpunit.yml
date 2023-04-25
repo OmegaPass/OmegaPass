@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: phpunit-coverage-report
-          path: ./coverage
+          path: ./coverage/index.html
 
       - name: Comment pull request with PHPUnit coverage report
         uses: mshick/add-pr-comment@v1
@@ -71,4 +71,4 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           message: |
             ### PHPUnit Coverage Report
-            [View report](https://github.com/${{ github.repository }}/actions/artifacts/run/${{ github.run_id }}/phpunit-coverage-report)
+            [View report](https://github.com/${{ github.repository }}/actions/artifacts/run/${{ github.run_id }}#artifacts
