@@ -1,24 +1,42 @@
 <?php
 
+// Include the database file that contains the DataBase class.
 include_once "../db.php";
+
+// Create a new instance of the DataBase class.
 $database = new DataBase();
 
+// Initialize the $errorMsg variable to null.
 $errorMsg = null;
 
 
+// If the 'oldPassword' and 'newPassword' variables are set in the $_POST array.
 if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
+
+    // Attempt to change the master password for the current user with the given old and new passwords.
     $success = $database->changeMasterPass($database->getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
 
+    // If the password change was successful.
     if ($success) {
+
+        // Unset the 'masterpass' key in the $_SESSION array.
         unset($_SESSION['masterpass']);
+
+        // Redirect the user to the homepage.
         header('Location: /');
     }
 
+    // Otherwise, set the $errorMsg variable to indicate that the password was incorrect.
     $errorMsg = "You entered the wrong password.";
 }
 
+// If the 'newUsername' variable is set in the $_POST array.
 if (isset($_POST['newUsername'])) {
+
+    // Attempt to change the username for the current user to the given new username.
     changeUsername(getUserId(), trim($_POST['newUsername']));
+
+    // Redirect the user to the overview page.
     header('Location: /overview/');
 }
 
