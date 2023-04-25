@@ -68,4 +68,4 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           message: |
             ### PHPUnit Coverage Report
-            [View report](https://github.com/${{ github.repository }}/actions/artifacts/run/${{ github.run_id }}#artifacts)
+            [View report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts)
