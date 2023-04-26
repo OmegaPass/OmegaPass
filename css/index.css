@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #573b8a;
+  --primary-color-hover: #6d44b8;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -69,14 +74,13 @@ body input {
 body button {
   width: 60%;
   height: 40px;
-  margin: 10px auto;
   justify-content: center;
   display: block;
   color: #fff;
-  background: #573b8a;
+  background: var(--primary-color);
   font-size: 1em;
   font-weight: bold;
-  margin-top: 20px;
+  margin: 20px auto 10px;
   outline: none;
   border: none;
   border-radius: 5px;
@@ -84,7 +88,7 @@ body button {
   cursor: pointer;
 }
 body button:hover {
-  background: #6d44b8;
+  background: var(--primary-color-hover);
 }
 body .signup {
   height: 460px;
@@ -94,7 +98,7 @@ body .signup {
   transition: 0.8s ease-in-out;
 }
 body .signup label {
-  color: #573b8a;
+  color: var(--primary-color);
   transform: scale(0.6);
   text-align: center;
   margin-bottom: 30px;
