@@ -1,0 +1,179 @@
+@import "mixins";
+@import "colors";
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  @include gradiant-background;
+
+  .overview {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+
+    .overview-sidebar {
+      width: calc(20% - 20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-right: #ffffff 1px solid;
+
+      a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+
+      a:hover {
+        color: var(--primary-color-hover)
+      }
+
+      .overview-sidebar-buttons {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: center;
+
+        @include button;
+
+        button {
+          max-width: 140px;
+        }
+      }
+    }
+
+    .overview-passwords {
+      width: calc(60% - 20px);
+      padding: 10px;
+
+      .overview-passwords-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        color: #ffffff;
+
+        @include button;
+
+        button {
+          width: 20px;
+        }
+      }
+
+      .overview-passwords-subheader {
+        .trash-delete-info {
+          color: #ff0000;
+          font-weight: bold;
+        }
+      }
+
+      .overview-passwords {
+        width: calc(100% - 20px);
+        .overview-passwords-info {
+          display: grid;
+          grid-template-columns: repeat(2, 50%);
+          color: #ffffff;
+
+          p {
+            margin: 0;
+          }
+        }
+
+        .overview-passwords-listing {
+          list-style: none;
+          padding: 5px;
+          margin: 0;
+
+          li {
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            margin: 10px 0;
+            p {
+              color: #ffffff;
+              width: calc(100% - 10px);
+              padding: 0 5px;
+              margin: 0;
+              @include text-overflow;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    .overview-details {
+      width: calc(20% - 20px);
+      color: #ffffff;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+
+      a, h4, h5 {
+        @include text-overflow;
+        margin: 10px 0;
+      }
+
+      .deatils-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include button;
+      }
+
+      .overview-details-buttons {
+        display: flex;
+        flex-direction: row;
+        column-gap: 5px;
+        row-gap: 5px;
+        flex-wrap: wrap;
+        @include button;
+        button {
+          min-height: fit-content;
+          width: fit-content;
+        }
+      }
+    }
+  }
+
+  #edit-modal {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .edit-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    row-gap: 10px;
+  }
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: 5px;
+    justify-content: flex-end;
+    height: fit-content;
+    width: fit-content;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+
+    @include button;
+  }
+}
