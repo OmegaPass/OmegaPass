@@ -11,15 +11,15 @@ class CryptTest extends TestCase
     {
         $password = generate_password(10, true, false);
         $this->assertEquals(10, strlen($password), 'Generated password length is not 10');
-        $this->assertRegExp('/[a-zA-Z]+/', $password, 'Generated password does not contain letters');
-        $this->assertRegExp('/[0-9]+/', $password, 'Generated password does not contain digits');
+        $this->assertMatchesRegularExpression('/[a-zA-Z]+/', $password, 'Generated password does not contain letters');
+        $this->assertMatchesRegularExpression('/[0-9]+/', $password, 'Generated password does not contain digits');
     }
 
     public function testGenerateUserId()
     {
         $userId = generate_userid();
         $this->assertEquals(12, strlen($userId), 'Generated user ID length is not 12');
-        $this->assertRegExp('/^[a-zA-Z0-9]+$/', $userId, 'Generated user ID contains invalid characters');
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]+$/', $userId, 'Generated user ID contains invalid characters');
     }
 
     public function testHashPw()
