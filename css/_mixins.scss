@@ -1,3 +1,26 @@
 @mixin gradiant-background {
   background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
+
+@mixin button {
+  button {
+    padding: 5px;
+    background: var(--primary-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+  }
+
+  button:hover {
+    background: var(--primary-color-hover);
+  }
+}
+
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
