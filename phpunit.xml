@@ -1,0 +1,10 @@
+<phpunit>
+    <coverage>
+        <include>
+            <directory suffix=".php">./</directory>
+        </include>
+        <exclude>
+            <directory suffix=".php">./vendor</directory>
+        </exclude>
+    </coverage>
+</phpunit>

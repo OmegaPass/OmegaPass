@@ -1,8 +1,7 @@
 <?php
 session_start(); // Start a new or existing session
 require 'vendor/autoload.php'; // Include the Composer-generated autoload file
-include 'crypt.php'; // Include the file with the encryption and decryption functions
-
+include_once 'crypt.php'; // Include the file with the encryption and decryption functions
 use Medoo\Medoo; // Import the Medoo namespace, which provides a simple database API
 
 class DataBase {
@@ -69,13 +68,13 @@ class DataBase {
         return json_encode($result);
     }
 
-    // This method retrieves all password entries for the specified user, 
+    // This method retrieves all password entries for the specified user,
     // with optional filtering by mode (trash or favorite).
-    // Returns an array of associative arrays, each containing the website, 
-    // username, password (decrypted), and ID for a password entry that 
+    // Returns an array of associative arrays, each containing the website,
+    // username, password (decrypted), and ID for a password entry that
     // belongs to the user and meets the specified filtering criteria.
     public function get_all_entries($userid, $mode = null) {
-        // Select the website, username, password, and ID for all password entries 
+        // Select the website, username, password, and ID for all password entries
         // that belong to the user and meet the specified filtering criteria
         $results = $this->database->select('passwords', [
             'website',
@@ -88,7 +87,7 @@ class DataBase {
             'favorite' => $mode === 'favorite' ? true : Medoo::raw('favorite IS NULL OR favorite = true')
         ]);
 
-        // Decrypt the password for each result (if it's not empty) using 
+        // Decrypt the password for each result (if it's not empty) using
         // the session's master password
         foreach ($results as &$result) {
             if ($result['password'] != '') {
@@ -101,7 +100,7 @@ class DataBase {
 
     // This method authenticates the user with the specified username and password
     public function login($username, $password) {
-        // Check if the username exists in the database and 
+        // Check if the username exists in the database and
         // if the provided password matches the hashed password
         $query = $this->database->select('users', ['password'], ['username' => $username]);
         if ($query !== []) {
