@@ -56,21 +56,8 @@ jobs:
           PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           PORT: 3306
 
-      - name: Delete vendor from coverage && Zip coverage directory
-        run: |
-          rm -rf coverage/vendor
-          zip -9 -r coverage.zip coverage
-
-      - name: Upload PHPUnit coverage report artifact
-        uses: actions/upload-artifact@v3
+      - name: Comment Report on PR
+        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
         with:
-          name: phpunit-coverage-report
-          path: ./coverage.zip
-
-      - name: Comment pull request with PHPUnit coverage report
-        uses: mshick/add-pr-comment@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: |
-            ### PHPUnit Coverage Report
-            [View report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts)
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          clover-file: ./coverage.xml
