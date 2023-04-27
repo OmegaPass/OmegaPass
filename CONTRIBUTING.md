@@ -29,7 +29,7 @@ Composition: `term(component)!: xyz`
 - `term`: What action is the commit/branch about?
 - `component`: Possibility to name the affected component (optional)
 - `!`: Is it a major change/adjustment (BREAKING CHANGE)?
-- `: oder /`: Separator for commits (:) and branches (/)
+- `: or /`: Separator for commits (:) and branches (/)
 - `xyz`: Informative but brief description
 
 | Term       | Example                                    | Beschreibung                                                                                            |
