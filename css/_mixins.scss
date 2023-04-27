@@ -24,3 +24,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin input {
+  input {
+    width: 60%;
+    height: 20px;
+    background: #e0dede;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+  }
+}
