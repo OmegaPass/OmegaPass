@@ -32,7 +32,7 @@ Composition: `term(component)!: xyz`
 - `: or /`: Separator for commits (:) and branches (/)
 - `xyz`: Informative but brief description
 
-| Term       | Example                                    | Beschreibung                                                                                            |
+| Term       | Example                                    | Description                                                                                             |
 | ---------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
 | `feat`     | `feat(ui)!: add cancel button frontend`    | Integration of a new feature into the code (with `!`: MAJOR; without `!` MINOR)                         |
 | `fix`      | `fix/#ISSUE-NUMBER`                        | Fixing an error/bug (PATCH)                                                                             |
