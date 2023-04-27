@@ -13,7 +13,7 @@ $database = new DataBase();
 
 // Get password data by ID for the overview page
 if (isset($_GET['getPass'])) {
-    echo json_encode($database->get_all_entries($database->getUserId(), $_GET['mode'])[$_GET['getPass']]);
+    echo json_encode($database->get_password($_GET['getPass']));
 }
 
 // Generate a password with specified length, and optional digits and special characters

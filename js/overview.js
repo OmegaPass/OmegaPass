@@ -5,9 +5,9 @@ $(document).ready(function() {
     let showPass = {'password': '', 'show': true};
 
     // When a password entry is clicked, fetch the password details and display them
-    $(".entries").click(function(event) {
+    $(".entries").click(function() {
         // Get the ID of the clicked entry
-        const id = event.currentTarget.id.replace('entry-', '');
+        const id = $(this).attr('data-id');
 
         // Show the password details and buttons
         $('#clear-details').show();
@@ -70,7 +70,7 @@ $(document).ready(function() {
         } else {
             $('#details-password').text('*********');
             showPass.show = false;
-        }    
+        }
 
     });
 
