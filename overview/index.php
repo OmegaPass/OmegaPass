@@ -44,20 +44,20 @@ if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
 if (isset($_POST['id']) && $_POST['favorite'] === 'favorite') {
     switch ($_GET['mode']) {
         case 'favorite':
-            // Call the moveEntryOutOfFavorite() method to remove the entry from 
+            // Call the moveEntryOutOfFavorite() method to remove the entry from
             // the user's favorites
             $database->moveEntryOutOfFavorite($_POST['id']);
             break;
 
         default:
-            // Call the moveEntryToFavorite() method to add the entry to 
+            // Call the moveEntryToFavorite() method to add the entry to
             // the user's favorites
             $database->moveEntryToFavorite($_POST['id']);
             break;
     }
 }
 
-// Call the deleteAfterThirtyDays() method to delete any entries that have been 
+// Call the deleteAfterThirtyDays() method to delete any entries that have been
 // in the trash for 30 days
 $database->deleteAfterThirtyDays();
 
@@ -109,7 +109,7 @@ switch ($_GET['mode']) {
 
                 <div class="overview-passwords-subheader">
                     <?php
-                    // If the user is currently in "trash" mode, display a message 
+                    // If the user is currently in "trash" mode, display a message
                     // about when entries will be deleted permanently
                     if ($_GET['mode'] === 'trash') {
                         echo '
@@ -128,7 +128,7 @@ switch ($_GET['mode']) {
                         <?php
                         // Loop through the list of entries and display them in a table
                         foreach ($entries as $key => $entry) {
-                            echo "<tr id='entry-{$key}' class='entries'>";
+                            echo "<tr class='entries' data-id='{$entry['id']}'>";
                             echo "<td>" . $entry['website'] . "</td>";
                             echo "<td>" . $entry['username'] . "</td>";
                             echo '</tr>';
@@ -155,7 +155,7 @@ switch ($_GET['mode']) {
                     <button type="submit" name="trash" value="trash">
                         <?php
                         // If the user is currently in "trash" mode, display a button to move
-                        // the entry out of the trash; otherwise, display a button to move 
+                        // the entry out of the trash; otherwise, display a button to move
                         // the entry to the trash
                         if ($_GET['mode'] === 'trash') {
                             echo 'Move out of trash';
