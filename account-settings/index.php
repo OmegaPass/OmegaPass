@@ -38,7 +38,7 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
 if (isset($_POST['newUsername'])) {
 
     // Attempt to change the username for the current user to the given new username.
-    changeUsername(getUserId(), trim($_POST['newUsername']));
+    $database->changeUsername($database->getUserId(), trim($_POST['newUsername']));
 
     // Redirect the user to the overview page.
     header('Location: /overview/');
