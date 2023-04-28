@@ -29,23 +29,32 @@ $(document).ready(function() {
 
         // Fetch the password details from the server using AJAX
         fetch(ajaxUrl)
-        .then((response) => response.json())
-        .then((res) => {
-            // Display the retrieved password details in the appropriate elements
-            $('#details-website-link').text(res.website);
-            if (res.website.includes('http://') || res.website.includes('https://')) {
-                $("#details-website-link").prop("href", res.website);
-            } else {
-                $("#details-website-link").prop("href", 'http://' + res.website);
-            }
-            $('#details-username').text(res.username);
-            $('#details-password').text('*********');
-            $('input.entryId').val(res.id);
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                return Promise.reject()
+            })
+            .then((res) => {
+                // Display the retrieved password details in the appropriate elements
+                $('#details-website-link').text(res.website);
+                if (res.website.includes('http://') || res.website.includes('https://')) {
+                    $("#details-website-link").prop("href", res.website);
+                } else {
+                    $("#details-website-link").prop("href", 'http://' + res.website);
+                }
+                $('#details-username').text(res.username);
+                $('#details-password').text('*********');
+                $('input.entryId').val(res.id);
 
-            // Store the retrieved password in a variable to enable showing/hiding the password
-            showPass.password = res.password;
-            showPass.show = false;
-        })
+                // Store the retrieved password in a variable to enable showing/hiding the password
+                showPass.password = res.password;
+                showPass.show = false;
+            })
+            .catch(() => {
+                // TODO: error handling on the client sides maybe?
+                console.log('Not found');
+            });
     });
 
     // Function that handles click events on the "Clear" button
