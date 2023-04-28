@@ -59,13 +59,17 @@ class DataBase {
             'id' => $entryId
         ]);
 
-        $result = $result[0];
+        if ($result !== []) {
+            $result = $result[0];
 
-        if ($result['password'] != '') {
-            $result['password'] = decrypt($result['password'], $_SESSION['masterpass']);
+            if ($result['password'] != '') {
+                $result['password'] = decrypt($result['password'], $_SESSION['masterpass']);
+            }
+
+            return $result;
         }
 
-        return $result;
+        return null;
     }
 
     // This method retrieves all websites for the specified user
