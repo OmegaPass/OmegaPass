@@ -2,6 +2,8 @@
 
 The last password - Omega Pass
 
+[![PHPUnit](https://github.com/2223-Project-1/OmegaPass/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/2223-Project-1/OmegaPass/actions/workflows/phpunit.yml)
+
 ### Self-hosting
 **Required tools:** Docker, Docker Compose, Git
 

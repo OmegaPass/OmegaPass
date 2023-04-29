@@ -1,6 +1,11 @@
 <?php
 include '../db.php';
 
+// When not logged in you the client gets redirected to the homepage
+if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
+    header('Location: /');
+}
+
 // Create a new instance of the DataBase class
 $database = new DataBase();
 

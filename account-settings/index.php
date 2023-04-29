@@ -3,12 +3,16 @@
 // Include the database file that contains the DataBase class.
 include_once "../db.php";
 
+// When not logged in you the client gets redirected to the homepage
+if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
+    header('Location: /');
+}
+
 // Create a new instance of the DataBase class.
 $database = new DataBase();
 
 // Initialize the $errorMsg variable to null.
 $errorMsg = null;
-
 
 // If the 'oldPassword' and 'newPassword' variables are set in the $_POST array.
 if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
@@ -34,7 +38,7 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
 if (isset($_POST['newUsername'])) {
 
     // Attempt to change the username for the current user to the given new username.
-    changeUsername(getUserId(), trim($_POST['newUsername']));
+    $database->changeUsername($database->getUserId(), trim($_POST['newUsername']));
 
     // Redirect the user to the overview page.
     header('Location: /overview/');
