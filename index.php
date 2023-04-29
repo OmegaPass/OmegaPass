@@ -88,6 +88,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 	<title>OmegaPass</title>
 	<link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="omegapass.jpg">
 </head>
 
 <body>
