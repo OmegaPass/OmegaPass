@@ -47,6 +47,7 @@ body .overview .overview-sidebar .overview-sidebar-buttons button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .overview .overview-sidebar .overview-sidebar-buttons button:hover {
   background: var(--primary-color-hover);
@@ -75,6 +76,7 @@ body .overview .overview-passwords .overview-passwords-header button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .overview .overview-passwords .overview-passwords-header button:hover {
   background: var(--primary-color-hover);
@@ -144,6 +146,7 @@ body .overview .overview-details .deatils-heading button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .overview .overview-details .deatils-heading button:hover {
   background: var(--primary-color-hover);
@@ -165,6 +168,7 @@ body .overview .overview-details .overview-details-buttons button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .overview .overview-details .overview-details-buttons button:hover {
   background: var(--primary-color-hover);
@@ -216,6 +220,7 @@ body .modal button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .modal button:hover {
   background: var(--primary-color-hover);

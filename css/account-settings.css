@@ -64,6 +64,7 @@ body .account .change-username .change-username-form button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .account .change-username .change-username-form button:hover {
   background: var(--primary-color-hover);
@@ -113,6 +114,7 @@ body .account .change-masterpass .change-masterpass-form button {
   border: none;
   border-radius: 5px;
   color: #ffffff;
+  font-family: "Jost", sans-serif;
 }
 body .account .change-masterpass .change-masterpass-form button:hover {
   background: var(--primary-color-hover);
