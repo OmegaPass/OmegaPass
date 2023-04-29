@@ -104,4 +104,11 @@ button:hover{
 	justify-content: center;
 	color: #f00;
 	margin-top: 20px;
+}}
+}
+
+.welcome-gif {
+	position: absolute;
+	z-index: 1;
+	border-radius: 10px;
 }

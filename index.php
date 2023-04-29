@@ -89,9 +89,12 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 	<link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="omegapass.jpg">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
+<img src="Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
 	<div class="main">
 
 		<input type="checkbox" id="chk" aria-hidden="true">
