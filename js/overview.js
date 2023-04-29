@@ -52,8 +52,7 @@ $(document).ready(function() {
                 showPass.show = false;
             })
             .catch(() => {
-                // TODO: error handling on the client sides maybe?
-                console.log('Not found');
+                $('#details-error').text('Error during details gathering');
             });
     });
 
@@ -68,6 +67,7 @@ $(document).ready(function() {
         $('#details-edit').hide();
         $('#trash-form').hide();
         $('#favorite-form').hide();
+        $('#details-error').text('');
     });
 
     // Function that handles click events on the "Show Password" button

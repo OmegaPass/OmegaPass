@@ -142,6 +142,7 @@ switch ($_GET['mode']) {
                     <h3>Details</h3>
                     <button id="clear-details" style="display: none">X</button>
                 </section>
+                <p id="details-error"></p>
                 <h4>Website</h4>
                 <a href="" id="details-website-link"></a>
                 <h4>Username</h4>
