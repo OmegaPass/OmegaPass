@@ -126,6 +126,10 @@ body .overview .overview-details {
   flex-direction: column;
   row-gap: 5px;
 }
+body .overview .overview-details #details-error {
+  color: #ff0000;
+  font-weight: bold;
+}
 body .overview .overview-details a, body .overview .overview-details h4, body .overview .overview-details h5 {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -224,9 +228,4 @@ body .modal button {
 }
 body .modal button:hover {
   background: var(--primary-color-hover);
-}
-
-#details-error {
-    color: #ff0000;
-    font-weight: bold;
 }

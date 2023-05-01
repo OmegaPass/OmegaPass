@@ -112,6 +112,10 @@ body {
       flex-direction: column;
       row-gap: 5px;
 
+      #details-error {
+        color: #ff0000; font-weight: bold;
+      }
+
       a, h4, h5 {
         @include text-overflow;
         margin: 10px 0;
