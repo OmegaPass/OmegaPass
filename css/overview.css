@@ -225,3 +225,8 @@ body .modal button {
 body .modal button:hover {
   background: var(--primary-color-hover);
 }
+
+#details-error {
+    color: #ff0000;
+    font-weight: bold;
+}

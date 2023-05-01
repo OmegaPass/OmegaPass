@@ -49,13 +49,27 @@ class DataBase {
     }
 
     // This method retrieves the encrypted password for the specified website
-    public function get_password($website) {
+    public function get_password($entryId) {
         $result = $this->database->select('passwords', [
-            'website'
+            'website',
+            'username',
+            'password',
+            'id'
         ], [
-            'website' => $website
+            'id' => $entryId
         ]);
-        return json_encode($result);
+
+        if ($result !== []) {
+            $result = $result[0];
+
+            if ($result['password'] != '') {
+                $result['password'] = decrypt($result['password'], $_SESSION['masterpass']);
+            }
+
+            return $result;
+        }
+
+        return null;
     }
 
     // This method retrieves all websites for the specified user

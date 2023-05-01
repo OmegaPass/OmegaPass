@@ -129,9 +129,9 @@ switch ($_GET['mode']) {
                     <ul class="overview-passwords-listing">
                         <?php
                         foreach ($entries as $key => $entry) {
-                            echo "<li class='entries' id='entry-{$key}'>";
-                                echo "<p>" . $entry['website'] . "</p>";
-                                echo "<p>" . $entry['username'] . "</p>";
+                            echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
+                            echo "<p>" . $entry['website'] . "</p>";
+                            echo "<p>" . $entry['username'] . "</p>";
                             echo "</li>";
                         }
                         ?>
@@ -144,6 +144,7 @@ switch ($_GET['mode']) {
                     <h3>Details</h3>
                     <button id="clear-details" style="display: none">X</button>
                 </section>
+                <p id="details-error"></p>
                 <h4>Website</h4>
                 <a href="" id="details-website-link"></a>
                 <h4>Username</h4>
