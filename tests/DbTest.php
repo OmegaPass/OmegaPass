@@ -56,5 +56,25 @@ class DbTest extends TestCase {
         $result = $this->database->login('newusername', 'testpassword');
         $this->assertEquals("Success", $result);
     }
+
+    public function testGetPassword() {
+        $this->database->add_user('testuser', 'testpassword');
+        $this->database->login('testuser', 'testpassword');
+        $_SESSION['username'] = 'testuser';
+        $_SESSION['masterpass'] = 'testpassword';
+        $userid = $this->database->getUserId();
+        $this->database->add_password($userid, 'amazingsite', 'testusername', 'testpassword');
+
+        $passwords = $this->database->get_all_entries($userid);
+        $passwords = array_filter($passwords, function ($entry) {
+            return $entry['website'] == 'amazingsite';
+        });
+        $passwords = array_values($passwords);
+
+        $data = $this->database->get_password($passwords[0]['id']);
+        $this->assertEquals('amazingsite', $data['website']);
+        $this->assertEquals('testusername', $data['username']);
+        $this->assertEquals('testpassword', $data['password']);
+    }
 }
 ?>

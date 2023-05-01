@@ -5,9 +5,9 @@ $(document).ready(function() {
     let showPass = {'password': '', 'show': true};
 
     // When a password entry is clicked, fetch the password details and display them
-    $(".entries").click(function(event) {
+    $(".entries").click(function() {
         // Get the ID of the clicked entry
-        const id = event.currentTarget.id.replace('entry-', '');
+        const id = $(this).attr('data-id');
 
         // Show the password details and buttons
         $('#clear-details').show();
@@ -29,23 +29,31 @@ $(document).ready(function() {
 
         // Fetch the password details from the server using AJAX
         fetch(ajaxUrl)
-        .then((response) => response.json())
-        .then((res) => {
-            // Display the retrieved password details in the appropriate elements
-            $('#details-website-link').text(res.website);
-            if (res.website.includes('http://') || res.website.includes('https://')) {
-                $("#details-website-link").prop("href", res.website);
-            } else {
-                $("#details-website-link").prop("href", 'http://' + res.website);
-            }
-            $('#details-username').text(res.username);
-            $('#details-password').text('*********');
-            $('input.entryId').val(res.id);
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                return Promise.reject()
+            })
+            .then((res) => {
+                // Display the retrieved password details in the appropriate elements
+                $('#details-website-link').text(res.website);
+                if (res.website.includes('http://') || res.website.includes('https://')) {
+                    $("#details-website-link").prop("href", res.website);
+                } else {
+                    $("#details-website-link").prop("href", 'http://' + res.website);
+                }
+                $('#details-username').text(res.username);
+                $('#details-password').text('*********');
+                $('input.entryId').val(res.id);
 
-            // Store the retrieved password in a variable to enable showing/hiding the password
-            showPass.password = res.password;
-            showPass.show = false;
-        })
+                // Store the retrieved password in a variable to enable showing/hiding the password
+                showPass.password = res.password;
+                showPass.show = false;
+            })
+            .catch(() => {
+                $('#details-error').text('Error during details gathering');
+            });
     });
 
     // Function that handles click events on the "Clear" button
@@ -59,6 +67,7 @@ $(document).ready(function() {
         $('#details-edit').hide();
         $('#trash-form').hide();
         $('#favorite-form').hide();
+        $('#details-error').text('');
     });
 
     // Function that handles click events on the "Show Password" button
@@ -70,7 +79,7 @@ $(document).ready(function() {
         } else {
             $('#details-password').text('*********');
             showPass.show = false;
-        }    
+        }
 
     });
 
