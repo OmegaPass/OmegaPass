@@ -83,7 +83,7 @@ button:hover{
 	transform: translateY(-500px);
 }
 #chk:checked ~ .signup label{
-	transform: scale(1);	
+	transform: scale(1);
 }
 #chk:checked ~ .login label{
 	transform: scale(.6);
@@ -104,4 +104,19 @@ button:hover{
 	justify-content: center;
 	color: #f00;
 	margin-top: 20px;
+}
+
+.welcome-gif-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	background: #e5e5e5;
+	position: absolute;
+	z-index: 1;
+}
+
+.welcome-gif {
+	border-radius: 10px;
 }
