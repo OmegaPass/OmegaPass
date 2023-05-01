@@ -106,8 +106,17 @@ button:hover{
 	margin-top: 20px;
 }
 
-.welcome-gif {
+.welcome-gif-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	background: #e5e5e5;
 	position: absolute;
 	z-index: 1;
+}
+
+.welcome-gif {
 	border-radius: 10px;
 }
