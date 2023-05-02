@@ -23,9 +23,6 @@ body .welcome-gif-wrapper {
   position: absolute;
   z-index: 1;
 }
-body .welcome-gif {
-  border-radius: 10px;
-}
 body .main {
   width: 350px;
   height: 500px;
