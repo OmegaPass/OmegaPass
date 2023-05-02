@@ -170,13 +170,20 @@ class DataBase {
 
     // This method retrieves the user ID for the currently logged-in user
     public function getUserId() {
-        $query = $this->database->select('users', [
-            'user_id'
-        ], [
-            'username' => $_SESSION['username']
-        ]);
+        if (!isset($_SESSION['userId'])) {
+            $query = $this->database->select('users', [
+                'user_id'
+            ], [
+                'username' => $_SESSION['username']
+            ]);
 
-        return $query[0]['user_id'];
+            $userId = $query[0]['user_id'];
+            $_SESSION['userId'] = $userId;
+
+            return $userId;
+        }
+
+        return $_SESSION['userId'];
     }
 
     // This method changes the username for the specified user
