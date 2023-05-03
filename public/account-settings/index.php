@@ -1,7 +1,7 @@
 <?php
 
 // Include the database file that contains the DataBase class.
-include_once "../db.php";
+include_once "../../db.php";
 
 // When not logged in you the client gets redirected to the homepage
 if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
