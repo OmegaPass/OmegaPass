@@ -1,7 +1,7 @@
 <?php
 
 // Include the database file that contains the DataBase class.
-include_once "../db.php";
+include_once "../../db.php";
 
 // When not logged in you the client gets redirected to the homepage
 if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
@@ -64,6 +64,7 @@ if (isset($_POST['newUsername'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/account-settings.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+        <link rel="icon" href="../omegapass.jpg">
     </head>
     <body>
         <h1>Account</h1>

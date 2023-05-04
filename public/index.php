@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start a new or existing session
-include 'db.php'; // Include the file with the database connection
+include '../db.php'; // Include the file with the database connection
 $database = new DataBase(); // Create a new instance of the database connection class
 
 $errormsg = ""; // Initialize the error message variable as an empty string
@@ -13,10 +13,10 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
     {
         // Check if the password and confirm password fields match
         if ($_POST['conf_pswd'] == $_POST['pswd']){
-            // Call the add_user method of the database object to add a new user and 
+            // Call the add_user method of the database object to add a new user and
             // store the result
             switch ($database->add_user($_POST['username'], $_POST['pswd'])) {
-                // If the user was added successfully, set the session variables and 
+                // If the user was added successfully, set the session variables and
                 // redirect to the overview page
                 case 'Success':
                     $_SESSION['masterpass'] = $_POST['pswd'];
@@ -43,10 +43,10 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
     // If the 'btnLogin' button was pressed, attempt to log in the user
     if(isset($_POST['btnLogin']))
     {
-        // Call the login method of the database object to authenticate the user and 
+        // Call the login method of the database object to authenticate the user and
         // store the result
         switch ($database->login($_POST['username'], $_POST['pswd'])) {
-            // If the login was successful, set the session variables and redirect 
+            // If the login was successful, set the session variables and redirect
             // to the overview page
             case 'Success':
                 $_SESSION['masterpass'] = $_POST['pswd'];
@@ -88,9 +88,15 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 	<title>OmegaPass</title>
 	<link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="omegapass.jpg">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
+<div class="welcome-gif-wrapper">
+    <img src="Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
+</div>
 	<div class="main">
 
 		<input type="checkbox" id="chk" aria-hidden="true">
