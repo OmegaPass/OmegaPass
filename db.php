@@ -169,6 +169,10 @@ class DataBase {
     }
 
     // This method retrieves the user ID for the currently logged-in user
+
+    /**
+     * @throws Exception
+     */
     public function getUserId() {
         if (!isset($_SESSION['userId'])) {
             $query = $this->database->select('users', [
@@ -177,10 +181,13 @@ class DataBase {
                 'username' => $_SESSION['username']
             ]);
 
-            $userId = $query[0]['user_id'];
-            $_SESSION['userId'] = $userId;
+            if (!empty($query)) {
+                $userId = $query[0]['user_id'];
+                $_SESSION['userId'] = $userId;
 
-            return $userId;
+                return $userId;
+            }
+            throw new Exception();
         }
 
         return $_SESSION['userId'];
@@ -246,6 +253,10 @@ class DataBase {
     }
 
     // This method deletes password entries that have been in the trash for more than 30 days
+
+    /**
+     * @throws Exception
+     */
     public function deleteAfterThirtyDays() {
         $trashedPasswords = $this->database->select('passwords', [
             'id',
