@@ -1,4 +1,6 @@
 <?php
+// Import required dependencies
+include_once '../../config.php';
 // include the database connection file
 include "../../db.php";
 

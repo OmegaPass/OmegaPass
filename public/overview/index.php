@@ -1,4 +1,6 @@
 <?php
+// Import required dependencies
+include_once '../../config.php';
 include '../../db.php';
 
 // When not logged in you the client gets redirected to the homepage
