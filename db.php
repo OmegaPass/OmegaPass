@@ -31,17 +31,22 @@ class DataBase {
     }
 
     // This method adds a new user to the database with the specified username and password
-    public function add_user($username, $password) {
+    public function add_user($username, $password, $email) {
         // Check if the username already exists in the database
-        $query = $this->database->select('users', ['username'], ['username' => $username]);
-
-        if ($query !== []) {
-            return "Username already taken";
-        } else {
+        $query['username'] = $this->database->select('users', ['username'], ['username' => $username]);
+        $query['email'] = $this->database->select('users', ['email'], ['email' => $email]);
+        if ($query['username'] !== []) {
+            return "This username already taken";
+        }
+        elseif ($query['email'] !== []) {
+            return "This email-address is already taken";
+        } 
+        else {
             // If the username is available, add the user to the database with a unique ID and hashed password
             $this->database->insert('users', [
                 'user_id' => generate_userid(),
                 'username' => $username,
+            'email' => $email,
                 'password' => hash_pw($password) // Hash the password before storing it
             ]);
             return "Success";
@@ -119,7 +124,9 @@ class DataBase {
         $query = $this->database->select('users', ['password'], ['username' => $username]);
         if ($query !== []) {
             if (check_pw($password, $query[0]['password'])) {
-                return "Success";
+                $email_query = $this->database->select('users', ['email'], ['username' => $username]);
+                $email = $email_query[0]['email'];
+                return array("Success", $email);
             } else {
                 return "Wrong password";
             }

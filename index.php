@@ -15,19 +15,21 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
         if ($_POST['conf_pswd'] == $_POST['pswd']){
             // Call the add_user method of the database object to add a new user and 
             // store the result
-            switch ($database->add_user($_POST['username'], $_POST['pswd'])) {
+            switch ($database->add_user($_POST['username'], $_POST['pswd'], $_POST['email'])) {
                 // If the user was added successfully, set the session variables and 
                 // redirect to the overview page
                 case 'Success':
                     $_SESSION['masterpass'] = $_POST['pswd'];
                     $_SESSION['username'] = $_POST['username'];
-
+                    $_SESSION['email'] = $_POST['email'];
                     header("Location: /overview/");
                     exit();
+                case 'This username already taken':
+                    $errormsg = 'This username already taken';
                     break;
                 // If the username is already taken, set the error message variable
-                case 'Username already taken':
-                    $errormsg = 'Username already taken';
+                case 'This email-address is already taken':
+                    $errormsg = 'This email-address is already taken';
                     break;
                 // If an unknown error occurred, set the error message variable
                 default:
@@ -42,19 +44,19 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
 
     // If the 'btnLogin' button was pressed, attempt to log in the user
     if(isset($_POST['btnLogin']))
-    {
+    {  
         // Call the login method of the database object to authenticate the user and 
         // store the result
-        switch ($database->login($_POST['username'], $_POST['pswd'])) {
+        $result = $database->login($_POST['username'], $_POST['pswd']);
+        switch ($result) {
             // If the login was successful, set the session variables and redirect 
             // to the overview page
-            case 'Success':
+            case [0] == 'Success':
                 $_SESSION['masterpass'] = $_POST['pswd'];
                 $_SESSION['username'] = $_POST['username'];
-
+                $_SESSION['email'] = $result[1];
                 header("Location: /overview/");
                 exit();
-                break;
             // If the password is incorrect, set the error message variable
             case 'Wrong password':
                 $errormsg = 'Wrong password';
@@ -114,7 +116,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 				<form method="post" action="index.php">
 					<label for="chk" aria-hidden="true">Sign up</label>
 					<input type="text" name="username" placeholder="Username" required="">
-                    <?php // For later implementation of reset password feature: <input type="email" name="email" placeholder="Email" required=""> ?>
+                    <input type="email" name="email" placeholder="Email" required="">
 					<input type="password" name="pswd" placeholder="Password" required="">
                     <input type="password" name="conf_pswd" placeholder="Confirm password" required="">
 					<button type="submit" name="btnSignup">Sign up</button>
