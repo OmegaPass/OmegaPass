@@ -98,4 +98,21 @@ $(document).ready(function() {
         $('#edit-modal').hide();
     });
 
+
+    $('#sidebar-toggle').on('click', () => {
+        const $sidebar = $('.overview-sidebar');
+        const $sidebarText = $('.overview-sidebar-text');
+
+        if ($sidebar.width() > 50) {
+
+            $('.overview-sidebar').width(50);
+            $sidebarText.hide();
+            return;
+        }
+
+        $sidebar.width(200);
+        $sidebar.css('background', '')
+        $sidebarText.show();
+    });
+
 });

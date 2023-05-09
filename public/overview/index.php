@@ -88,19 +88,38 @@ switch ($_GET['mode']) {
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/overview.css">
         <link rel="icon" href="../omegapass.jpg">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
     </head>
     <body>
     <div class="overview">
         <div class="overview-sidebar">
-            <a href="/overview/" target="_self">
-                <h3>Overview</h3>
-            </a>
-            <div class="overview-sidebar-buttons">
-                <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
-                <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
-                <button onclick="window.location.href='/account-settings/'">Account settings</button>
+            <div>
+                <button id="sidebar-toggle" type="button">
+                    <i class="bi bi-arrow-bar-right"></i>
+                </button>
+                <a href="/overview/" target="_self">
+                    <i class="bi bi-house-door"></i>
+                    <span class="overview-sidebar-text">Overview</span>
+                </a>
+            </div>
+            <div>
+                <a href="/overview?mode=favorite" target="_self">
+                    <i class="bi bi-star"></i>
+                    <span class="overview-sidebar-text">Favorite</span>
+                </a>
+                <a href="/overview?mode=trash">
+                    <i class="bi bi-trash"></i>
+                    <span class="overview-sidebar-text">Trash</span>
+                </a>
+                <a href="/accout-settings/" target="_self">
+                    <i class="bi bi-gear"></i>
+                    <span class="overview-sidebar-text">Account settings</span>
+                </a>
                 <form action="" method="post">
-                    <button type="submit" name="logout">Logout</button>
+                    <button type="submit" name="logout">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span class="overview-sidebar-text">Logout</span>
+                    </button>
                 </form>
             </div>
         </div>

@@ -16,47 +16,61 @@ body .overview {
   min-height: 100vh;
 }
 body .overview .overview-sidebar {
-  width: calc(20% - 20px);
+  width: 50px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-right: #ffffff 1px solid;
 }
-body .overview .overview-sidebar a {
-  text-decoration: none;
-  color: #ffffff;
-}
-body .overview .overview-sidebar a:hover {
-  color: var(--primary-color-hover);
-}
-body .overview .overview-sidebar .overview-sidebar-buttons {
+body .overview .overview-sidebar div {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
-  align-items: center;
+  align-items: flex-start;
 }
-body .overview .overview-sidebar .overview-sidebar-buttons button {
-  padding: 5px;
-  background: var(--primary-color);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
+body .overview .overview-sidebar div button {
+  padding: 0;
+}
+body .overview .overview-sidebar div a {
+  text-decoration: none;
   color: #ffffff;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+body .overview .overview-sidebar div a span {
+  display: none;
+}
+body .overview .overview-sidebar div a:hover {
+  color: var(--primary-color);
+}
+body .overview .overview-sidebar div form button {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+body .overview .overview-sidebar div form button span {
+  color: #ffffff;
+  display: none;
   font-family: "Jost", sans-serif;
+  font-size: 16px;
 }
-body .overview .overview-sidebar .overview-sidebar-buttons button:hover {
-  background: var(--primary-color-hover);
+body .overview .overview-sidebar div form:hover button span {
+  color: var(--primary-color);
 }
-body .overview .overview-sidebar .overview-sidebar-buttons button {
-  max-width: 140px;
+body .overview .overview-sidebar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+body .overview .overview-sidebar i {
+  color: #ffffff;
+  font-size: 24px;
+}
+body .overview .overview-sidebar button:hover i, body .overview .overview-sidebar a:hover i {
+  color: var(--primary-color);
 }
 body .overview .overview-passwords {
-  width: calc(60% - 20px);
+  width: calc(65% - 20px + 50px);
   padding: 10px;
 }
 body .overview .overview-passwords .overview-passwords-header {
@@ -119,7 +133,7 @@ body .overview .overview-passwords .overview-passwords .overview-passwords-listi
   cursor: pointer;
 }
 body .overview .overview-details {
-  width: calc(20% - 20px);
+  width: calc(25% - 20px + 50px);
   color: #ffffff;
   padding: 5px;
   display: flex;

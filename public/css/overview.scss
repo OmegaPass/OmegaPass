@@ -14,39 +14,81 @@ body {
     min-height: 100vh;
 
     .overview-sidebar {
-      width: calc(20% - 20px);
+      width: 50px;
+      padding: 20px 10px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border-right: #ffffff 1px solid;
 
-      a {
-        text-decoration: none;
-        color: #ffffff;
-      }
-
-      a:hover {
-        color: var(--primary-color-hover)
-      }
-
-      .overview-sidebar-buttons {
+      div {
         display: flex;
         flex-direction: column;
-        row-gap: 10px;
-        align-items: center;
-
-        @include button;
+        align-items: flex-start;
 
         button {
-          max-width: 140px;
+          padding: 0;
+        }
+
+        a {
+          text-decoration: none;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          column-gap: 5px;
+
+          span {
+            display: none;
+          }
+
+          &:hover {
+            color: var(--primary-color);
+          }
+        }
+
+        form {
+          button {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+
+            span {
+              color: #ffffff;
+              display: none;
+              font-family: "Jost", sans-serif;
+              font-size: 16px;
+            }
+          }
+
+          &:hover {
+            button {
+              span {
+                color: var(--primary-color);
+              }
+            }
+          }
+        }
+      }
+      
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      i {
+        color: #ffffff;
+        font-size: 24px;
+      }
+
+      button:hover, a:hover {
+        i {
+          color: var(--primary-color);
         }
       }
     }
 
     .overview-passwords {
-      width: calc(60% - 20px);
+      width: calc(65% - 20px + 50px);
       padding: 10px;
 
       .overview-passwords-header {
@@ -105,7 +147,7 @@ body {
     }
 
     .overview-details {
-      width: calc(20% - 20px);
+      width: calc(25% - 20px + 50px);
       color: #ffffff;
       padding: 5px;
       display: flex;
