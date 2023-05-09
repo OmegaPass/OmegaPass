@@ -126,7 +126,9 @@ switch ($_GET['mode']) {
             <div class="overview-passwords">
                 <div class="overview-passwords-header">
                     <h3>Passwords</h3>
-                    <button id="add-password">+</button>
+                    <button id="add-password">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
                 </div>
 
                 <div class="overview-passwords-subheader">
@@ -162,7 +164,9 @@ switch ($_GET['mode']) {
             <section class="overview-details">
                 <section class="deatils-heading">
                     <h3>Details</h3>
-                    <button id="clear-details" style="display: none">X</button>
+                    <button id="clear-details" style="display: none">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </section>
                 <p id="details-error"></p>
                 <h4>Website</h4>
