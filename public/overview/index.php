@@ -89,6 +89,9 @@ switch ($_GET['mode']) {
         <link rel="icon" href="../omegapass.jpg">
     </head>
     <body>
+    <div class="welcome-gif-wrapper">
+        <img src="../Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
+    </div>
         <div class="overview">
             <div class="overview-sidebar">
                 <a href="/overview/" target="_self">
