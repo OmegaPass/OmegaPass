@@ -111,7 +111,7 @@ $(document).ready(function() {
                 $welcome.fadeOut(fadeOutTime);
 
                 setTimeout(() => $welcome.hide(), fadeOutTime);
-            }, 3510)
+            }, 2210)
 
             sessionStorage.setItem('visited', 'true');
         }
