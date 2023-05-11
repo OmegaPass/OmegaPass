@@ -17,7 +17,7 @@
         </a>
     </div>
     <div class="imprint">
-        <h2>Imprint</h1>
+        <h2>Imprint</h2>
 
         <h2>Information according to &sect; 5 TMG</h2>
         <h3>Publisher</h3>
