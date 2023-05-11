@@ -19,9 +19,9 @@ if (isset($_POST['logout'])) {
 }
 
 // Check if the user has submitted a form to change an entry's information
-if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
+if (isset($_POST['edit_website']) && isset($_POST['edit_username']) && isset($_POST['edit_password']) && isset($_POST['edit_id'])) {
     // Call the changeEntry() method to update the entry in the database
-    $database->changeEntry($database->getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
+    $database->changeEntry($database->getUserId(), $_POST['edit_website'], $_POST['edit_username'], $_POST['edit_password'], $_POST['edit_id']);
     header('Refresh: 0');
 }
 
@@ -96,7 +96,7 @@ switch ($_GET['mode']) {
                 </a>
                 <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
                 <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
-                <button onclick="window.location.href='/account-settings/'">Account settings</button>
+                <button id="settings">Account settings</button>
                 <form action="" method="post">
                     <button type="submit" name="logout">Logout</button>
                 </form>
@@ -184,21 +184,86 @@ switch ($_GET['mode']) {
             </section>
         </div>
 
-        <div id="edit-modal" style="display: none">
-            <div class="modal">
-                <button id="modal-close">X</button>
-                <form class="edit-modal-content" method="post" action="">
-                    <label>Website</label>
-                    <input type="text" name="website" required>
-                    <label>Username</label>
-                    <input type="text" name="username" required>
-                    <label>Password</label>
-                    <input type="password" name="password" required>
-                    <input type="hidden" name="id" class="entryId">
+        <dialog id="edit-modal">
+            <button class="modal-close">X</button>
+            <form class="modal-content" method="post" action="">
+                <label>Website</label>
+                <input type="text" name="edit_website" required>
+                <label>Username</label>
+                <input type="text" name="edit_username" required>
+                <label>Password</label>
+                <input type="password" name="edit_password" required>
+                <input type="hidden" name="edit_id" class="entryId">
+                <button type="submit">Change</button>
+            </form>
+        </dialog>
+
+
+        <dialog id="add-modal">
+            <button class="modal-close">X</button>
+            <form class="modal-content add-password-card" id="add-password-form" action="" method="post">
+                <label>Website</label>
+                <input type="text" placeholder="Website" required id="form-website" name="add_website">
+                <label>Username</label>
+                <input type="text" placeholder="Username" required id="form-username" name="add_username">
+                <label>Password</label>
+                <div class="form-password-field">
+                    <div>
+                        <input type="password" placeholder="Password" required id="form-password" name="add_password">
+                        <span toggle="#password-field" class="toggle-password bi-eye"></span>
+                    </div>
+                    <div id="progress">
+                        <div id="progressBar"></div>
+                    </div>
+                    <p>Generate a password</p>
+                    <div class="gen-field">
+                        <div>
+                            <input type="number" id="gen-length">
+                            <label>Number of characters</label>
+                            <input type="checkbox" id="gen-digits">
+                            <label>Numbers</label>
+                            <input type="checkbox" id="gen-special">
+                            <label>Special characters</label>
+                        </div>
+                        <button id="generate" type="button">Generate and fill</button>
+                    </div>
+                </div>
+                <button type="submit" class="modal-submit">Save</button>
+            </form>
+        </dialog>
+
+
+        <dialog id="settings-modal">
+            <button class="modal-close">X</button>
+            <form class="modal-content" method="post" action="">
+
+            </form>
+            <section class="change-username">
+                <h2>Change your account username</h2>
+                <form class="change-username-form" method="post" action="">
+                    <label>New username</label>
+                    <input type="text" name="newUsername" required>
                     <button type="submit">Change</button>
                 </form>
-            </div>
-        </div>
+            </section>
+            <section class="change-masterpass">
+                <h2>Change your account password</h2>
+                <?php echo "<p class='errorMsg'>$errorMsg</p>"?>
+                <form class="change-masterpass-form" method="post" action="">
+                    <label>Old password</label>
+                    <div class="change-masterpass-form-input">
+                        <input type="password" name="oldPassword" required class="password-input">
+                        <span toggle="#password-field" class="toggle-password bi-eye"></span>
+                    </div>
+                    <label>New password</label>
+                    <div class="change-masterpass-form-input">
+                        <input type="password" name="newPassword" required class="password-input">
+                        <span toggle="#password-field" class="toggle-password bi-eye"></span>
+                    </div>
+                    <button type="submit">Change</button>
+                </form>
+            </section>
+        </dialog>
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 

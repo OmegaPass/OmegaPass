@@ -83,19 +83,94 @@ $(document).ready(function() {
 
     });
 
-    // Redirect to the "add password" page when the add password button is clicked
-    $('#add-password').click(function() {
-        window.location.href = '/add-password/';
-    });
+    $('#edit-modal').dialog({
+        autoOpen: false,
+        modal: true,
+        width: 'auto',
+        buttons: {
+          "Change": function() {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/edit-password.php',
+                data: generateOptions,
+                success: function (response) {
+                  // TODO: add success function
+                },
+                error: function (error) {
+                  console.log('Error posting data: ' + error);
+                }
+          
+              });
+          },
+          "Cancel": function() {
+            // Hide the edit modal when the close button is clicked
+            $(this).dialog("close");
+          }
+        }
+      });
 
-    // Show the edit modal when the edit button is clicked
-    $('#details-edit').click(function() {
-        $('#edit-modal').show();
-    });
+      $('#settings-modal').dialog({
+        autoOpen: false,
+        modal: true,
+        width: 'auto',
+        buttons: {
+          "Change": function() {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/account-settings.php',
+                data: generateOptions,
+                success: function (response) {
+                  // TODO: add success function
+                },
+                error: function (error) {
+                  console.log('Error posting data: ' + error);
+                }
+          
+              });
+          },
+          "Cancel": function() {
+            // Hide the edit modal when the close button is clicked
+            $(this).dialog("close");
+          }
+        }
+      });
 
-    // Hide the edit modal when the close button is clicked
-    $('#modal-close').click(function() {
-        $('#edit-modal').hide();
-    });
+      $('#add-modal').dialog({
+        autoOpen: false,
+        modal: true,
+        width: 'auto',
+        buttons: {
+          "Change": function() {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/add-password.php',
+                data: generateOptions,
+                success: function (response) {
+                  // TODO: add success function
+                },
+                error: function (error) {
+                  console.log('Error posting data: ' + error);
+                }
+          
+              });
+          },
+          "Cancel": function() {
+            // Hide the edit modal when the close button is clicked
+            $(this).dialog("close");
+          }
+        }
+      });
+  
+      $('#details-edit').click(function() {
+        $('#edit-modal').dialog('open');
+      });
+
+      $('#settings').click(function() {
+        $('#settings-modal').dialog('open');
+      });
+
+      $('#add-password').click(function() {
+        $('#add-modal').dialog('open');
+      });
 
 });
