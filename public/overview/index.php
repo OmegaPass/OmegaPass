@@ -3,7 +3,7 @@
 include_once '../../config.php';
 include '../../db.php';
 
-// Regenerate session ID after login or logout
+// Regenerate session ID after logout
 if (isset($_POST['logout']) || (!isset($_SESSION['masterpass']) && !isset($_SESSION['username']))) {
     session_regenerate_id(true);
 }
