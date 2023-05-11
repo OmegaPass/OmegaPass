@@ -56,7 +56,7 @@
         <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the updated Privacy Policy on our website or through other communication channels. It is your responsibility to review the Privacy Policy periodically for any updates or changes.</p>
 
         <h3>9. Contact Us</h3>
-        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please <a href="../imprint/">contact us</a>.</p>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please <a href="/imprint/">contact us</a>.</p>
     </div>
 </body>
 </html>
