@@ -1,6 +1,8 @@
 // Wait until the document is ready before running the code
 $(document).ready(function() {
 
+    showLoadingScreen();
+
     // Object to store the current password and whether it is being displayed or hidden
     let showPass = {'password': '', 'show': true};
 
@@ -98,7 +100,6 @@ $(document).ready(function() {
         $('#edit-modal').hide();
     });
 
-
     $('#sidebar-toggle').on('click', () => {
         const $sidebar = $('.overview-sidebar');
         const $sidebarText = $('.overview-sidebar-text');
@@ -115,4 +116,20 @@ $(document).ready(function() {
         $sidebarText.show();
     });
 
+    function showLoadingScreen() {
+        if (sessionStorage.getItem('visited') === null) {
+            let fadeOutTime = 200;
+            const $welcome = $('.welcome-gif-wrapper');
+
+            $welcome.css('visibility', 'visible');
+            $welcome.fadeIn(fadeOutTime);
+            setTimeout(() => {
+                $welcome.fadeOut(fadeOutTime);
+
+                setTimeout(() => $welcome.hide(), fadeOutTime);
+            }, 2210)
+
+            sessionStorage.setItem('visited', 'true');
+        }
+    }
 });

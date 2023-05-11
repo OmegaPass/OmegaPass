@@ -94,9 +94,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 </head>
 
 <body>
-<div class="welcome-gif-wrapper">
-    <img src="Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
-</div>
 	<div class="main">
 
 		<input type="checkbox" id="chk" aria-hidden="true">

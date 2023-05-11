@@ -243,3 +243,19 @@ body .modal button {
 body .modal button:hover {
   background: var(--primary-color-hover);
 }
+
+.welcome-gif-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: #e5e5e5;
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.welcome-gif {
+    border-radius: 10px;
+}
