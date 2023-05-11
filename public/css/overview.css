@@ -19,6 +19,7 @@ body .welcome-gif-wrapper {
   background: #e5e5e5;
   position: absolute;
   z-index: 1;
+  visibility: hidden;
 }
 body .overview {
   display: flex;

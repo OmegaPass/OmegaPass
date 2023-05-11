@@ -106,11 +106,11 @@ switch ($_GET['mode']) {
                 </a>
             </div>
             <div>
-                <a href="/overview?mode=favorite" target="_self">
+                <a href="/overview/?mode=favorite" target="_self">
                     <i class="bi bi-star"></i>
                     <span class="overview-sidebar-text">Favorite</span>
                 </a>
-                <a href="/overview?mode=trash">
+                <a href="/overview/?mode=trash">
                     <i class="bi bi-trash"></i>
                     <span class="overview-sidebar-text">Trash</span>
                 </a>
