@@ -91,8 +91,8 @@ switch ($_GET['mode']) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
     </head>
     <body>
-    <div class="welcome-gif-wrapper"
-        <img src="../Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif"
+    <div class="welcome-gif-wrapper">
+        <img src="../Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
     </div>
     <div class="overview">
         <div class="overview-sidebar">

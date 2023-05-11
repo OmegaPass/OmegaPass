@@ -11,17 +11,6 @@ body {
   font-family: 'Jost', sans-serif;
   @include gradiant-background;
 
-  .welcome-gif-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background: #e5e5e5;
-    position: absolute;
-    z-index: 1;
-  }
-
   .main {
     @include centered_card;
   }
