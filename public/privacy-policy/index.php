@@ -12,7 +12,7 @@
     <link rel="icon" href="../omegapass.jpg">
 </head>
 <body>
-    <div>
+    <div class="navbar">
         <a href="/overview/">
             <img src="../omegapass.jpg" alt="OmegaPass Logo" class="logo">
         </a>
