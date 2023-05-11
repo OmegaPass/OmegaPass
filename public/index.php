@@ -1,5 +1,6 @@
 <?php
-session_start(); // Start a new or existing session
+// Import required dependencies
+include_once '../config.php';
 include '../db.php'; // Include the file with the database connection
 $database = new DataBase(); // Create a new instance of the database connection class
 
@@ -94,9 +95,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 </head>
 
 <body>
-<div class="welcome-gif-wrapper">
-    <img src="Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
-</div>
 	<div class="main">
 
 		<input type="checkbox" id="chk" aria-hidden="true">
@@ -121,5 +119,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 				</form>
 			</div>
 	</div>
+    <footer>
+        <a href="/imprint/">Imprint</a>
+        <a href="/privacy-policy/">Privacy policy</a>
+    </footer>
 </body>
 </html>
