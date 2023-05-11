@@ -1,5 +1,6 @@
 <?php
-session_start(); // Start a new or existing session
+// Import required dependencies
+include_once '../config.php';
 include '../db.php'; // Include the file with the database connection
 $database = new DataBase(); // Create a new instance of the database connection class
 

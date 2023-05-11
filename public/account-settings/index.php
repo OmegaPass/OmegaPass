@@ -1,5 +1,6 @@
 <?php
-
+// Import required dependencies
+include_once '../../config.php';
 // Include the database file that contains the DataBase class.
 include_once "../../db.php";
 

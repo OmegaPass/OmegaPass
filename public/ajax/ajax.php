@@ -1,5 +1,6 @@
 <?php
 // Import required dependencies
+include_once '../../config.php';
 include "../../db.php";
 include_once "../../crypt.php";
 
