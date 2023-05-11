@@ -114,7 +114,7 @@ switch ($_GET['mode']) {
                     <i class="bi bi-trash"></i>
                     <span class="overview-sidebar-text">Trash</span>
                 </a>
-                <a href="/accout-settings/" target="_self">
+                <a href="/account-settings/" target="_self">
                     <i class="bi bi-gear"></i>
                     <span class="overview-sidebar-text">Account settings</span>
                 </a>
