@@ -11,7 +11,7 @@
     <link rel="icon" href="../omegapass.jpg">
 </head>
 <body>
-    <div class="navbar">
+    <div>
         <a href="/overview/">
             <img src="../omegapass.jpg" alt="OmegaPass Logo" class="logo">
         </a>
