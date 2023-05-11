@@ -131,3 +131,23 @@ h1, h2, h3, h4, h5, h6 {
 .welcome-gif {
     border-radius: 10px;
 }
+
+/* ! DEPRECATED AFTER MERGE OF ISSUE#29 */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: #573b8a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+footer a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+}

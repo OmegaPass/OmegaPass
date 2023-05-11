@@ -118,5 +118,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 				</form>
 			</div>
 	</div>
+    <footer>
+        <a href="./imprint/">Imprint</a>
+        <a href="./privacy-policy/">Privacy policy</a>
+    </footer>
 </body>
 </html>
