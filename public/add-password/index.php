@@ -1,4 +1,6 @@
 <?php
+// Import required dependencies
+include_once '../../config.php';
 // include the database connection file
 include "../../db.php";
 
@@ -14,7 +16,11 @@ $database = new DataBase();
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password'])) {
     // if the form has been submitted, add the password to the database
     // using the add_password() function of the database object
-    $database->add_password($database->getUserId(), trim($_POST['website']), trim($_POST['username']), trim($_POST['password']));
+    try {
+        $database->add_password($database->getUserId(), trim($_POST['website']), trim($_POST['username']), trim($_POST['password']));
+    } catch (Exception $e) {
+        // TODO
+    }
     // redirect the user to the overview page
     echo "<script> location.href='/overview/'; </script>";
 }
