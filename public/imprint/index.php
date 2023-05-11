@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,31 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OmegaPass</title>
     <link rel="stylesheet" href="../css/imprint.css">
+    <link rel="icon" href="omegapass.jpg">
 </head>
 <body>
-    <a href="/overview/">
-        <img id="home-button" alt="overview button" src="../omegapass.jpg"/>
-    </a>
-    <div id="imprint">
-        <h1>Impressum</h1>
+    <div class="navbar">
+        <a href="/overview/">
+            <img src="../omegapass.jpg" alt="OmegaPass Logo" class="logo">
+        </a>
+    </div>
+    <div class="imprint">
+        <h2>Imprint</h1>
 
-        <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
-        <h3>Herausgeber</h3>
-        <p>OStD Dr. Joachim Selzam, Schulleiter<br />
+        <h2>Information according to &sect; 5 TMG</h2>
+        <h3>Publisher</h3>
+        <p>OStD Dr. Joachim Selzam, Headmaster<br />
         Goldbergstra&szlig;e 5<br />
-        Staatliche Berufsschule Lichtenfels<br />
+        State Vocational School Lichtenfels<br />
         96215 Lichtenfels</p>
 
-        <h3>Kontakt</h3>
-        <p>Telefon: 09571 9574-0<br />
-        Telefax: 09571 9574-29<br />
-        E-Mail: 5019.verwaltung@schule.bayern.de</p>
+        <h3>Contact</h3>
+        <p>Phone: 09571 9574-0<br />
+        Fax: 09571 9574-29<br />
+        Email: 5019.verwaltung@schule.bayern.de</p>
 
 
-        <h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
-        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-
-        <p>Quelle: <a href="https://www.e-recht24.de/impressum-generator.html">https://www.e-recht24.de/impressum-generator.html</a></p>
+        <h2>Consumer Dispute Resolution/Universal Dispute Resolution Body</h2>
+        <p>We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p>
     </div>
 </body>
 </html>
