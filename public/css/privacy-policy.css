@@ -15,6 +15,13 @@ body {
     color: #333;
 }
 
+@media (max-width: 1024px) {
+    .navbar {
+        position: relative;
+        text-align: center;
+    }
+}
+
 .navbar img {
     width: 200px; 
     height: 200px; 
