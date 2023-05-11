@@ -18,7 +18,11 @@ $errorMsg = null;
 if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
 
     // Attempt to change the master password for the current user with the given old and new passwords.
-    $success = $database->changeMasterPass($database->getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
+    try {
+        $success = $database->changeMasterPass($database->getUserId(), $_POST['oldPassword'], $_POST['newPassword']);
+    } catch (Exception $e) {
+        // TODO:
+    }
 
     // If the password change was successful.
     if ($success) {
@@ -38,7 +42,11 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
 if (isset($_POST['newUsername'])) {
 
     // Attempt to change the username for the current user to the given new username.
-    $database->changeUsername($database->getUserId(), trim($_POST['newUsername']));
+    try {
+        $database->changeUsername($database->getUserId(), trim($_POST['newUsername']));
+    } catch (Exception $e) {
+        // TODO:
+    }
 
     // Redirect the user to the overview page.
     header('Location: /overview/');

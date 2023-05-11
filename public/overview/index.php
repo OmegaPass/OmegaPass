@@ -21,7 +21,11 @@ if (isset($_POST['logout'])) {
 // Check if the user has submitted a form to change an entry's information
 if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['id'])) {
     // Call the changeEntry() method to update the entry in the database
-    $database->changeEntry($database->getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
+    try {
+        $database->changeEntry($database->getUserId(), $_POST['website'], $_POST['username'], $_POST['password'], $_POST['id']);
+    } catch (Exception $e) {
+        // TODO
+    }
     header('Refresh: 0');
 }
 
@@ -64,15 +68,27 @@ $database->deleteAfterThirtyDays();
 // Get the list of entries to display based on the mode specified in the URL
 switch ($_GET['mode']) {
     case 'trash':
-        $entries = $database->get_all_entries($database->getUserId(), 'trash');
+        try {
+            $entries = $database->get_all_entries($database->getUserId(), 'trash');
+        } catch (Exception $e) {
+            // TODO
+        }
         break;
 
     case 'favorite':
-        $entries = $database->get_all_entries($database->getUserId(), 'favorite');
+        try {
+            $entries = $database->get_all_entries($database->getUserId(), 'favorite');
+        } catch (Exception $e) {
+            // TODO
+        }
         break;
 
     default:
-        $entries = $database->get_all_entries($database->getUserId());
+        try {
+            $entries = $database->get_all_entries($database->getUserId());
+        } catch (Exception $e) {
+            // TODO
+        }
 }
 
 ?>
