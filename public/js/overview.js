@@ -90,17 +90,17 @@ $(document).ready(function() {
         modal: true,
         width: 'auto',
         buttons: {
-          "Change": function() {
-            $.ajax({
-                type: 'POST',
-                url: '/ajax/edit-password.php',
+            "Change": function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajax/edit-password.php',
                     data: {
                         edit_id: $('#edit_id').val(),
                         edit_website: $('#edit_website').val(),
                         edit_username: $('#edit_username').val(),
                         edit_password: $('#edit_password').val()
                     },
-                success: function (response) {
+                    success: function (response) {
                         if (response.success) {
                             // Redirect to the specified URL
                             window.location.href = response.redirect;
@@ -109,35 +109,35 @@ $(document).ready(function() {
                             // Display the error message in the dialog
                             else { $('#edit-errorMsg').text(response.error); }
                         }
-                },
-                error: function (error) {
+                    },
+                    error: function (error) {
                         // Log the error
                         console.log('Ajax request error:', error);
-                }
-              });
-          },
-          "Cancel": function() {
-            // Hide the edit modal when the close button is clicked
-            $(this).dialog("close");
-          }
+                    }
+                });
+            },
+            "Cancel": function() {
+                // Hide the edit modal when the close button is clicked
+                $(this).dialog("close");
+            }
         }
-      });
+    });
+  
 
-
-      $('#settings-modal').dialog({
+    $('#settings-modal').dialog({
         autoOpen: false,
         modal: true,
         width: 'auto',
         buttons: {
-          "Change": function() {
-            $.ajax({
-                type: 'POST',
-                url: '/ajax/account-settings.php',
+            "Change": function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajax/account-settings.php',
                     data: {
                         newUsername: $('#newUsername').val(),
                         oldPassword: $('#oldPassword').val(),
                         newPassword: $('#newPassword').val()
-                },
+                    },
                     success: function(response) {
                       if (response.success) {
                         // Redirect to the specified URL
@@ -146,47 +146,58 @@ $(document).ready(function() {
                         if (response.redirect) { window.location.href = response.redirect }
                         // Display the error message in the dialog
                         else { $('#settings-errorMsg').text(response.error); }
-                }
+                      }
                     },
                     error: function(error) {
                         // Log the Ajax request error
                         console.error(error);
                     }
-              });
-          },
-          "Cancel": function() {
-            // Hide the edit modal when the close button is clicked
-            $(this).dialog("close");
-          }
+                });
+            },
+            "Cancel": function() {
+                // Hide the edit modal when the close button is clicked
+                $(this).dialog("close");
+            }
         }
-      });
+    });
 
 
-      $('#add-modal').dialog({
-        autoOpen: false,
-        modal: true,
-        width: 'auto',
-        buttons: {
-          "Change": function() {
-            $.ajax({
-                type: 'POST',
-                url: '/ajax/add-password.php',
-                data: generateOptions,
-                success: function (response) {
-                  // TODO: add success function
-                },
-                error: function (error) {
-                  console.log('Error posting data: ' + error);
-                }
-          
-              });
-          },
-          "Cancel": function() {
-            // Hide the edit modal when the close button is clicked
-            $(this).dialog("close");
-          }
+    $('#add-modal').dialog({
+      autoOpen: false,
+      modal: true,
+      width: 'auto',
+      buttons: {
+        "Change": function() {
+          $.ajax({
+            type: 'POST',
+            url: '/ajax/add-password.php',
+            data: {
+              website: $('#add_website').val(),
+              username: $('#add_username').val(),
+              password: $('#add_password').val()
+            },
+            success: function (response) {
+              // Redirect to the specified URL if success is true
+              if (response.success) {
+                window.location.href = response.redirect;
+              } else {
+                if (response.redirect) { window.location.href = response.redirect; }
+                // Display the error message in the dialog
+                else { $('#add-errorMsg').text(response.error); }
+              }
+            },
+            error: function (error) {
+              // Log the Ajax request error
+              console.error(error);
+            }
+          });
+        },
+        "Cancel": function() {
+          // Hide the edit modal when the close button is clicked
+          $(this).dialog("close");
         }
-      });
+      }
+    });
   
       $('#details-edit').click(function() {
         $('#edit-modal').dialog('open');

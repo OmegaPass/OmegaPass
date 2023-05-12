@@ -67,7 +67,8 @@ switch ($_GET['mode']) {
         try {
             $entries = $database->get_all_entries($database->getUserId(), 'trash');
         } catch (Exception $e) {
-            // TODO
+            // Log the exception for debugging purposes
+            error_log($e);
         }
         break;
 
@@ -75,7 +76,8 @@ switch ($_GET['mode']) {
         try {
             $entries = $database->get_all_entries($database->getUserId(), 'favorite');
         } catch (Exception $e) {
-            // TODO
+            // Log the exception for debugging purposes
+            error_log($e);
         }
         break;
 
@@ -83,7 +85,8 @@ switch ($_GET['mode']) {
         try {
             $entries = $database->get_all_entries($database->getUserId());
         } catch (Exception $e) {
-            // TODO
+            // Log the exception for debugging purposes
+            error_log($e);
         }
 }
 
@@ -247,15 +250,16 @@ switch ($_GET['mode']) {
 
         <dialog id="add-modal">
             <button class="modal-close">X</button>
-            <form class="modal-content add-password-card" id="add-password-form" action="" method="post">
+            <div id='add-errorMsg'></div>
+            <div class="modal-content add-password-card" id="add-password-form">
                 <label>Website</label>
-                <input type="text" placeholder="Website" required id="form-website" name="add_website">
+                <input type="text" placeholder="Website" required id="add_website">
                 <label>Username</label>
-                <input type="text" placeholder="Username" required id="form-username" name="add_username">
+                <input type="text" placeholder="Username" required id="add_username">
                 <label>Password</label>
                 <div class="form-password-field">
                     <div>
-                        <input type="password" placeholder="Password" required id="form-password" name="add_password">
+                        <input type="password" placeholder="Password" required id="add_password">
                         <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
                     <div id="progress">
@@ -275,7 +279,7 @@ switch ($_GET['mode']) {
                     </div>
                 </div>
                 <button type="submit" class="modal-submit">Save</button>
-                    </div>
+            </div>
         </dialog>
 
         <footer>
