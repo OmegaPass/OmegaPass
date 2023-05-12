@@ -25,17 +25,6 @@ if (isset($_POST['logout'])) {
     exit();
 }
 
-// Check if the user has submitted a form to change an entry's information
-if (isset($_POST['edit_website']) && isset($_POST['edit_username']) && isset($_POST['edit_password']) && isset($_POST['edit_id'])) {
-    // Call the changeEntry() method to update the entry in the database
-    try {
-        $database->changeEntry($database->getUserId(), $_POST['edit_website'], $_POST['edit_username'], $_POST['edit_password'], $_POST['edit_id']);
-    } catch (Exception $e) {
-        // TODO
-    }
-    header('Refresh: 0');
-}
-
 // Check if the user has clicked the "Move to trash" or "Move out of trash" button
 if (isset($_POST['id']) && $_POST['trash'] === 'trash') {
     switch ($_GET['mode']) {
@@ -212,16 +201,17 @@ switch ($_GET['mode']) {
 
         <dialog id="edit-modal">
             <button class="modal-close">X</button>
-            <form class="modal-content" method="post" action="">
+            <div id='edit-errorMsg'></div>
+            <div class="modal-content">
                 <label>Website</label>
-                <input type="text" name="edit_website" required>
+                <input type="text" id="edit_website" required>
                 <label>Username</label>
-                <input type="text" name="edit_username" required>
+                <input type="text" id="edit_username" required>
                 <label>Password</label>
-                <input type="password" name="edit_password" required>
-                <input type="hidden" name="edit_id" class="entryId">
+                <input type="password" id="edit_password" required>
+                <input type="hidden" id="edit_id" class="entryId">
                 <button type="submit">Change</button>
-            </form>
+            </div>
         </dialog>
 
 

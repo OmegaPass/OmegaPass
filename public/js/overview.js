@@ -94,14 +94,26 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: '/ajax/edit-password.php',
-                data: generateOptions,
+                    data: {
+                        edit_id: $('#edit_id').val(),
+                        edit_website: $('#edit_website').val(),
+                        edit_username: $('#edit_username').val(),
+                        edit_password: $('#edit_password').val()
+                    },
                 success: function (response) {
-                  // TODO: add success function
+                        if (response.success) {
+                            // Redirect to the specified URL
+                            window.location.href = response.redirect;
+                        } else {
+                            if (response.redirect) { window.location.href = response.redirect }
+                            // Display the error message in the dialog
+                            else { $('#edit-errorMsg').text(response.error); }
+                        }
                 },
                 error: function (error) {
-                  console.log('Error posting data: ' + error);
+                        // Log the error
+                        console.log('Ajax request error:', error);
                 }
-          
               });
           },
           "Cancel": function() {
