@@ -214,6 +214,36 @@ switch ($_GET['mode']) {
             </div>
         </dialog>
 
+        <dialog id="settings-modal">
+            <button class="modal-close">X</button>
+            <div id='settings-errorMsg'></div>
+            <div class="modal-content">
+                <section class="change-username">
+                    <h2>Change your account username</h2>
+                    <div class="change-username-form">
+                        <label>New username</label>
+                        <input type="text" id="newUsername" required>
+                        <button type="submit">Change</button>
+                    </div>
+                </section>
+                <section class="change-masterpass">
+                    <h2>Change your account password</h2>
+                    <div class="change-masterpass-form">
+                        <label>Old password</label>
+                        <div class="change-masterpass-form-input">
+                            <input type="password" id="oldPassword" required class="password-input">
+                            <span toggle="#password-field" class="toggle-password bi-eye"></span>
+                        </div>
+                        <label>New password</label>
+                        <div class="change-masterpass-form-input">
+                            <input type="password" id="newPassword" required class="password-input">
+                            <span toggle="#password-field" class="toggle-password bi-eye"></span>
+                        </div>
+                        <button type="submit">Change</button>
+                    </div>
+                </section>
+            </div>
+        </dialog>
 
         <dialog id="add-modal">
             <button class="modal-close">X</button>
@@ -245,48 +275,15 @@ switch ($_GET['mode']) {
                     </div>
                 </div>
                 <button type="submit" class="modal-submit">Save</button>
-            </form>
-        </dialog>
-
-
-        <dialog id="settings-modal">
-            <button class="modal-close">X</button>
-            <form class="modal-content" method="post" action="">
-
-            </form>
-            <section class="change-username">
-                <h2>Change your account username</h2>
-                <form class="change-username-form" method="post" action="">
-                    <label>New username</label>
-                    <input type="text" name="newUsername" required>
-                    <button type="submit">Change</button>
-                </form>
-            </section>
-            <section class="change-masterpass">
-                <h2>Change your account password</h2>
-                <?php echo "<p class='errorMsg'>$errorMsg</p>"?>
-                <form class="change-masterpass-form" method="post" action="">
-                    <label>Old password</label>
-                    <div class="change-masterpass-form-input">
-                        <input type="password" name="oldPassword" required class="password-input">
-                        <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
-                    <label>New password</label>
-                    <div class="change-masterpass-form-input">
-                        <input type="password" name="newPassword" required class="password-input">
-                        <span toggle="#password-field" class="toggle-password bi-eye"></span>
-                    </div>
-                    <button type="submit">Change</button>
-                </form>
-            </section>
         </dialog>
 
         <footer>
             <a href="/imprint/">Imprint</a>
             <a href="/privacy-policy/">Privacy policy</a>
         </footer>
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="../js/overview.js"></script>
     </body>
 </html>

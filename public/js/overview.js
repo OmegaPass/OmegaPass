@@ -123,6 +123,7 @@ $(document).ready(function() {
         }
       });
 
+
       $('#settings-modal').dialog({
         autoOpen: false,
         modal: true,
@@ -132,14 +133,25 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: '/ajax/account-settings.php',
-                data: generateOptions,
-                success: function (response) {
-                  // TODO: add success function
+                    data: {
+                        newUsername: $('#newUsername').val(),
+                        oldPassword: $('#oldPassword').val(),
+                        newPassword: $('#newPassword').val()
                 },
-                error: function (error) {
-                  console.log('Error posting data: ' + error);
+                    success: function(response) {
+                      if (response.success) {
+                        // Redirect to the specified URL
+                        window.location.href = response.redirect;
+                      } else {
+                        if (response.redirect) { window.location.href = response.redirect }
+                        // Display the error message in the dialog
+                        else { $('#settings-errorMsg').text(response.error); }
                 }
-          
+                    },
+                    error: function(error) {
+                        // Log the Ajax request error
+                        console.error(error);
+                    }
               });
           },
           "Cancel": function() {
@@ -148,6 +160,7 @@ $(document).ready(function() {
           }
         }
       });
+
 
       $('#add-modal').dialog({
         autoOpen: false,
