@@ -1,11 +1,29 @@
-/* imprint.css */
+:root {
+  --primary-color: #573b8a;
+  --primary-color-hover: #6d44b8;
+}
 
 body {
   background-color: #f5f5f5;
   padding: 10px;
 }
-
-.imprint {
+body .navbar {
+  position: absolute;
+}
+@media (max-width: 1024px) {
+  body .navbar {
+    position: relative;
+    text-align: center;
+  }
+}
+body .navbar img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+body .imprint {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
@@ -14,51 +32,26 @@ body {
   line-height: 1.5;
   color: #333;
 }
-
-.navbar {
-  position: absolute;
-}
-
-@media (max-width: 1024px) {
-  .navbar {
-      position: relative;
-      text-align: center;
-  }
-}
-
-.navbar img {
-  width: 200px;
-  height: 200px; 
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
-
-.imprint h2 {
+body .imprint h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
-
-.imprint h3 {
+body .imprint h3 {
   font-size: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
 }
-
-.imprint p {
+body .imprint p {
   margin-bottom: 15px;
 }
-
-.imprint a {
-  color: #573b8a;
+body .imprint a {
+  color: var(--primary-color);
   text-decoration: none;
 }
-
-.imprint a:hover {
+body .imprint a:hover {
   text-decoration: underline;
 }
-
-.imprint .logo {
+body .imprint .logo {
   max-width: 200px;
   height: auto;
   display: block;
