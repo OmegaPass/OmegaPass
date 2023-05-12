@@ -36,16 +36,15 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/add-password.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
         <link rel="icon" href="../omegapass.jpg">
     </head>
     <body>
-        <section>
-            <form class="add-password-card" id="add-password-form" action="" method="post">
-                <label>Website</label>
+        <section class="add-password-card">
+            <h1>Add a password</h1>
+            <form id="add-password-form" action="" method="post">
                 <input type="text" placeholder="Website" required id="form-website" name="website">
-                <label>Username</label>
                 <input type="text" placeholder="Username" required id="form-username" name="username">
-                <label>Password</label>
                 <div class="form-password-field">
                     <div>
                         <input type="password" placeholder="Password" required id="form-password" name="password">

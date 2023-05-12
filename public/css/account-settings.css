@@ -1,27 +1,119 @@
-.change-masterpass-form, .change-username-form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
+:root {
+  --primary-color: #573b8a;
+  --primary-color-hover: #6d44b8;
 }
 
-.change-masterpass-form-input {
-    display: flex;
-    flex-direction: row;
-    column-gap: 5px;
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
-
-.password-input {
-    width: 100%;
+body .account {
+  width: 350px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 20px 50px #000;
+  padding: 20px 10px;
+  height: fit-content;
+  color: #ffffff;
+  text-align: center;
 }
-
-.toggle-password {
-    width: 20px;
-    height: 20px;
-    text-align: center;
+body .account h1 {
+  margin: 0 0 20px;
 }
-
-.errorMsg {
-    color: #ff0000;
-    margin: 10px;
-    text-align: center;
+body .account .change-username {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin-bottom: 20px;
+}
+body .account .change-username h4 {
+  margin: 0;
+}
+body .account .change-username .change-username-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+body .account .change-username .change-username-form input {
+  width: 60%;
+  height: 20px;
+  background: #e0dede;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body .account .change-username .change-username-form button {
+  padding: 5px;
+  background: var(--primary-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Jost", sans-serif;
+}
+body .account .change-username .change-username-form button:hover {
+  background: var(--primary-color-hover);
+}
+body .account .change-masterpass {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+body .account .change-masterpass h4 {
+  margin: 0;
+}
+body .account .change-masterpass .errorMsg {
+  color: #ff0000;
+  margin: 10px;
+  text-align: center;
+}
+body .account .change-masterpass .change-masterpass-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+body .account .change-masterpass .change-masterpass-form .change-masterpass-form-input {
+  width: 100%;
+}
+body .account .change-masterpass .change-masterpass-form .change-masterpass-form-input input {
+  width: 60%;
+  height: 20px;
+  background: #e0dede;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body .account .change-masterpass .change-masterpass-form .change-masterpass-form-input input {
+  width: calc(60% - 20px);
+}
+body .account .change-masterpass .change-masterpass-form button {
+  padding: 5px;
+  background: var(--primary-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Jost", sans-serif;
+}
+body .account .change-masterpass .change-masterpass-form button:hover {
+  background: var(--primary-color-hover);
 }

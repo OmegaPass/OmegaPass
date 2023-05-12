@@ -100,30 +100,56 @@ switch ($_GET['mode']) {
         <title>OmegaPass</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/overview.css">
         <link rel="icon" href="../omegapass.jpg">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
     </head>
     <body>
     <div class="welcome-gif-wrapper">
         <img src="../Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
     </div>
-        <div class="overview">
-            <div class="overview-sidebar">
+    <div class="overview">
+        <div class="overview-sidebar">
+            <div>
+                <button id="sidebar-toggle" type="button">
+                    <i class="bi bi-arrow-bar-right"></i>
+                </button>
                 <a href="/overview/" target="_self">
-                    <h3>Overview</h3>
+                    <i class="bi bi-house-door"></i>
+                    <span class="overview-sidebar-text">Overview</span>
+                </a>
+            </div>
+            <div>
+                <a href="/overview/?mode=favorite" target="_self">
+                    <i class="bi bi-star"></i>
+                    <span class="overview-sidebar-text">Favorite</span>
+                </a>
+                <a href="/overview/?mode=trash">
+                    <i class="bi bi-trash"></i>
+                    <span class="overview-sidebar-text">Trash</span>
+                </a>
+                <a href="/account-settings/" target="_self">
+                    <i class="bi bi-gear"></i>
+                    <span class="overview-sidebar-text">Account settings</span>
                 </a>
                 <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
                 <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
                 <button id="settings">Account settings</button>
                 <form action="" method="post">
-                    <button type="submit" name="logout">Logout</button>
+                    <button type="submit" name="logout">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span class="overview-sidebar-text">Logout</span>
+                    </button>
                 </form>
             </div>
-
+        </div>
             <div class="overview-passwords">
                 <div class="overview-passwords-header">
                     <h3>Passwords</h3>
-                    <button id="add-password">+</button>
+                    <button id="add-password">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
                 </div>
 
                 <div class="overview-passwords-subheader">
@@ -138,28 +164,30 @@ switch ($_GET['mode']) {
                     ?>
                 </div>
 
-                <table boarder='1' class="overview-password-table">
-                    <tr>
-                        <th>Website</th>
-                        <th>Username</th>
-                    </tr>
-
+                <section class="overview-passwords">
+                    <div class="overview-passwords-info">
+                        <p>Website</p>
+                        <p>Username</p>
+                    </div>
+                    <ul class="overview-passwords-listing">
                         <?php
-                        // Loop through the list of entries and display them in a table
                         foreach ($entries as $key => $entry) {
-                            echo "<tr class='entries' data-id='{$entry['id']}'>";
-                            echo "<td>" . $entry['website'] . "</td>";
-                            echo "<td>" . $entry['username'] . "</td>";
-                            echo '</tr>';
+                            echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
+                            echo "<p>" . $entry['website'] . "</p>";
+                            echo "<p>" . $entry['username'] . "</p>";
+                            echo "</li>";
                         }
                         ?>
-                </table>
+                    </ul>
+                </section>
             </div>
 
             <section class="overview-details">
                 <section class="details-heading">
                     <h3>Details</h3>
-                    <button id="clear-details" style="display: none">X</button>
+                    <button id="clear-details" style="display: none">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </section>
                 <p id="details-error"></p>
                 <h4>Website</h4>
@@ -168,37 +196,39 @@ switch ($_GET['mode']) {
                 <h5 id="details-username"></h5>
                 <h4>Password</h4>
                 <h5 id="details-password"></h5>
-                <button id="show-password" style="display: none">Show</button>
-                <button id="details-edit" style="display: none">Edit</button>
-                <form id="trash-form" method="post" style="display: none">
-                    <input type="hidden" name="id" class="entryId">
-                    <button type="submit" name="trash" value="trash">
-                        <?php
-                        // If the user is currently in "trash" mode, display a button to move
-                        // the entry out of the trash; otherwise, display a button to move
-                        // the entry to the trash
-                        if ($_GET['mode'] === 'trash') {
-                            echo 'Move out of trash';
-                        } else {
-                            echo 'Move to trash';
-                        }
-                        ?>
-                    </button>
-                </form>
-                <form id="favorite-form" method="post" action="" style="display: none">
-                    <input type="hidden" name="id" class="entryId">
-                    <button type="submit" name="favorite" value="favorite">
-                        <?php
-                        // If the user has favorited the entry, display a button to remove it
-                        // from their favorites; otherwise, display a button to add it to their favorites
-                        if ($_GET['mode'] === 'favorite') {
-                            echo 'Unfavorite';
-                        } else {
-                            echo 'Favorite';
-                        }
-                        ?>
-                    </button>
-                </form>
+                <div class="overview-details-buttons">
+                    <button id="show-password" style="display: none">Show</button>
+                    <button id="details-edit" style="display: none">Edit</button>
+                    <form id="trash-form" method="post" style="display: none">
+                        <input type="hidden" name="id" class="entryId">
+                        <button type="submit" name="trash" value="trash">
+                            <?php
+                            // If the user is currently in "trash" mode, display a button to move
+                            // the entry out of the trash; otherwise, display a button to move
+                            // the entry to the trash
+                            if ($_GET['mode'] === 'trash') {
+                                echo 'Move out of trash';
+                            } else {
+                                echo 'Move to trash';
+                            }
+                            ?>
+                        </button>
+                    </form>
+                    <form id="favorite-form" method="post" action="" style="display: none">
+                        <input type="hidden" name="id" class="entryId">
+                        <button type="submit" name="favorite" value="favorite">
+                            <?php
+                            // If the user has favorited the entry, display a button to remove it
+                            // from their favorites; otherwise, display a button to add it to their favorites
+                            if ($_GET['mode'] === 'favorite') {
+                                echo 'Unfavorite';
+                            } else {
+                                echo 'Favorite';
+                            }
+                            ?>
+                        </button>
+                    </form>
+                </div>
             </section>
         </div>
 

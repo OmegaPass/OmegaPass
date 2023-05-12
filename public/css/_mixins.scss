@@ -1,0 +1,47 @@
+@mixin gradiant-background {
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+}
+
+@mixin button {
+  button {
+    padding: 5px;
+    background: var(--primary-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Jost", sans-serif;
+  }
+
+  button:hover {
+    background: var(--primary-color-hover);
+  }
+}
+
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin input {
+  input {
+    width: 60%;
+    height: 20px;
+    background: #e0dede;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+  }
+}
+
+@mixin centered_card {
+  width: 350px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 20px 50px #000;
+}
