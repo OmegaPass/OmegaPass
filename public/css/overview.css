@@ -24,7 +24,7 @@ body .welcome-gif-wrapper {
 body .overview {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  min-height: calc(100vh - 40px);
 }
 body .overview .overview-sidebar {
   width: 50px;
