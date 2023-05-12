@@ -254,23 +254,20 @@ body .modal button {
 body .modal button:hover {
   background: var(--primary-color-hover);
 }
-
-/* ! DEPRECATED AFTER MERGE OF ISSUE#29 */
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: #573b8a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+body footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
-
-footer a {
-    margin: 0 10px;
-    color: #fff;
-    text-decoration: none;
+body footer a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
 }

@@ -80,7 +80,7 @@ body {
           }
         }
       }
-      
+
       button {
         background: transparent;
         border: none;
@@ -234,4 +234,6 @@ body {
 
     @include button;
   }
+
+  @include footer_legals;
 }
