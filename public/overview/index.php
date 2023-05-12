@@ -104,6 +104,7 @@ switch ($_GET['mode']) {
         <link rel="stylesheet" href="../css/overview.css">
         <link rel="icon" href="../omegapass.jpg">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     </head>
     <body>
     <div class="welcome-gif-wrapper">
@@ -129,13 +130,10 @@ switch ($_GET['mode']) {
                     <i class="bi bi-trash"></i>
                     <span class="overview-sidebar-text">Trash</span>
                 </a>
-                <a href="/account-settings/" target="_self">
+                <button id="settings" type="button">
                     <i class="bi bi-gear"></i>
                     <span class="overview-sidebar-text">Account settings</span>
                 </a>
-                <button onclick="window.location.href='/overview/?mode=favorite'">Favorites</button>
-                <button onclick="window.location.href='/overview/?mode=trash'">Trash</button>
-                <button id="settings">Account settings</button>
                 <form action="" method="post">
                     <button type="submit" name="logout">
                         <i class="bi bi-box-arrow-left"></i>
@@ -317,7 +315,6 @@ switch ($_GET['mode']) {
             <a href="/privacy-policy/">Privacy policy</a>
         </footer>
 
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="../js/overview.js"></script>
     </body>
 </html>
