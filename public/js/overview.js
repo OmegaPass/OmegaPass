@@ -85,131 +85,123 @@ $(document).ready(function() {
 
     });
 
-    $('#edit-modal').dialog({
-        autoOpen: false,
-        modal: true,
-        width: 'auto',
-        buttons: {
-            "Change": function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '/ajax/edit-password.php',
-                    data: {
-                        edit_id: $('#edit_id').val(),
-                        edit_website: $('#edit_website').val(),
-                        edit_username: $('#edit_username').val(),
-                        edit_password: $('#edit_password').val()
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            // Redirect to the specified URL
-                            window.location.href = response.redirect;
-                        } else {
-                            if (response.redirect) { window.location.href = response.redirect }
-                            // Display the error message in the dialog
-                            else { $('#edit-errorMsg').text(response.error); }
-                        }
-                    },
-                    error: function (error) {
-                        // Log the error
-                        console.log('Ajax request error:', error);
-                    }
-                });
-            },
-            "Cancel": function() {
-                // Hide the edit modal when the close button is clicked
-                $(this).dialog("close");
-            }
-        }
-    });
-  
+        // Define a click event handler for the edit button
+        $('#details-edit').click(function() {
+            // Show the edit modal
+            $('#edit-modal').addClass('open');
+        });
 
-    $('#settings-modal').dialog({
-        autoOpen: false,
-        modal: true,
-        width: 'auto',
-        buttons: {
-            "Change": function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '/ajax/account-settings.php',
-                    data: {
-                        newUsername: $('#newUsername').val(),
-                        oldPassword: $('#oldPassword').val(),
-                        newPassword: $('#newPassword').val()
-                    },
-                    success: function(response) {
-                      if (response.success) {
-                        // Redirect to the specified URL
-                        window.location.href = response.redirect;
-                      } else {
-                        if (response.redirect) { window.location.href = response.redirect }
-                        // Display the error message in the dialog
-                        else { $('#settings-errorMsg').text(response.error); }
-                      }
-                    },
-                    error: function(error) {
-                        // Log the Ajax request error
-                        console.error(error);
-                    }
-                });
-            },
-            "Cancel": function() {
-                // Hide the edit modal when the close button is clicked
-                $(this).dialog("close");
-            }
-        }
-    });
-
-
-    $('#add-modal').dialog({
-      autoOpen: false,
-      modal: true,
-      width: 'auto',
-      buttons: {
-        "Change": function() {
-          $.ajax({
+        // Define a click event handler for the edit change button
+        $('#edit-change').click(function() {
+            // Perform AJAX request
+            $.ajax({
             type: 'POST',
-            url: '/ajax/add-password.php',
+            url: '/ajax/edit-password.php',
             data: {
-              website: $('#add_website').val(),
-              username: $('#add_username').val(),
-              password: $('#add_password').val()
+                edit_id: $('#edit_id').val(),
+                edit_website: $('#edit_website').val(),
+                edit_username: $('#edit_username').val(),
+                edit_password: $('#edit_password').val()
             },
-            success: function (response) {
-              // Redirect to the specified URL if success is true
-              if (response.success) {
+            success: function(response) {
+                if (response.success) {
+                // Redirect to the specified URL
                 window.location.href = response.redirect;
-              } else {
-                if (response.redirect) { window.location.href = response.redirect; }
-                // Display the error message in the dialog
-                else { $('#add-errorMsg').text(response.error); }
-              }
+                } else {
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else {
+                        // Display the error message in the edit modal
+                        $('#edit-errorMsg').text(response.error);
+                    }
+                }
             },
-            error: function (error) {
-              // Log the Ajax request error
-              console.error(error);
+            error: function(error) {
+                // Log the error
+                console.log('Ajax request error:', error);
             }
-          });
-        },
-        "Cancel": function() {
-          // Hide the edit modal when the close button is clicked
-          $(this).dialog("close");
-        }
-      }
-    });
-  
-      $('#details-edit').click(function() {
-        $('#edit-modal').dialog('open');
-      });
+            });
+        });
 
-      $('#settings').click(function() {
-        $('#settings-modal').dialog('open');
-      });
+        // Define a click event handler for the edit cancel button
+        $('#edit-cancel').click(function() {
+            // Hide the edit modal
+            $('#edit-modal').removeClass('open');
+        });
 
-      $('#add-password').click(function() {
-        $('#add-modal').dialog('open');
-      });
+        // Define a click event handler for the settings button
+        $('#settings').click(function() {
+            // Show the settings modal
+            $('#settings-modal').addClass('open');
+        });
+
+        $('#settings-change').click(function() {
+            $.ajax({
+            type: 'POST',
+            url: '/ajax/account-settings.php',
+            data: {
+                newUsername: $('#newUsername').val(),
+                oldPassword: $('#oldPassword').val(),
+                newPassword: $('#newPassword').val()
+            },
+            success: function(response) {
+                if (response.success) {
+                window.location.href = response.redirect;
+                } else {
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else {
+                    $('#settings-errorMsg').text(response.error);
+                }
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+            });
+        });
+
+        $('#settings-cancel').click(function() {
+            $('#settings-modal').removeClass('open');
+        });
+
+
+        // Define a click event handler for the add button
+        $('#add-password').click(function() {
+            // Show the add modal
+            $('#add-modal').addClass('open');
+        });
+
+        $('#add-change').click(function() {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/add-password.php',
+                data: {
+                    website: $('#add_website').val(),
+                    username: $('#add_username').val(),
+                    password: $('#add_password').val()
+                },
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = response.redirect;
+                } else {
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else {
+                        $('#add-errorMsg').text(response.error);
+                    }
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+            });
+        });
+
+        $('#add-cancel').click(function() {
+            $('#add-modal').removeClass('open');
+        });
+
 
     $('#sidebar-toggle').on('click', () => {
         const $sidebar = $('.overview-sidebar');

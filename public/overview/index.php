@@ -228,94 +228,93 @@ switch ($_GET['mode']) {
                     </form>
                 </div>
             </section>
+    </div>
+
+    <dialog id="edit-modal">
+        <div class="modal-content">
+            <p id="edit-errorMsg"></p>
+            <label for="">Website</label>
+            <input type="text" id="edit_website" required>
+            <label for="">Username</label>
+            <input type="text" id="edit_username" required>
+            <label for="">Password</label>
+            <input type="password" id="edit_password" required>
+            <input type="hidden" id="edit_id" class="entryId">
+            <button class="change" id="edit-change">Change</button>
+            <button class="cancel" id="edit-cancel">Cancel</button>
         </div>
+    </dialog>
 
-        <dialog id="edit-modal">
-            <button class="modal-close">X</button>
-            <div id='edit-errorMsg'></div>
-            <div class="modal-content">
-                <label>Website</label>
-                <input type="text" id="edit_website" required>
-                <label>Username</label>
-                <input type="text" id="edit_username" required>
-                <label>Password</label>
-                <input type="password" id="edit_password" required>
-                <input type="hidden" id="edit_id" class="entryId">
-                <button type="submit">Change</button>
-            </div>
-        </dialog>
-
-        <dialog id="settings-modal">
-            <button class="modal-close">X</button>
-            <div id='settings-errorMsg'></div>
-            <div class="modal-content">
-                <section class="change-username">
-                    <h2>Change your account username</h2>
-                    <div class="change-username-form">
-                        <label>New username</label>
-                        <input type="text" id="newUsername" required>
-                        <button type="submit">Change</button>
-                    </div>
-                </section>
-                <section class="change-masterpass">
-                    <h2>Change your account password</h2>
-                    <div class="change-masterpass-form">
-                        <label>Old password</label>
-                        <div class="change-masterpass-form-input">
-                            <input type="password" id="oldPassword" required class="password-input">
-                            <span toggle="#password-field" class="toggle-password bi-eye"></span>
-                        </div>
-                        <label>New password</label>
-                        <div class="change-masterpass-form-input">
-                            <input type="password" id="newPassword" required class="password-input">
-                            <span toggle="#password-field" class="toggle-password bi-eye"></span>
-                        </div>
-                        <button type="submit">Change</button>
-                    </div>
-                </section>
-            </div>
-        </dialog>
-
-        <dialog id="add-modal">
-            <button class="modal-close">X</button>
-            <div id='add-errorMsg'></div>
-            <div class="modal-content add-password-card" id="add-password-form">
-                <label>Website</label>
-                <input type="text" placeholder="Website" required id="add_website">
-                <label>Username</label>
-                <input type="text" placeholder="Username" required id="add_username">
-                <label>Password</label>
-                <div class="form-password-field">
-                    <div>
-                        <input type="password" placeholder="Password" required id="add_password">
+    <dialog id="settings-modal">
+        <div class="modal-content">
+            <p id="settings-errorMsg"></p>
+            <section class="change-username">
+                <h2>Change your account username</h2>
+                <div class="change-username-form">
+                    <label>New username</label>
+                    <input type="text" id="newUsername" required>
+                </div>
+            </section>
+            <section class="change-masterpass">
+                <h2>Change your account password</h2>
+                <div class="change-masterpass-form">
+                    <label>Old password</label>
+                    <div class="change-masterpass-form-input">
+                        <input type="password" id="oldPassword" required class="password-input">
                         <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
-                    <div id="progress">
-                        <div id="progressBar"></div>
-                    </div>
-                    <p>Generate a password</p>
-                    <div class="gen-field">
-                        <div>
-                            <input type="number" id="gen-length">
-                            <label>Number of characters</label>
-                            <input type="checkbox" id="gen-digits">
-                            <label>Numbers</label>
-                            <input type="checkbox" id="gen-special">
-                            <label>Special characters</label>
-                        </div>
-                        <button id="generate" type="button">Generate and fill</button>
+                    <label>New password</label>
+                    <div class="change-masterpass-form-input">
+                        <input type="password" id="newPassword" required class="password-input">
+                        <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
                 </div>
-                <button type="submit" class="modal-submit">Save</button>
+            </section>
+            <button class="change" id="settings-change">Change</button>
+            <button class="cancel" id="settings-cancel">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog id="add-modal">
+        <div class="modal-content">
+            <p id="add-errorMsg"></p>
+            <label>Website</label>
+            <input type="text" placeholder="Website" required id="add_website">
+            <label>Username</label>
+            <input type="text" placeholder="Username" required id="add_username">
+            <label>Password</label>
+            <div class="form-password-field">
+                <div>
+                    <input type="password" placeholder="Password" required id="add_password">
+                    <span toggle="#password-field" class="toggle-password bi-eye"></span>
+                </div>
+                <div id="progress">
+                    <div id="progressBar"></div>
+                </div>
+                <button id="gen-password" type="button">Generate a password</button>
+                <div class="gen-field">
+                    <div>
+                        <input type="number" id="gen-length">
+                        <label for="gen-length">Number of characters</label>
+                        <input type="checkbox" id="gen-digits">
+                        <label for="gen-digits">Numbers</label>
+                        <input type="checkbox" id="gen-special">
+                        <label for="gen-special">Special characters</label>
+                    </div>
+                    <button id="generate" type="button">Generate and fill</button>
+                </div>
             </div>
-        </dialog>
+            <button class="change" id="add-change">Change</button>
+            <button class="cancel" id="add-cancel">Cancel</button>
+        </div>
+    </dialog>
 
-        <footer>
-            <a href="/imprint/">Imprint</a>
-            <a href="/privacy-policy/">Privacy policy</a>
-        </footer>
+    <footer>
+        <a href="/imprint/">Imprint</a>
+        <a href="/privacy-policy/">Privacy policy</a>
+    </footer>
 
-        <script src="../js/overview.js"></script>
+    <script src="../js/overview.js"></script>
     </body>
 </html>
 
