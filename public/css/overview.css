@@ -40,7 +40,7 @@ body {
     cursor: pointer;
 }
 
-.deatils-heading {
+.details-heading {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
