@@ -26,6 +26,10 @@ There you go. You now have a instance of OmegaPass running on your own machine. 
 
 ### Developing
 All source code is mounted directly to Docker and its containers. You see changes instantly after reloading of course.
+
+To compile scss Stylesheets you need to run this command.
+``sass --no-source-map public/css --watch`` [see install guide](https://sass-lang.com/install).
+
 ## Authors
 
 Contributors names and contact info

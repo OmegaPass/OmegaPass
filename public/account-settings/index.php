@@ -65,12 +65,14 @@ if (isset($_POST['newUsername'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/account-settings.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
         <link rel="icon" href="../omegapass.jpg">
     </head>
     <body>
+    <section class="account">
         <h1>Account</h1>
         <section class="change-username">
-            <h2>Change your account username</h2>
+            <h4>Change your account username</h4>
             <form class="change-username-form" method="post" action="">
                 <label>New username</label>
                 <input type="text" name="newUsername" required>
@@ -78,8 +80,8 @@ if (isset($_POST['newUsername'])) {
             </form>
         </section>
         <section class="change-masterpass">
-            <h2>Change your account password</h2>
-            <?php echo "<p class='errorMsg'>$errorMsg</p>"?>
+            <h4>Change your account password</h4>
+            <?php if (isset($errorMsg)) echo "<p class='errorMsg'>$errorMsg</p>"?>
             <form class="change-masterpass-form" method="post" action="">
                 <label>Old password</label>
                 <div class="change-masterpass-form-input">
@@ -94,9 +96,7 @@ if (isset($_POST['newUsername'])) {
                 <button type="submit">Change</button>
             </form>
         </section>
-
-
-
+    </section>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="../js/account-settings.js"></script>
     </body>

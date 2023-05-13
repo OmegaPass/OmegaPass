@@ -100,6 +100,29 @@ $(document).ready(function() {
         $('#edit-modal').hide();
     });
 
+    $('#sidebar-toggle').on('click', function(){
+        const $sidebar = $('.overview-sidebar');
+        const $sidebarText = $('.overview-sidebar-text');
+
+        if ($sidebar.width() > 50) {
+
+            $('.overview-sidebar').width(50);
+            $(this).find(':first-child')
+                .removeClass('bi-arrow-bar-left')
+                .addClass('bi-arrow-bar-right');
+            $sidebarText.hide();
+            return;
+        }
+
+        $sidebar
+            .width(200)
+            .css('background', '');
+        $(this).find(':first-child')
+            .removeClass('bi-arrow-bar-right')
+            .addClass('bi-arrow-bar-left');
+        $sidebarText.show();
+    });
+
     function showLoadingScreen() {
         if (sessionStorage.getItem('visited') === null) {
             let fadeOutTime = 200;
@@ -116,5 +139,4 @@ $(document).ready(function() {
             sessionStorage.setItem('visited', 'true');
         }
     }
-
 });

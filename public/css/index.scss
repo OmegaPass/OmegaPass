@@ -1,0 +1,113 @@
+@import "colors";
+@import "mixins";
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  @include gradiant-background;
+
+  .main {
+    @include centered_card;
+  }
+
+  #chk {
+    display: none;
+
+    &:checked ~ .signup {
+      transform: translateY(-500px);
+    }
+
+    &:checked ~ .signup label {
+      transform: scale(1);
+    }
+
+    &:checked ~ .login label {
+      transform: scale(.6);
+    }
+  }
+
+  .login {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    label {
+      margin-top: 20px;
+    }
+  }
+
+  #errormsg {
+    font-size: initial;
+    display: flex;
+    justify-content: center;
+    color: #f00;
+    margin-top: 20px;
+  }
+
+  label {
+    color: #fff;
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    margin: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+  }
+
+  input {
+    width: 60%;
+    height: 20px;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 60%;
+    height: 40px;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: var(--primary-color);
+    font-size: 1em;
+    font-weight: bold;
+    margin: 20px auto 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--primary-color-hover);
+  }
+
+  .signup {
+    height: 460px;
+    background: #eee;
+    border-radius: 60% / 10%;
+    transform: translateY(-180px);
+    transition: .8s ease-in-out;
+
+    label {
+      color: var(--primary-color);
+      transform: scale(.6);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+
+  @include footer_legals;
+}
