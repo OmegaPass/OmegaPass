@@ -90,6 +90,15 @@ class DataBase {
     public function get_all_entries($userid, $mode = null) {
         // Select the website, username, password, and ID for all password entries
         // that belong to the user and meet the specified filtering criteria
+
+        if ($mode === 'favorite') {
+            $favoriteSelection = true;
+        } elseif ($mode === 'trash') {
+            $favoriteSelection = null;
+        } else {
+            $favoriteSelection = Medoo::raw('favorite IS NULL OR favorite = true');
+        }
+
         $results = $this->database->select('passwords', [
             'website',
             'username',
@@ -98,7 +107,7 @@ class DataBase {
         ], [
             'user_id' => $userid,
             'trash' => $mode === 'trash' ? true : null,
-            'favorite' => $mode === 'favorite' ? true : Medoo::raw('favorite IS NULL OR favorite = true')
+            'favorite' => $favoriteSelection
         ]);
 
         // Decrypt the password for each result (if it's not empty) using
