@@ -6,6 +6,8 @@ include_once "../../db.php";
 
 // When not logged in you the client gets redirected to the homepage
 if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
+    session_start();
+    session_destroy();
     echo json_encode(['success' => false, 'redirect' => '/']);
     exit;
 }
@@ -48,6 +50,8 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
         unset($_SESSION['masterpass']);
 
         // Send a success response to the JavaScript code with the correct redirect URL
+        session_start();
+        session_destroy();
         echo json_encode(['success' => true, 'redirect' => '/']);
         exit;
     }
@@ -78,6 +82,8 @@ if (isset($_POST['newUsername'])) {
     
 
     // Send a success response to the JavaScript code with the correct redirect URL
-    echo json_encode(['success' => true, 'redirect' => '/overview/']);
+    session_start();
+    session_destroy();
+    echo json_encode(['success' => true, 'redirect' => '/']);
     exit;
 }

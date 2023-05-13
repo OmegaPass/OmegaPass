@@ -9,6 +9,8 @@ session_start();
 
 // When not logged in, redirect the client to the homepage
 if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
+    session_start();
+    session_destroy();
     echo json_encode(['success' => false, 'redirect' => '/']);
     exit;
 }
@@ -37,7 +39,7 @@ if (isset($_POST['website'], $_POST['username'], $_POST['password'])) {
     }
 
     // Send a success response to the JavaScript code with the correct redirect URL
-    echo json_encode(['success' => true, 'redirect' => '/']);
+    echo json_encode(['success' => true, 'redirect' => '/overview/']);
     exit;
 }
 

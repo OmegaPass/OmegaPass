@@ -89,7 +89,6 @@ $(document).ready(function() {
         // TODO: display the website field (label + input) to inline over the complete dialog content width
         // TODO: display the username/password label + input to below each other. Each over 1/2 the width of the dialog content
         // TODO: display the buttons 1/2 the width of the dialog content below the inputs
-        // ! BUG: The ajax json response for redirect is not working.
         // ! BUG: The errormsg is not displayed
         // Define a click event handler for the edit button
         $('#details-edit').click(function() {
@@ -109,6 +108,7 @@ $(document).ready(function() {
                 edit_username: $('#edit_username').val(),
                 edit_password: $('#edit_password').val()
             },
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
                 // Redirect to the specified URL
@@ -138,7 +138,6 @@ $(document).ready(function() {
   
     // * Account settings modal
         // TODO: add panels to the modal where the user can switch between the two settings modes. Panel 1: change account username ; Panel 2: change account password
-        // ! BUG: The ajax json response for redirect is not working.
         // ! BUG: The errormsg is not displayed
         // Define a click event handler for the settings button
         $('#settings').click(function() {
@@ -155,6 +154,7 @@ $(document).ready(function() {
                 oldPassword: $('#oldPassword').val(),
                 newPassword: $('#newPassword').val()
             },
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
                 window.location.href = response.redirect;
@@ -185,7 +185,6 @@ $(document).ready(function() {
             // TODO: after the fill button is pressed the additional menu closes and the password is automatically pasted in the password field
         // TODO: add logic to the show password button
         // TODO: display the buttons 1/2 the width of the dialog content below the inputs
-        // ! BUG: The ajax json response for redirect is not working. Response so far (json): ['success' => {{BOOLEAN}}, 'redirect' => {{PATH}}]
         // ! BUG: The errormsg is not displayed
         // Define a click event handler for the add button
         $('#add-password').click(function() {
@@ -202,20 +201,21 @@ $(document).ready(function() {
                     username: $('#add_username').val(),
                     password: $('#add_password').val()
                 },
-            success: function(response) {
-                if (response.success) {
-                    window.location.href = response.redirect;
-                } else {
-                    if (response.redirect) {
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
                         window.location.href = response.redirect;
                     } else {
-                        $('#add-errorMsg').text(response.error);
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        } else {
+                            $('#add-errorMsg').text(response.error);
+                        }
                     }
+                },
+                error: function(error) {
+                    console.error(error);
                 }
-            },
-            error: function(error) {
-                console.error(error);
-            }
             });
         });
 
@@ -223,22 +223,6 @@ $(document).ready(function() {
             $('#add-modal').removeClass('open');
         });
 
-
-    $('#sidebar-toggle').on('click', () => {
-        const $sidebar = $('.overview-sidebar');
-        const $sidebarText = $('.overview-sidebar-text');
-
-        if ($sidebar.width() > 50) {
-
-            $('.overview-sidebar').width(50);
-            $sidebarText.hide();
-            return;
-        }
-
-        $sidebar.width(200);
-        $sidebar.css('background', '')
-        $sidebarText.show();
-    });
 
     $('#sidebar-toggle').on('click', function(){
         const $sidebar = $('.overview-sidebar');
