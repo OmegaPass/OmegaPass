@@ -29,9 +29,11 @@ body .overview {
 body .overview .overview-sidebar {
   width: 50px;
   padding: 20px 10px;
+  padding-right: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-right: 2px solid white;
 }
 body .overview .overview-sidebar div {
   display: flex;
@@ -83,6 +85,7 @@ body .overview .overview-sidebar button:hover i, body .overview .overview-sideba
 body .overview .overview-passwords {
   width: calc(65% - 20px + 50px);
   padding: 10px;
+  padding-left: 20px;
 }
 body .overview .overview-passwords .overview-passwords-header {
   display: flex;
@@ -160,12 +163,12 @@ body .overview .overview-details a, body .overview .overview-details h4, body .o
   text-overflow: ellipsis;
   margin: 10px 0;
 }
-body .overview .overview-details .deatils-heading {
+body .overview .overview-details .details-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-body .overview .overview-details .deatils-heading button {
+body .overview .overview-details .details-heading button {
   padding: 5px;
   background: var(--primary-color);
   -webkit-appearance: none;
@@ -177,8 +180,15 @@ body .overview .overview-details .deatils-heading button {
   color: #ffffff;
   font-family: "Jost", sans-serif;
 }
-body .overview .overview-details .deatils-heading button:hover {
+body .overview .overview-details .details-heading button:hover {
   background: var(--primary-color-hover);
+}
+body .overview .overview-details #details-website-link {
+  color: #fff;
+  text-decoration: none;
+}
+body .overview .overview-details #details-website-link:hover {
+  text-decoration: underline;
 }
 body .overview .overview-details .overview-details-buttons {
   display: flex;

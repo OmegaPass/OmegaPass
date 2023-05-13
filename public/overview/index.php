@@ -188,7 +188,7 @@ switch ($_GET['mode']) {
             </div>
 
             <section class="overview-details">
-                <section class="deatils-heading">
+                <section class="details-heading">
                     <h3>Details</h3>
                     <button id="clear-details" style="display: none">
                         <i class="bi bi-x-lg"></i>
