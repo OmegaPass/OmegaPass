@@ -1,66 +1,59 @@
-/* privacy-policy.css */
+:root {
+  --primary-color: #573b8a;
+  --primary-color-hover: #6d44b8;
+}
 
 body {
-    background-color: #f5f5f5;
-    padding: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
 }
-
-.privacy-policy {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
-    color: #333;
+body .navbar {
+  position: absolute;
 }
-
-.navbar {
-    position: absolute;
-}
-
 @media (max-width: 1024px) {
-    .navbar {
-        position: relative;
-        text-align: center;
-    }
+  body .navbar {
+    position: relative;
+    text-align: center;
+  }
 }
-
-.navbar img {
-    width: 200px; 
-    height: 200px; 
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
+body .navbar img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
 }
-
-.privacy-policy h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+body .privacy-policy {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
 }
-
-.privacy-policy h3 {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+body .privacy-policy h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
-
-.privacy-policy p {
-    margin-bottom: 15px;
+body .privacy-policy h3 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
-
-.privacy-policy a {
-    color: #573b8a;
-    text-decoration: none;
+body .privacy-policy p {
+  margin-bottom: 15px;
 }
-
-.privacy-policy a:hover {
-    text-decoration: underline;
+body .privacy-policy a {
+  color: var(--primary-color);
+  text-decoration: none;
 }
-
-.privacy-policy .logo {
-    max-width: 200px;
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
+body .privacy-policy a:hover {
+  text-decoration: underline;
+}
+body .privacy-policy .logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
 }

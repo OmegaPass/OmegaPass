@@ -2,7 +2,6 @@
 @import "colors";
 
 body {
-  position: relative;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -24,14 +23,16 @@ body {
   .overview {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
+    min-height: calc(100vh - 40px);
 
     .overview-sidebar {
       width: 50px;
       padding: 20px 10px;
+      padding-right: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      border-right: 2px solid white;
 
       div {
         display: flex;
@@ -81,7 +82,7 @@ body {
           }
         }
       }
-      
+
       button {
         background: transparent;
         border: none;
@@ -103,6 +104,7 @@ body {
     .overview-passwords {
       width: calc(65% - 20px + 50px);
       padding: 10px;
+      padding-left: 20px;
 
       .overview-passwords-header {
         display: flex;
@@ -183,6 +185,14 @@ body {
         @include button;
       }
 
+      #details-website-link {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+      }
+      }
       .overview-details-buttons {
         display: flex;
         flex-direction: row;
@@ -196,6 +206,45 @@ body {
         }
       }
     }
+  }
+
+  // ! FROM MERGE CONFLICT
+  #edit-modal {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .edit-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    row-gap: 10px;
+  }
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: 5px;
+    justify-content: flex-end;
+    height: fit-content;
+    width: fit-content;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+
+    @include button;
   }
 
   dialog {
@@ -262,24 +311,5 @@ body {
     @include button;
 
   }
-
-  footer {
-    position: absolute; 
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-  }
-
-  footer a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-  }
-
+  @include footer_legals;
 }
