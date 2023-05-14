@@ -43,7 +43,7 @@ body {
           padding: 0;
         }
 
-        a {
+        a, button {
           text-decoration: none;
           color: #ffffff;
           display: flex;
@@ -260,11 +260,11 @@ body {
     max-width: 90%;
     justify-content: center;
     align-items: center;
-  
+
     &.open {
       display: flex;
     }
-  
+
     .modal-content {
       margin: auto;
       margin-bottom: 50rem;
@@ -279,7 +279,7 @@ body {
         cursor: pointer;
         transition: .5s ease-in-out;
       }
-    
+
       input {
         width: 60%;
         height: 20px;
@@ -292,18 +292,18 @@ body {
         border-radius: 5px;
       }
     }
-  
+
     // Add specific styles for each dialog if needed...
     // For example:
-  
+
     &#edit-modal {
       // Styles for the edit modal dialog...
     }
-  
+
     &#settings-modal {
       // Styles for the settings modal dialog...
     }
-  
+
     &#add-modal {
       // Styles for the add modal dialog...
     }

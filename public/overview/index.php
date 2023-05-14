@@ -133,7 +133,7 @@ switch ($_GET['mode']) {
                 <button id="settings" type="button">
                     <i class="bi bi-gear"></i>
                     <span class="overview-sidebar-text">Account settings</span>
-                </a>
+                </button>
                 <form action="" method="post">
                     <button type="submit" name="logout">
                         <i class="bi bi-box-arrow-left"></i>
