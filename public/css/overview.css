@@ -219,6 +219,131 @@ body .overview .overview-details .overview-details-buttons button {
 body dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
 }
+body #add-modal :root {
+  --primary-color: #573b8a;
+  --primary-color-hover: #6d44b8;
+}
+body #add-modal .modal-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+}
+body #add-modal .modal-content input {
+  width: 70%;
+  height: 20px;
+  background: #e0dede;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body #add-modal .modal-content .form-password-field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+body #add-modal .modal-content .form-password-field #progressBar {
+  height: 5px;
+  display: none;
+}
+body #add-modal .modal-content .form-password-field #progress {
+  margin: 5px 5px;
+  width: 100%;
+  height: 5px;
+  background-color: #eeeeee;
+}
+body #add-modal .modal-content .form-password-field div {
+  width: 100%;
+}
+body #add-modal .modal-content .form-password-field input {
+  width: 70%;
+  height: 20px;
+  background: #e0dede;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body #add-modal .modal-content .form-password-field input {
+  width: calc(70% - 20px);
+}
+body #add-modal .modal-content .form-password-field .gen-field {
+  display: none;
+}
+body #add-modal .modal-content .form-password-field .gen-field div {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+body #add-modal .modal-content .form-password-field .gen-field div input {
+  width: 50%;
+}
+body #add-modal .modal-content .form-password-field .gen-field button {
+  padding: 5px;
+  background: var(--primary-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Jost", sans-serif;
+}
+body #add-modal .modal-content .form-password-field .gen-field button:hover {
+  background: var(--primary-color-hover);
+}
+body #add-modal .modal-content button {
+  padding: 5px;
+  background: var(--primary-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Jost", sans-serif;
+}
+body #add-modal .modal-content button:hover {
+  background: var(--primary-color-hover);
+}
+body #add-modal .modal-footer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  margin: 10px 0;
+}
+body #add-modal .modal-footer button {
+  padding: 5px;
+  background: var(--primary-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Jost", sans-serif;
+}
+body #add-modal .modal-footer button:hover {
+  background: var(--primary-color-hover);
+}
+body #add-modal .modal-footer button {
+  width: 50%;
+}
 body footer {
   position: fixed;
   bottom: 0;
