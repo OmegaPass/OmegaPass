@@ -1,5 +1,8 @@
 <?php
 // Import required dependencies
+
+// TODO: maybe delete
+
 include_once '../../config.php';
 // Include the database file that contains the DataBase class.
 include_once "../../db.php";
@@ -63,7 +66,7 @@ if (isset($_POST['newUsername'])) {
         <title>OmegaPass</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/account-settings.css">
+        <link rel="stylesheet" href="../css/_account-settings.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
         <link rel="icon" href="../omegapass.jpg">
