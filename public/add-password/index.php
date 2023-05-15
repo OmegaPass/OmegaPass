@@ -1,4 +1,7 @@
 <?php
+
+// TODO: since this moves to the dialog we can delete it
+
 // Import required dependencies
 include_once '../../config.php';
 // include the database connection file
@@ -34,7 +37,7 @@ if (isset($_POST['website']) && isset($_POST['username']) && isset($_POST['passw
         <title>OmegaPass</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/add-password.css">
+        <link rel="stylesheet" href="../css/_add-password.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
         <link rel="icon" href="../omegapass.jpg">
