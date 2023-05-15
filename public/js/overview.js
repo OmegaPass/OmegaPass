@@ -223,6 +223,18 @@ $(document).ready(function() {
             document.getElementById('add-modal').close();
         });
 
+        $('#gen-password').click(() => {
+            const $genField = $('.gen-field');
+
+            if ($genField.css('display') === 'none') {
+                $genField.fadeIn(100);
+                return;
+            }
+
+            $genField.fadeOut(100);
+
+        });
+
 
     $('#sidebar-toggle').on('click', function(){
         const $sidebar = $('.overview-sidebar');

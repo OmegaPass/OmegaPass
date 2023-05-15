@@ -311,9 +311,9 @@ switch ($_GET['mode']) {
     <dialog id="add-modal">
         <div class="modal-content">
             <p id="add-errorMsg"></p>
-            <label>Website</label>
+            <label for="add_website">Website</label>
             <input type="text" placeholder="Website" required id="add_website">
-            <label>Username</label>
+            <label for="add_username">Username</label>
             <input type="text" placeholder="Username" required id="add_username">
             <label>Password</label>
             <div class="form-password-field">
@@ -337,6 +337,8 @@ switch ($_GET['mode']) {
                     <button id="generate" type="button">Generate and fill</button>
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
             <button class="change" id="add-change">Change</button>
             <button class="cancel" id="add-cancel">Cancel</button>
         </div>
