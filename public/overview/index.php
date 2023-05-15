@@ -227,39 +227,6 @@ switch ($_GET['mode']) {
                     </button>
                 </form>
             </div>
-            <div class="overview-details-buttons">
-                <button id="show-password" style="display: none">Show</button>
-                <button id="details-edit" style="display: none">Edit</button>
-                <form id="trash-form" method="post" style="display: none">
-                    <input type="hidden" name="id" class="entryId">
-                    <button type="submit" name="trash" value="trash">
-                        <?php
-                        // If the user is currently in "trash" mode, display a button to move
-                        // the entry out of the trash; otherwise, display a button to move
-                        // the entry to the trash
-                        if ($_GET['mode'] === 'trash') {
-                            echo 'Move out of trash';
-                        } else {
-                            echo 'Move to trash';
-                        }
-                        ?>
-                    </button>
-                </form>
-                <form id="favorite-form" method="post" action="" style="display: none">
-                    <input type="hidden" name="id" class="entryId">
-                    <button type="submit" name="favorite" value="favorite">
-                        <?php
-                        // If the user has favorited the entry, display a button to remove it
-                        // from their favorites; otherwise, display a button to add it to their favorites
-                        if ($_GET['mode'] === 'favorite') {
-                            echo 'Unfavorite';
-                        } else {
-                            echo 'Favorite';
-                        }
-                        ?>
-                    </button>
-                </form>
-            </div>
         </section>
     </div>
 
