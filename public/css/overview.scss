@@ -208,6 +208,18 @@ body {
     }
   }
 
+  dialog[open] {
+    animation: show 100ms ease normal;
+  }
+  @keyframes show{
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   dialog::backdrop {
     background: rgba(0,0,0,0.4);
   }
