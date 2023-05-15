@@ -190,7 +190,7 @@ switch ($_GET['mode']) {
             </section>
             <p id="details-error"></p>
             <h4>Website</h4>
-            <a href="" id="details-website-link"></a>
+            <a href="" target="_blank" id="details-website-link"></a>
             <h4>Username</h4>
             <h5 id="details-username"></h5>
             <h4>Password</h4>
