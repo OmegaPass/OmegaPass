@@ -93,7 +93,7 @@ $(document).ready(function() {
         // Define a click event handler for the edit button
         $('#details-edit').click(function() {
             // Show the edit modal
-            $('#edit-modal').addClass('open');
+            document.getElementById('edit-modal').showModal();
         });
 
         // Define a click event handler for the edit change button
@@ -132,17 +132,17 @@ $(document).ready(function() {
         // Define a click event handler for the edit cancel button
         $('#edit-cancel').click(function() {
             // Hide the edit modal
-            $('#edit-modal').removeClass('open');
+            document.getElementById('edit-modal').close();
         });
 
-  
+
     // * Account settings modal
         // TODO: add panels to the modal where the user can switch between the two settings modes. Panel 1: change account username ; Panel 2: change account password
         // ! BUG: The errormsg is not displayed
         // Define a click event handler for the settings button
         $('#settings').click(function() {
             // Show the settings modal
-            $('#settings-modal').addClass('open');
+            document.getElementById('settings-modal').showModal();
         });
 
         $('#settings-change').click(function() {
@@ -173,7 +173,7 @@ $(document).ready(function() {
         });
 
         $('#settings-cancel').click(function() {
-            $('#settings-modal').removeClass('open');
+            document.getElementById('settings-modal').close();
         });
 
 
@@ -189,7 +189,7 @@ $(document).ready(function() {
         // Define a click event handler for the add button
         $('#add-password').click(function() {
             // Show the add modal
-            $('#add-modal').addClass('open');
+            document.getElementById('add-modal').showModal();
         });
 
         $('#add-change').click(function() {
@@ -220,7 +220,7 @@ $(document).ready(function() {
         });
 
         $('#add-cancel').click(function() {
-            $('#add-modal').removeClass('open');
+            document.getElementById('add-modal').close();
         });
 
 
