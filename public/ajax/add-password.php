@@ -55,6 +55,7 @@ if (isset($_POST['generate'])) {
     exit;
 }
 
+// ! WILL SOON BE DEPRECATED
 // Check the strength of a password
 if (isset($_POST['passwordStrength'], $_POST['password']) && is_string($_POST['password'])) {
     // Call the check_password_strength() function and return the result

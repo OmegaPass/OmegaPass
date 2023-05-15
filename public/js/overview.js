@@ -275,7 +275,55 @@ $(document).ready(function() {
             });
           });
 
+        const strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
+        const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred'];
+        let timeout = null;
+        // When the password input field is changed, update the password strength meter
+        $('#add_password').on('input', function () {
+
+            // Get the value of the password input field
+            let passwordInput = $('#add_password').val();
+        
+            // Define an object to send in an AJAX request to the server
+            let validate = {
+            'passwordStrength': true,
+            'password': passwordInput
+            };
+        
+            // Clear the previous timeout and set a new one
+            if (timeout !== null) {
+            clearTimeout(timeout);
+            }
+        
+            // If the password is empty, hide the password strength meter and exit
+            if (passwordInput === '') {
+            $('#progressBar').css('display', 'none');
+            return;
+            }
+        
+            // Define a timeout function to get the password strength from the server
+            timeout = setTimeout(getStrength, 20);
+        
+            function getStrength() {
+            // Call the check_password_strength function and get the password strength
+            let response = check_password_strength(passwordInput);
+        
+            // Map the password strength to the corresponding word and color
+            const strengthMapping = strengthWords.indexOf(response);
+            const strengthColor = strengthColors[strengthMapping];
+        
+            // Update the password strength meter
+            if (strengthMapping !== 0) {
+                const strengthPercentage = 100 / strengthMapping;
+                $('#progressBar').css({width: `${strengthPercentage}%`, backgroundColor: strengthColor});
+            } else {
+                $('#progressBar').css({width: '100%', backgroundColor: 'darkred'});
+            }
+        
+            $('#progressBar').css('display', 'block');
+            }
         });
+  
 
     // add eventListener to dialog elements, when clicked outside of dialog element and its open then close it
     document.querySelectorAll('dialog').forEach((element) => {
@@ -334,3 +382,26 @@ $(document).ready(function() {
         }
     }
 });
+
+
+function check_password_strength(password) {
+    // Ensure that zxcvbn is loaded
+    if (typeof zxcvbn === 'undefined') {
+        console.error('zxcvbn library not loaded');
+        return;
+    }
+    
+    var strength = zxcvbn(password).score;
+    
+    // Define a message for each password strength level
+    var strengthMessage = [
+        'very weak',
+        'weak',
+        'medium',
+        'strong',
+        'very strong'
+    ];
+    
+    // Return the appropriate strength message based on the score
+    return strengthMessage[strength] || 'calc not available';
+}
