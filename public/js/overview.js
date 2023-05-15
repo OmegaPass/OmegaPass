@@ -226,6 +226,17 @@ $(document).ready(function() {
             document.getElementById('add-modal').close();
         });
 
+        // When the toggle password button is clicked, toggle the password visibility
+        $("dialog").on('click', '.toggle-password', function () {
+            $(this).toggleClass("bi-eye bi-eye-slash");
+            const input = $("#add_password");
+            if (input.attr("type") === "password") {
+              input.attr("type", "text");
+            } else {
+              input.attr("type", "password");
+            }
+          });
+
         $('#gen-password').click(() => {
             const $genField = $('.gen-field');
 
