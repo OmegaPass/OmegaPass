@@ -252,6 +252,7 @@ $(document).ready(function() {
 
         });
 
+    // add eventListener to dialog elements, when clicked outside of dialog element and its open then close it
     document.querySelectorAll('dialog').forEach((element) => {
         element.addEventListener("click", e => {
             const dialogDimensions = element.getBoundingClientRect()
