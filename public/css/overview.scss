@@ -220,7 +220,7 @@ body {
   }
 
   #settings-modal {
-    // Styles for the settings modal dialog...
+    @import "account-settings";
   }
 
   #add-modal {

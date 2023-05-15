@@ -219,6 +219,101 @@ body .overview .overview-details .overview-details-buttons button {
 body dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
 }
+body #settings-modal :root {
+  --primary-color: #573b8a;
+  --primary-color-hover: #6d44b8;
+}
+body #settings-modal .modal-content .settings-tabs {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+}
+body #settings-modal .modal-content .settings-tabs span {
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+body #settings-modal .modal-content .settings-tabs span.active {
+  background: rgba(0, 0, 0, 0.2);
+}
+body #settings-modal .modal-content .settings-tabs span:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.1);
+}
+body #settings-modal .modal-content .change-username {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin-bottom: 20px;
+}
+body #settings-modal .modal-content .change-username .change-username-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+body #settings-modal .modal-content .change-username .change-username-form input {
+  width: 60%;
+  height: 20px;
+  background: #e0dede;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body #settings-modal .modal-content .change-masterpass {
+  display: none;
+  flex-direction: column;
+  row-gap: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+body #settings-modal .modal-content .change-masterpass .change-masterpass-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+body #settings-modal .modal-content .change-masterpass .change-masterpass-form .change-masterpass-form-input {
+  width: 100%;
+}
+body #settings-modal .modal-content .change-masterpass .change-masterpass-form .change-masterpass-form-input input {
+  width: 60%;
+  height: 20px;
+  background: #e0dede;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body #settings-modal .modal-content .change-masterpass .change-masterpass-form .change-masterpass-form-input input {
+  width: calc(60% - 20px);
+}
+body #settings-modal .modal-footer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  margin: 10px 0;
+}
+body #settings-modal .modal-footer button {
+  padding: 5px;
+  background: var(--primary-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Jost", sans-serif;
+}
+body #settings-modal .modal-footer button:hover {
+  background: var(--primary-color-hover);
+}
+body #settings-modal .modal-footer button {
+  width: 50%;
+}
 body #add-modal :root {
   --primary-color: #573b8a;
   --primary-color-hover: #6d44b8;
