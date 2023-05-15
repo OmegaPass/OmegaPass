@@ -246,6 +246,34 @@ $(document).ready(function() {
             }
 
             $genField.fadeOut(100);
+        });
+
+        $('#generate').on('click', function () {
+            let generateOptions = {
+              'generate': true,
+              'length': $('#gen-length').val(),
+              'digits': $('#gen-digits').is(":checked"),
+              'special': $('#gen-special').is(":checked")
+            };
+        
+            // Send an AJAX request to the server to generate a new password
+            $.ajax({
+              type: 'POST',
+              url: '/ajax/add-password.php',
+              data: generateOptions,
+              dataType: 'json',
+              success: function (response) {
+                // Set the generated password as the value of the password input field
+                if (response.success)
+                { 
+                    $('#add_password').val(response.password).trigger('input');
+                }
+              },
+              error: function (error) {
+                console.log('Error posting data: ' + error);
+              }
+            });
+          });
 
         });
 
