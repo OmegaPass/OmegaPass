@@ -176,6 +176,23 @@ $(document).ready(function() {
             document.getElementById('settings-modal').close();
         });
 
+        $('.settings-tabs span').click(function() {
+            const $changeUsername = $('.change-username');
+            const $changeMasterPass = $('.change-masterpass');
+
+            $('span.active').removeClass('active');
+            $(this).addClass('active')
+
+            if ($(this)[0].classList.contains('settings-username')) {
+                $changeMasterPass.hide();
+                $changeUsername.fadeIn(100);
+                return;
+            }
+
+            $changeUsername.hide();
+            $changeMasterPass.fadeIn(100);
+        });
+
 
     // * Add entry modal
         // TODO: display the website field (label + input) to inline over the complete dialog content width

@@ -280,16 +280,18 @@ switch ($_GET['mode']) {
 
     <dialog id="settings-modal">
         <div class="modal-content">
+            <section class="settings-tabs">
+                <span class="active settings-username">Change account username</span>
+                <span class="settings-password">Change account password</span>
+            </section>
             <p id="settings-errorMsg"></p>
             <section class="change-username">
-                <h2>Change your account username</h2>
                 <div class="change-username-form">
                     <label>New username</label>
                     <input type="text" id="newUsername" required>
                 </div>
             </section>
             <section class="change-masterpass">
-                <h2>Change your account password</h2>
                 <div class="change-masterpass-form">
                     <label>Old password</label>
                     <div class="change-masterpass-form-input">
@@ -303,6 +305,8 @@ switch ($_GET['mode']) {
                     </div>
                 </div>
             </section>
+        </div>
+        <div class="modal-footer">
             <button class="change" id="settings-change">Change</button>
             <button class="cancel" id="settings-cancel">Cancel</button>
         </div>
