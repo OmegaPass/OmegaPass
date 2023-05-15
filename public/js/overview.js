@@ -86,10 +86,6 @@ $(document).ready(function() {
     });
 
     // * Edit entry modal
-        // TODO: display the website field (label + input) to inline over the complete dialog content width
-        // TODO: display the username/password label + input to below each other. Each over 1/2 the width of the dialog content
-        // TODO: display the buttons 1/2 the width of the dialog content below the inputs
-        // ! BUG: The errormsg is not displayed
         // Define a click event handler for the edit button
         $('#details-edit').click(function() {
             // Show the edit modal
@@ -137,8 +133,6 @@ $(document).ready(function() {
 
 
     // * Account settings modal
-        // TODO: add panels to the modal where the user can switch between the two settings modes. Panel 1: change account username ; Panel 2: change account password
-        // ! BUG: The errormsg is not displayed
         // Define a click event handler for the settings button
         $('#settings').click(function() {
             // Show the settings modal
@@ -195,14 +189,6 @@ $(document).ready(function() {
 
 
     // * Add entry modal
-        // TODO: display the website field (label + input) to inline over the complete dialog content width
-        // TODO: display the username/password label + input to below each other. Each over 1/2 the width of the dialog content
-        // TODO: add generate password frontend function
-            // TODO: after the generate password button is clicked another menu opens for the settings of the generation
-            // TODO: after the fill button is pressed the additional menu closes and the password is automatically pasted in the password field
-        // TODO: add logic to the show password button
-        // TODO: display the buttons 1/2 the width of the dialog content below the inputs
-        // ! BUG: The errormsg is not displayed
         // Define a click event handler for the add button
         $('#add-password').click(function() {
             // Show the add modal
