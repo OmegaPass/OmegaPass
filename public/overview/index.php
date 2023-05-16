@@ -236,12 +236,12 @@ switch ($_GET['mode']) {
         <div class="modal-content">
             <p class="errorMsg" id="edit-errorMsg"></p>
             <label for="">Website</label>
-            <input type="text" id="edit_website" required>
+            <input type="text" id="edit_website">
             <label for="">Username</label>
-            <input type="text" id="edit_username" required>
+            <input type="text" id="edit_username">
             <label for="">Password</label>
             <div>
-                <input type="password" placeholder="Password" required id="edit_password">
+                <input type="password" placeholder="Password" id="edit_password">
                 <span toggle="#password-field" class="toggle-password bi-eye"></span>
             </div>
             <input type="hidden" id="edit_id" class="entryId">
@@ -262,19 +262,19 @@ switch ($_GET['mode']) {
             <section class="change-username">
                 <div class="change-username-form">
                     <label>New username</label>
-                    <input type="text" id="newUsername" required>
+                    <input type="text" id="newUsername">
                 </div>
             </section>
             <section class="change-masterpass">
                 <div class="change-masterpass-form">
                     <label>Old password</label>
                     <div class="change-masterpass-form-input">
-                        <input type="password" id="oldPassword" required class="password-input">
+                        <input type="password" id="oldPassword" class="password-input">
                         <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
                     <label>New password</label>
                     <div class="change-masterpass-form-input">
-                        <input type="password" id="newPassword" required class="password-input">
+                        <input type="password" id="newPassword" class="password-input">
                         <span toggle="#password-field" class="toggle-password bi-eye"></span>
                     </div>
                 </div>
@@ -290,13 +290,13 @@ switch ($_GET['mode']) {
         <div class="modal-content">
             <p class="errorMsg" id="add-errorMsg"></p>
             <label for="add_website">Website</label>
-            <input type="text" placeholder="Website" required id="add_website">
+            <input type="text" placeholder="Website" id="add_website">
             <label for="add_username">Username</label>
-            <input type="text" placeholder="Username" required id="add_username">
+            <input type="text" placeholder="Username" id="add_username">
             <label>Password</label>
             <div class="form-password-field">
                 <div>
-                    <input type="password" placeholder="Password" required id="add_password">
+                    <input type="password" placeholder="Password" id="add_password">
                     <span toggle="#password-field" class="toggle-password bi-eye"></span>
                 </div>
                 <div id="progress">

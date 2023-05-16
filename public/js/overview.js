@@ -111,43 +111,49 @@ $(document).ready(function() {
     // Define a click event handler for the edit change button
     $('#edit-change').click(function () {
         // Perform AJAX request
-        $.ajax({
-            type: 'POST',
-            url: '/ajax/edit-password.php',
-            data: {
-                edit_id: $('#edit_id').val(),
-                edit_website: $('#edit_website').val(),
-                edit_username: $('#edit_username').val(),
-                edit_password: $('#edit_password').val()
-            },
-            dataType: 'json',
-            success: function (response) {
-                if (response.success) {
-                    // Redirect to the specified URL
-                    window.location.href = response.redirect;
-                } else {
-                    if (response.redirect) {
+        if ($('#edit_website, #edit_username, #edit_password').val() !== "")
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/edit-password.php',
+                data: {
+                    edit_id: $('#edit_id').val(),
+                    edit_website: $('#edit_website').val(),
+                    edit_username: $('#edit_username').val(),
+                    edit_password: $('#edit_password').val()
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        // Redirect to the specified URL
                         window.location.href = response.redirect;
                     } else {
-                        // Display the error message in the edit modal
-                        $('#edit-errorMsg').text(response.error);
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        } else {
+                            // Display the error message in the edit modal
+                            $('#edit-errorMsg').text(response.error);
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Log the error
+                    console.log('Ajax request error:', error);
+                
+                    // Display a customized error message based on the error type
+                    if (xhr.status === 0) {
+                    $('#edit-errorMsg').text("Unable to connect. Please check your internet connection.");
+                    } else if (xhr.status === 404) {
+                    $('#edit-errorMsg').text("The requested page was not found.");
+                    } else {
+                    $('#edit-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
-            },
-            error: function (xhr, status, error) {
-                // Log the error
-                console.log('Ajax request error:', error);
-              
-                // Display a customized error message based on the error type
-                if (xhr.status === 0) {
-                  $('#edit-errorMsg').text("Unable to connect. Please check your internet connection.");
-                } else if (xhr.status === 404) {
-                  $('#edit-errorMsg').text("The requested page was not found.");
-                } else {
-                  $('#edit-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
-                }
-            }
-        });
+            });
+        }
+        else {
+            $('#edit-errorMsg').text("Please fill in all the required fields.");
+        }
     });
 
     // Define a click event handler for the edit cancel button
@@ -234,6 +240,9 @@ $(document).ready(function() {
                 }
             });
         }
+        else {
+            $('#settings-errorMsg').text("Please fill in all the required fields.");
+        }
     });
 
     $('#settings-cancel').click(function () {
@@ -269,40 +278,45 @@ $(document).ready(function() {
     });
 
     $('#add-change').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/ajax/add-password.php',
-            data: {
-                website: $('#add_website').val(),
-                username: $('#add_username').val(),
-                password: $('#add_password').val()
-            },
-            dataType: 'json',
-            success: function (response) {
-                if (response.success) {
-                    window.location.href = response.redirect;
-                } else {
-                    if (response.redirect) {
+        if ($('#add_website, #add_username, #add_password').val() !== "") {
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/add-password.php',
+                data: {
+                    website: $('#add_website').val(),
+                    username: $('#add_username').val(),
+                    password: $('#add_password').val()
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
                         window.location.href = response.redirect;
                     } else {
-                        $('#add-errorMsg').text(response.error);
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        } else {
+                            $('#add-errorMsg').text(response.error);
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Log the error
+                    console.log('Ajax request error:', error);
+                
+                    // Display a customized error message based on the error type
+                    if (xhr.status === 0) {
+                    $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
+                    } else if (xhr.status === 404) {
+                    $('#add-errorMsg').text("The requested page was not found.");
+                    } else {
+                    $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
-            },
-            error: function (xhr, status, error) {
-                // Log the error
-                console.log('Ajax request error:', error);
-              
-                // Display a customized error message based on the error type
-                if (xhr.status === 0) {
-                  $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
-                } else if (xhr.status === 404) {
-                  $('#add-errorMsg').text("The requested page was not found.");
-                } else {
-                  $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
-                }
-            }
-        });
+            });
+        }
+        else {
+            $('#add-errorMsg').text("Please fill in all the required fields.");
+        }
     });
 
     $('#add-cancel').click(function () {
@@ -343,33 +357,37 @@ $(document).ready(function() {
             'digits': $('#gen-digits').is(":checked"),
             'special': $('#gen-special').is(":checked")
         };
-
-        // Send an AJAX request to the server to generate a new password
-        $.ajax({
-            type: 'POST',
-            url: '/ajax/add-password.php',
-            data: generateOptions,
-            dataType: 'json',
-            success: function (response) {
-                // Set the generated password as the value of the password input field
-                if (response.success) {
-                    $('#add_password').val(response.password).trigger('input');
+        if ($('#gen-length').val() !== ""){
+            // Send an AJAX request to the server to generate a new password
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/add-password.php',
+                data: generateOptions,
+                dataType: 'json',
+                success: function (response) {
+                    // Set the generated password as the value of the password input field
+                    if (response.success) {
+                        $('#add_password').val(response.password).trigger('input');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Log the error
+                    console.log('Ajax request error:', error);
+                
+                    // Display a customized error message based on the error type
+                    if (xhr.status === 0) {
+                    $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
+                    } else if (xhr.status === 404) {
+                    $('#add-errorMsg').text("The requested page was not found.");
+                    } else {
+                    $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                    }
                 }
-            },
-            error: function (xhr, status, error) {
-                // Log the error
-                console.log('Ajax request error:', error);
-              
-                // Display a customized error message based on the error type
-                if (xhr.status === 0) {
-                  $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
-                } else if (xhr.status === 404) {
-                  $('#add-errorMsg').text("The requested page was not found.");
-                } else {
-                  $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
-                }
-            }
-        });
+            });
+        }
+        else {
+            $('#add-errorMsg').text("Please fill in all the required fields.");
+        }
     });
 
     const strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
