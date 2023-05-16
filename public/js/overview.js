@@ -90,6 +90,8 @@ $(document).ready(function() {
         $('#details-edit').click(function() {
             // Show the edit modal
             document.getElementById('edit-modal').showModal();
+            $('#edit_website').val($('#details-website-link').text());
+            $('#edit_username').val($('#details-username').text());
         });
 
         // Define a click event handler for the edit change button
