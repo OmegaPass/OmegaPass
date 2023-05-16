@@ -241,6 +241,8 @@ switch ($_GET['mode']) {
             <label for="">Password</label>
             <input type="password" id="edit_password" required>
             <input type="hidden" id="edit_id" class="entryId">
+        </div>
+        <div class="modal-footer">
             <button class="change" id="edit-change">Change</button>
             <button class="cancel" id="edit-cancel">Cancel</button>
         </div>

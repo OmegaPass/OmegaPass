@@ -1,0 +1,25 @@
+@import "mixins";
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+
+  @include input(70%);
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  margin-top: 10px;
+
+  @include button;
+
+  button {
+    width: 50%;
+  }
+}
