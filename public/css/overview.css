@@ -230,6 +230,10 @@ body dialog[open] {
 body dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
 }
+body .errorMsg {
+  color: #f00;
+  text-align: center;
+}
 body #edit-modal .modal-content {
   display: flex;
   flex-direction: column;

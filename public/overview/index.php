@@ -233,7 +233,7 @@ switch ($_GET['mode']) {
 
     <dialog id="edit-modal">
         <div class="modal-content">
-            <p id="edit-errorMsg"></p>
+            <p class="errorMsg" id="edit-errorMsg"></p>
             <label for="">Website</label>
             <input type="text" id="edit_website" required>
             <label for="">Username</label>
@@ -257,7 +257,7 @@ switch ($_GET['mode']) {
                 <span class="active settings-username">Change account username</span>
                 <span class="settings-password">Change account password</span>
             </section>
-            <p id="settings-errorMsg"></p>
+            <p class="errorMsg" id="settings-errorMsg"></p>
             <section class="change-username">
                 <div class="change-username-form">
                     <label>New username</label>
@@ -287,7 +287,7 @@ switch ($_GET['mode']) {
 
     <dialog id="add-modal">
         <div class="modal-content">
-            <p id="add-errorMsg"></p>
+            <p class="errorMsg" id="add-errorMsg"></p>
             <label for="add_website">Website</label>
             <input type="text" placeholder="Website" required id="add_website">
             <label for="add_username">Username</label>
