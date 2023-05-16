@@ -142,30 +142,57 @@ $(document).ready(function() {
         });
 
         $('#settings-change').click(function() {
-            $.ajax({
-            type: 'POST',
-            url: '/ajax/account-settings.php',
-            data: {
-                newUsername: $('#newUsername').val(),
-                oldPassword: $('#oldPassword').val(),
-                newPassword: $('#newPassword').val()
-            },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                window.location.href = response.redirect;
-                } else {
-                if (response.redirect) {
+            if ($('#newUsername').val() !== "")
+            {
+                $.ajax({
+                type: 'POST',
+                url: '/ajax/account-settings.php',
+                data: {
+                    newUsername: $('#newUsername').val()
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
                     window.location.href = response.redirect;
-                } else {
-                    $('#settings-errorMsg').text(response.error);
+                    } else {
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else {
+                        $('#settings-errorMsg').text(response.error);
+                    }
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
                 }
-                }
-            },
-            error: function(error) {
-                console.error(error);
+                });
             }
-            });
+            else if ($('#oldPassword, #newPassword').val() !== "")
+            {
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajax/account-settings.php',
+                    data: {
+                        oldPassword: $('#oldPassword').val(),
+                        newPassword: $('#newPassword').val()
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                        window.location.href = response.redirect;
+                        } else {
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        } else {
+                            $('#settings-errorMsg').text(response.error);
+                        }
+                        }
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                    });
+            }
         });
 
         $('#settings-cancel').click(function() {
@@ -177,15 +204,18 @@ $(document).ready(function() {
             const $changeMasterPass = $('.change-masterpass');
 
             $('span.active').removeClass('active');
-            $(this).addClass('active')
+            $(this).addClass('active');
 
             if ($(this)[0].classList.contains('settings-username')) {
                 $changeMasterPass.hide();
+                $('#oldPassword').val("");
+                $('#newPassword').val("");
                 $changeUsername.fadeIn(100);
                 return;
             }
 
             $changeUsername.hide();
+            $('#newUsername').val("");
             $changeMasterPass.fadeIn(100);
         });
 
