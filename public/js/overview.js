@@ -134,10 +134,18 @@ $(document).ready(function() {
                     }
                 }
             },
-            error: function (error) {
+            error: function (xhr, status, error) {
                 // Log the error
                 console.log('Ajax request error:', error);
-                $('#edit-errorMsg').text("An error occured during the data transmission.\nPlease try again later.");
+              
+                // Display a customized error message based on the error type
+                if (xhr.status === 0) {
+                  $('#edit-errorMsg').text("Unable to connect. Please check your internet connection.");
+                } else if (xhr.status === 404) {
+                  $('#edit-errorMsg').text("The requested page was not found.");
+                } else {
+                  $('#edit-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                }
             }
         });
     });
@@ -176,8 +184,18 @@ $(document).ready(function() {
                         }
                     }
                 },
-                error: function (error) {
-                    console.error(error);
+                error: function (xhr, status, error) {
+                    // Log the error
+                    console.log('Ajax request error:', error);
+                  
+                    // Display a customized error message based on the error type
+                    if (xhr.status === 0) {
+                      $('#settings-errorMsg').text("Unable to connect. Please check your internet connection.");
+                    } else if (xhr.status === 404) {
+                      $('#settings-errorMsg').text("The requested page was not found.");
+                    } else {
+                      $('#settings-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                    }
                 }
             });
         }
@@ -201,8 +219,18 @@ $(document).ready(function() {
                         }
                     }
                 },
-                error: function (error) {
-                    console.error(error);
+                error: function (xhr, status, error) {
+                    // Log the error
+                    console.log('Ajax request error:', error);
+                  
+                    // Display a customized error message based on the error type
+                    if (xhr.status === 0) {
+                      $('#settings-errorMsg').text("Unable to connect. Please check your internet connection.");
+                    } else if (xhr.status === 404) {
+                      $('#settings-errorMsg').text("The requested page was not found.");
+                    } else {
+                      $('#settings-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                    }
                 }
             });
         }
@@ -261,8 +289,18 @@ $(document).ready(function() {
                     }
                 }
             },
-            error: function (error) {
-                console.error(error);
+            error: function (xhr, status, error) {
+                // Log the error
+                console.log('Ajax request error:', error);
+              
+                // Display a customized error message based on the error type
+                if (xhr.status === 0) {
+                  $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
+                } else if (xhr.status === 404) {
+                  $('#add-errorMsg').text("The requested page was not found.");
+                } else {
+                  $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                }
             }
         });
     });
@@ -318,8 +356,18 @@ $(document).ready(function() {
                     $('#add_password').val(response.password).trigger('input');
                 }
             },
-            error: function (error) {
-                console.log('Error posting data: ' + error);
+            error: function (xhr, status, error) {
+                // Log the error
+                console.log('Ajax request error:', error);
+              
+                // Display a customized error message based on the error type
+                if (xhr.status === 0) {
+                  $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
+                } else if (xhr.status === 404) {
+                  $('#add-errorMsg').text("The requested page was not found.");
+                } else {
+                  $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                }
             }
         });
     });
