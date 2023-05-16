@@ -239,7 +239,10 @@ switch ($_GET['mode']) {
             <label for="">Username</label>
             <input type="text" id="edit_username" required>
             <label for="">Password</label>
-            <input type="password" id="edit_password" required>
+            <div>
+                <input type="password" placeholder="Password" required id="edit_password">
+                <span toggle="#password-field" class="toggle-password bi-eye"></span>
+            </div>
             <input type="hidden" id="edit_id" class="entryId">
         </div>
         <div class="modal-footer">

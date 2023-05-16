@@ -229,7 +229,13 @@ $(document).ready(function() {
         // When the toggle password button is clicked, toggle the password visibility
         $("dialog").on('click', '.toggle-password', function () {
             $(this).toggleClass("bi-eye bi-eye-slash");
-            const input = $("#add_password");
+            var input;
+            if ($("#edit_password").val() !== "") {
+              input = $("#edit_password");
+            } else if ($("#add_password").val() !== "") {
+              input = $("#add_password");
+            }
+
             if (input.attr("type") === "password") {
               input.attr("type", "text");
             } else {
