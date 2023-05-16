@@ -59,10 +59,10 @@ $(document).ready(function() {
                 $('#copy-to-clipboard').off('click').on('click', function() {
                     navigator.clipboard.writeText(showPass.password)
                         .then(() => {
-                            console.log('Password copied to clipboard');
+                            // console.log('Password copied to clipboard');
                         })
                         .catch((error) => {
-                            console.error('Could not copy password: ', error);
+                            // console.error('Could not copy password: ', error);
                         });
                 });
 
@@ -100,18 +100,18 @@ $(document).ready(function() {
     });
 
     // * Edit entry modal
-        // Define a click event handler for the edit button
-        $('#details-edit').click(function() {
-            // Show the edit modal
-            document.getElementById('edit-modal').showModal();
-            $('#edit_website').val($('#details-website-link').text());
-            $('#edit_username').val($('#details-username').text());
-        });
+    // Define a click event handler for the edit button
+    $('#details-edit').click(function () {
+        // Show the edit modal
+        document.getElementById('edit-modal').showModal();
+        $('#edit_website').val($('#details-website-link').text());
+        $('#edit_username').val($('#details-username').text());
+    });
 
-        // Define a click event handler for the edit change button
-        $('#edit-change').click(function() {
-            // Perform AJAX request
-            $.ajax({
+    // Define a click event handler for the edit change button
+    $('#edit-change').click(function () {
+        // Perform AJAX request
+        $.ajax({
             type: 'POST',
             url: '/ajax/edit-password.php',
             data: {
@@ -121,10 +121,10 @@ $(document).ready(function() {
                 edit_password: $('#edit_password').val()
             },
             dataType: 'json',
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
-                // Redirect to the specified URL
-                window.location.href = response.redirect;
+                    // Redirect to the specified URL
+                    window.location.href = response.redirect;
                 } else {
                     if (response.redirect) {
                         window.location.href = response.redirect;
@@ -134,246 +134,244 @@ $(document).ready(function() {
                     }
                 }
             },
-            error: function(error) {
+            error: function (error) {
                 // Log the error
                 console.log('Ajax request error:', error);
+                $('#edit-errorMsg').text("An error occured during the data transmission.\nPlease try again later.");
             }
-            });
         });
+    });
 
-        // Define a click event handler for the edit cancel button
-        $('#edit-cancel').click(function() {
-            // Hide the edit modal
-            document.getElementById('edit-modal').close();
-        });
+    // Define a click event handler for the edit cancel button
+    $('#edit-cancel').click(function () {
+        // Hide the edit modal
+        document.getElementById('edit-modal').close();
+    });
 
 
     // * Account settings modal
-        // Define a click event handler for the settings button
-        $('#settings').click(function() {
-            // Show the settings modal
-            document.getElementById('settings-modal').showModal();
-        });
+    // Define a click event handler for the settings button
+    $('#settings').click(function () {
+        // Show the settings modal
+        document.getElementById('settings-modal').showModal();
+    });
 
-        $('#settings-change').click(function() {
-            if ($('#newUsername').val() !== "")
-            {
-                $.ajax({
+    $('#settings-change').click(function () {
+        if ($('#newUsername').val() !== "") {
+            $.ajax({
                 type: 'POST',
                 url: '/ajax/account-settings.php',
                 data: {
                     newUsername: $('#newUsername').val()
                 },
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
-                    window.location.href = response.redirect;
-                    } else {
-                    if (response.redirect) {
                         window.location.href = response.redirect;
                     } else {
-                        $('#settings-errorMsg').text(response.error);
-                    }
-                    }
-                },
-                error: function(error) {
-                    console.error(error);
-                }
-                });
-            }
-            else if ($('#oldPassword, #newPassword').val() !== "")
-            {
-                $.ajax({
-                    type: 'POST',
-                    url: '/ajax/account-settings.php',
-                    data: {
-                        oldPassword: $('#oldPassword').val(),
-                        newPassword: $('#newPassword').val()
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.success) {
-                        window.location.href = response.redirect;
-                        } else {
                         if (response.redirect) {
                             window.location.href = response.redirect;
                         } else {
                             $('#settings-errorMsg').text(response.error);
                         }
-                        }
-                    },
-                    error: function(error) {
-                        console.error(error);
                     }
-                    });
-            }
-        });
-
-        $('#settings-cancel').click(function() {
-            document.getElementById('settings-modal').close();
-        });
-
-        $('.settings-tabs span').click(function() {
-            const $changeUsername = $('.change-username');
-            const $changeMasterPass = $('.change-masterpass');
-
-            $('span.active').removeClass('active');
-            $(this).addClass('active');
-
-            if ($(this)[0].classList.contains('settings-username')) {
-                $changeMasterPass.hide();
-                $('#oldPassword').val("");
-                $('#newPassword').val("");
-                $changeUsername.fadeIn(100);
-                return;
-            }
-
-            $changeUsername.hide();
-            $('#newUsername').val("");
-            $changeMasterPass.fadeIn(100);
-        });
-
-
-    // * Add entry modal
-        // Define a click event handler for the add button
-        $('#add-password').click(function() {
-            // Show the add modal
-            document.getElementById('add-modal').showModal();
-        });
-
-        $('#add-change').click(function() {
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+        else if ($('#oldPassword, #newPassword').val() !== "") {
             $.ajax({
                 type: 'POST',
-                url: '/ajax/add-password.php',
+                url: '/ajax/account-settings.php',
                 data: {
-                    website: $('#add_website').val(),
-                    username: $('#add_username').val(),
-                    password: $('#add_password').val()
+                    oldPassword: $('#oldPassword').val(),
+                    newPassword: $('#newPassword').val()
                 },
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         window.location.href = response.redirect;
                     } else {
                         if (response.redirect) {
                             window.location.href = response.redirect;
                         } else {
-                            $('#add-errorMsg').text(response.error);
+                            $('#settings-errorMsg').text(response.error);
                         }
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error(error);
                 }
             });
-        });
+        }
+    });
 
-        $('#add-cancel').click(function() {
-            document.getElementById('add-modal').close();
-        });
+    $('#settings-cancel').click(function () {
+        document.getElementById('settings-modal').close();
+    });
 
-        // When the toggle password button is clicked, toggle the password visibility
-        $("dialog").on('click', '.toggle-password', function () {
-            $(this).toggleClass("bi-eye bi-eye-slash");
-            const input = $(this).prev('input');
-    
-            // If the input's type attribute is 'password' change the input's type attribute to 
-            // 'text' to show the password.
-            if (input.attr("type") === "password") {
-              input.attr("type", "text");
-            } 
-            // Otherwise, change the input's type attribute back to 'password' to hide the password.
-            else {
-              input.attr("type", "password");
+    $('.settings-tabs span').click(function () {
+        const $changeUsername = $('.change-username');
+        const $changeMasterPass = $('.change-masterpass');
+
+        $('span.active').removeClass('active');
+        $(this).addClass('active');
+
+        if ($(this)[0].classList.contains('settings-username')) {
+            $changeMasterPass.hide();
+            $('#oldPassword').val("");
+            $('#newPassword').val("");
+            $changeUsername.fadeIn(100);
+            return;
+        }
+
+        $changeUsername.hide();
+        $('#newUsername').val("");
+        $changeMasterPass.fadeIn(100);
+    });
+
+
+    // * Add entry modal
+    // Define a click event handler for the add button
+    $('#add-password').click(function () {
+        // Show the add modal
+        document.getElementById('add-modal').showModal();
+    });
+
+    $('#add-change').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/ajax/add-password.php',
+            data: {
+                website: $('#add_website').val(),
+                username: $('#add_username').val(),
+                password: $('#add_password').val()
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = response.redirect;
+                } else {
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else {
+                        $('#add-errorMsg').text(response.error);
+                    }
+                }
+            },
+            error: function (error) {
+                console.error(error);
             }
-          });
-
-        $('#gen-password').click(() => {
-            const $genField = $('.gen-field');
-
-            if ($genField.css('display') === 'none') {
-                $genField.fadeIn(100);
-                return;
-            }
-
-            $genField.fadeOut(100);
         });
+    });
 
-        $('#generate').on('click', function () {
-            let generateOptions = {
-              'generate': true,
-              'length': $('#gen-length').val(),
-              'digits': $('#gen-digits').is(":checked"),
-              'special': $('#gen-special').is(":checked")
-            };
-        
-            // Send an AJAX request to the server to generate a new password
-            $.ajax({
-              type: 'POST',
-              url: '/ajax/add-password.php',
-              data: generateOptions,
-              dataType: 'json',
-              success: function (response) {
+    $('#add-cancel').click(function () {
+        document.getElementById('add-modal').close();
+    });
+
+    // When the toggle password button is clicked, toggle the password visibility
+    $("dialog").on('click', '.toggle-password', function () {
+        $(this).toggleClass("bi-eye bi-eye-slash");
+        const input = $(this).prev('input');
+
+        // If the input's type attribute is 'password' change the input's type attribute to 
+        // 'text' to show the password.
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+        }
+        // Otherwise, change the input's type attribute back to 'password' to hide the password.
+        else {
+            input.attr("type", "password");
+        }
+    });
+
+    $('#gen-password').click(() => {
+        const $genField = $('.gen-field');
+
+        if ($genField.css('display') === 'none') {
+            $genField.fadeIn(100);
+            return;
+        }
+
+        $genField.fadeOut(100);
+    });
+
+    $('#generate').on('click', function () {
+        let generateOptions = {
+            'generate': true,
+            'length': $('#gen-length').val(),
+            'digits': $('#gen-digits').is(":checked"),
+            'special': $('#gen-special').is(":checked")
+        };
+
+        // Send an AJAX request to the server to generate a new password
+        $.ajax({
+            type: 'POST',
+            url: '/ajax/add-password.php',
+            data: generateOptions,
+            dataType: 'json',
+            success: function (response) {
                 // Set the generated password as the value of the password input field
-                if (response.success)
-                { 
+                if (response.success) {
                     $('#add_password').val(response.password).trigger('input');
                 }
-              },
-              error: function (error) {
+            },
+            error: function (error) {
                 console.log('Error posting data: ' + error);
-              }
-            });
-          });
+            }
+        });
+    });
 
-        const strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
-        const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred'];
-        let timeout = null;
-        // When the password input field is changed, update the password strength meter
-        $('#add_password').on('input', function () {
+    const strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
+    const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred'];
+    let timeout = null;
+    // When the password input field is changed, update the password strength meter
+    $('#add_password').on('input', function () {
 
-            // Get the value of the password input field
-            let passwordInput = $('#add_password').val();
-        
-            // Define an object to send in an AJAX request to the server
-            let validate = {
+        // Get the value of the password input field
+        let passwordInput = $('#add_password').val();
+
+        // Define an object to send in an AJAX request to the server
+        let validate = {
             'passwordStrength': true,
             'password': passwordInput
-            };
-        
-            // Clear the previous timeout and set a new one
-            if (timeout !== null) {
+        };
+
+        // Clear the previous timeout and set a new one
+        if (timeout !== null) {
             clearTimeout(timeout);
-            }
-        
-            // If the password is empty, hide the password strength meter and exit
-            if (passwordInput === '') {
+        }
+
+        // If the password is empty, hide the password strength meter and exit
+        if (passwordInput === '') {
             $('#progressBar').css('display', 'none');
             return;
-            }
-        
-            // Define a timeout function to get the password strength from the server
-            timeout = setTimeout(getStrength, 20);
-        
-            function getStrength() {
+        }
+
+        // Define a timeout function to get the password strength from the server
+        timeout = setTimeout(getStrength, 20);
+
+        function getStrength() {
             // Call the check_password_strength function and get the password strength
             let response = check_password_strength(passwordInput);
-        
+
             // Map the password strength to the corresponding word and color
             const strengthMapping = strengthWords.indexOf(response);
             const strengthColor = strengthColors[strengthMapping];
-        
+
             // Update the password strength meter
             if (strengthMapping !== 0) {
                 const strengthPercentage = 100 / strengthMapping;
-                $('#progressBar').css({width: `${strengthPercentage}%`, backgroundColor: strengthColor});
+                $('#progressBar').css({ width: `${strengthPercentage}%`, backgroundColor: strengthColor });
             } else {
-                $('#progressBar').css({width: '100%', backgroundColor: 'darkred'});
+                $('#progressBar').css({ width: '100%', backgroundColor: 'darkred' });
             }
-        
+
             $('#progressBar').css('display', 'block');
-            }
-        });
+        }
+    });
   
 
     // add eventListener to dialog elements, when clicked outside of dialog element and its open then close it
