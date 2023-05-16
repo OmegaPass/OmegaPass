@@ -251,6 +251,13 @@ body #edit-modal .modal-content input {
   outline: none;
   border-radius: 5px;
 }
+body #edit-modal .modal-content div {
+  width: 100%;
+  text-align: center;
+}
+body #edit-modal .modal-content div input {
+  width: calc(70% - 20px);
+}
 body #edit-modal .modal-footer {
   display: flex;
   flex-direction: row;
