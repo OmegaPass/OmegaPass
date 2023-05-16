@@ -13,6 +13,7 @@ $(document).ready(function() {
 
         // Show the password details and buttons
         $('#clear-details').show();
+        $('#copy-to-clipboard').show();
         $('#show-password').show();
         $('#details-edit').show();
         $('#trash-form').show();
@@ -52,6 +53,19 @@ $(document).ready(function() {
                 // Store the retrieved password in a variable to enable showing/hiding the password
                 showPass.password = res.password;
                 showPass.show = false;
+
+                // Logic for 'Copy to Clipboard' button
+                // .off('click') method removes any previous click handlers to prevent multiple handlers from being attached each time an entry is clicked.
+                $('#copy-to-clipboard').off('click').on('click', function() {
+                    navigator.clipboard.writeText(showPass.password)
+                        .then(() => {
+                            console.log('Password copied to clipboard');
+                        })
+                        .catch((error) => {
+                            console.error('Could not copy password: ', error);
+                        });
+                });
+
             })
             .catch(() => {
                 $('#details-error').text('Error during details gathering');

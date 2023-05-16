@@ -196,6 +196,7 @@ switch ($_GET['mode']) {
             <h4>Password</h4>
             <h5 id="details-password"></h5>
             <div class="overview-details-buttons">
+                <button id="copy-to-clipboard" style="display: none">Copy</button>
                 <button id="show-password" style="display: none">Show</button>
                 <button id="details-edit" style="display: none">Edit</button>
                 <form id="trash-form" method="post" style="display: none">
