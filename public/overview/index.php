@@ -94,20 +94,22 @@ switch ($_GET['mode']) {
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>OmegaPass</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../css/overview.css">
-        <link rel="icon" href="../omegapass.jpg">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OmegaPass</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/overview.css">
+    <link rel="icon" href="../omegapass.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+</head>
+
+<body>
     <div class="welcome-gif-wrapper">
         <img src="../Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
     </div>
@@ -145,31 +147,31 @@ switch ($_GET['mode']) {
         </div>
         <div class="overview-passwords">
             <div class="overview-passwords-header">
-            <h3>Passwords</h3>
-            <button id="add-password">
-                <i class="bi bi-plus-lg"></i>
-            </button>
-        </div>
+                <h3>Passwords</h3>
+                <button id="add-password">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+            </div>
 
-        <div class="overview-passwords-subheader">
-            <?php
-            // If the user is currently in "trash" mode, display a message
-            // about when entries will be deleted permanently
-            if ($_GET['mode'] === 'trash') {
-                echo '
+            <div class="overview-passwords-subheader">
+                <?php
+                // If the user is currently in "trash" mode, display a message
+                // about when entries will be deleted permanently
+                if ($_GET['mode'] === 'trash') {
+                    echo '
                 <p class="trash-delete-info">A password will be deleted after 30 days in the trash!</p>
                 ';
-            }
-            ?>
-        </div>
-
-        <section class="overview-passwords">
-            <div class="overview-passwords-info">
-                <p>Website</p>
-                <p>Username</p>
+                }
+                ?>
             </div>
-            <ul class="overview-passwords-listing">
-                <?php
+
+            <section class="overview-passwords">
+                <div class="overview-passwords-info">
+                    <p>Website</p>
+                    <p>Username</p>
+                </div>
+                <ul class="overview-passwords-listing">
+                    <?php
                     foreach ($entries as $key => $entry) {
                         echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
                         echo "<p>" . $entry['website'] . "</p>";
@@ -328,6 +330,6 @@ switch ($_GET['mode']) {
     </footer>
 
     <script src="../js/overview.js"></script>
-    </body>
-</html>
+</body>
 
+</html>

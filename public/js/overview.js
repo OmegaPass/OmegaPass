@@ -1,13 +1,13 @@
 // Wait until the document is ready before running the code
-$(document).ready(function() {
+$(document).ready(function () {
 
     showLoadingScreen();
 
     // Object to store the current password and whether it is being displayed or hidden
-    let showPass = {'password': '', 'show': true};
+    let showPass = { 'password': '', 'show': true };
 
     // When a password entry is clicked, fetch the password details and display them
-    $(".entries").click(function() {
+    $(".entries").click(function () {
         // Get the ID of the clicked entry
         const id = $(this).attr('data-id');
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         if (currentUrlParams.has('mode')) {
             mode = '&mode=' + currentUrlParams.get('mode');
-            ajaxUrl =  ajaxUrl + mode;
+            ajaxUrl = ajaxUrl + mode;
         }
 
         // Fetch the password details from the server using AJAX
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
                 // Logic for 'Copy to Clipboard' button
                 // .off('click') method removes any previous click handlers to prevent multiple handlers from being attached each time an entry is clicked.
-                $('#copy-to-clipboard').off('click').on('click', function() {
+                $('#copy-to-clipboard').off('click').on('click', function () {
                     navigator.clipboard.writeText(showPass.password)
                         .then(() => {
                             // console.log('Password copied to clipboard');
@@ -73,7 +73,7 @@ $(document).ready(function() {
     });
 
     // Function that handles click events on the "Clear" button
-    $('#clear-details').click(function() {
+    $('#clear-details').click(function () {
         // Hide the password details and buttons
         $('#details-website-link').text('');
         $('#details-username').text('');
@@ -87,7 +87,7 @@ $(document).ready(function() {
     });
 
     // Function that handles click events on the "Show Password" button
-    $('#show-password').click(function() {
+    $('#show-password').click(function () {
         // Toggle between showing and hiding the password
         if (!showPass.show) {
             $('#details-password').text(showPass.password);
@@ -111,8 +111,7 @@ $(document).ready(function() {
     // Define a click event handler for the edit change button
     $('#edit-change').click(function () {
         // Perform AJAX request
-        if ($('#edit_website, #edit_username, #edit_password').val() !== "")
-        {
+        if ($('#edit_website, #edit_username, #edit_password').val() !== "") {
             $.ajax({
                 type: 'POST',
                 url: '/ajax/edit-password.php',
@@ -139,14 +138,14 @@ $(document).ready(function() {
                 error: function (xhr, status, error) {
                     // Log the error
                     console.log('Ajax request error:', error);
-                
+
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
-                    $('#edit-errorMsg').text("Unable to connect. Please check your internet connection.");
+                        $('#edit-errorMsg').text("Unable to connect. Please check your internet connection.");
                     } else if (xhr.status === 404) {
-                    $('#edit-errorMsg').text("The requested page was not found.");
+                        $('#edit-errorMsg').text("The requested page was not found.");
                     } else {
-                    $('#edit-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                        $('#edit-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
             });
@@ -193,14 +192,14 @@ $(document).ready(function() {
                 error: function (xhr, status, error) {
                     // Log the error
                     console.log('Ajax request error:', error);
-                  
+
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
-                      $('#settings-errorMsg').text("Unable to connect. Please check your internet connection.");
+                        $('#settings-errorMsg').text("Unable to connect. Please check your internet connection.");
                     } else if (xhr.status === 404) {
-                      $('#settings-errorMsg').text("The requested page was not found.");
+                        $('#settings-errorMsg').text("The requested page was not found.");
                     } else {
-                      $('#settings-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                        $('#settings-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
             });
@@ -228,14 +227,14 @@ $(document).ready(function() {
                 error: function (xhr, status, error) {
                     // Log the error
                     console.log('Ajax request error:', error);
-                  
+
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
-                      $('#settings-errorMsg').text("Unable to connect. Please check your internet connection.");
+                        $('#settings-errorMsg').text("Unable to connect. Please check your internet connection.");
                     } else if (xhr.status === 404) {
-                      $('#settings-errorMsg').text("The requested page was not found.");
+                        $('#settings-errorMsg').text("The requested page was not found.");
                     } else {
-                      $('#settings-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                        $('#settings-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
             });
@@ -302,14 +301,14 @@ $(document).ready(function() {
                 error: function (xhr, status, error) {
                     // Log the error
                     console.log('Ajax request error:', error);
-                
+
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
-                    $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
+                        $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
                     } else if (xhr.status === 404) {
-                    $('#add-errorMsg').text("The requested page was not found.");
+                        $('#add-errorMsg').text("The requested page was not found.");
                     } else {
-                    $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                        $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
             });
@@ -357,7 +356,7 @@ $(document).ready(function() {
             'digits': $('#gen-digits').is(":checked"),
             'special': $('#gen-special').is(":checked")
         };
-        if ($('#gen-length').val() !== ""){
+        if ($('#gen-length').val() !== "") {
             // Send an AJAX request to the server to generate a new password
             $.ajax({
                 type: 'POST',
@@ -373,14 +372,14 @@ $(document).ready(function() {
                 error: function (xhr, status, error) {
                     // Log the error
                     console.log('Ajax request error:', error);
-                
+
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
-                    $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
+                        $('#add-errorMsg').text("Unable to connect. Please check your internet connection.");
                     } else if (xhr.status === 404) {
-                    $('#add-errorMsg').text("The requested page was not found.");
+                        $('#add-errorMsg').text("The requested page was not found.");
                     } else {
-                    $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
+                        $('#add-errorMsg').text("An error occurred during the data transmission.\nPlease try again later.");
                     }
                 }
             });
@@ -438,7 +437,7 @@ $(document).ready(function() {
             $('#progressBar').css('display', 'block');
         }
     });
-  
+
 
     // add eventListener to dialog elements, when clicked outside of dialog element and its open then close it
     document.querySelectorAll('dialog').forEach((element) => {
@@ -457,7 +456,7 @@ $(document).ready(function() {
     })
 
 
-    $('#sidebar-toggle').on('click', function(){
+    $('#sidebar-toggle').on('click', function () {
         const $sidebar = $('.overview-sidebar');
         const $sidebarText = $('.overview-sidebar-text');
 
@@ -505,9 +504,9 @@ function check_password_strength(password) {
         console.error('zxcvbn library not loaded');
         return;
     }
-    
+
     var strength = zxcvbn(password).score;
-    
+
     // Define a message for each password strength level
     var strengthMessage = [
         'very weak',
@@ -516,7 +515,7 @@ function check_password_strength(password) {
         'strong',
         'very strong'
     ];
-    
+
     // Return the appropriate strength message based on the score
     return strengthMessage[strength] || 'calc not available';
 }

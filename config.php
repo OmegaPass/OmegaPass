@@ -12,5 +12,3 @@ session_name('OP_SESSION');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-?>

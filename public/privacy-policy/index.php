@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../css/privacy-policy.css">
     <link rel="icon" href="../omegapass.jpg">
 </head>
+
 <body>
     <div class="navbar">
         <a href="/overview/">
@@ -19,7 +21,7 @@
     </div>
 
     <div class="privacy-policy">
-        
+
         <h2>Privacy Policy for OmegaPass</h2>
         <p>Effective Date: 2023-05-11</p>
         <p>At OmegaPass, we value the privacy and security of our users' personal information. This Privacy Policy outlines how we collect, use, disclose, and protect the information you provide to us through our website and services. By using our website and services, you consent to the practices described in this Privacy Policy.</p>
@@ -59,4 +61,5 @@
         <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please <a href="/imprint/">contact us</a>.</p>
     </div>
 </body>
+
 </html>

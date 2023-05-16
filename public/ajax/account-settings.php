@@ -41,7 +41,7 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
         echo json_encode(['success' => false, 'error' => $errorMsg]);
         exit;
     }
-    
+
 
     // If the password change was successful.
     if ($success) {
@@ -72,14 +72,14 @@ if (isset($_POST['newUsername'])) {
     } catch (Exception $e) {
         // Log the exception for debugging purposes
         error_log($e);
-    
+
         // Return a general error message to the JavaScript code
         $errorMsg = "An error occurred. Please try again later.";
         // Send an error response to the JavaScript code
         echo json_encode(['success' => false, 'error' => $errorMsg]);
         exit;
     }
-    
+
 
     // Send a success response to the JavaScript code with the correct redirect URL
     session_start();
