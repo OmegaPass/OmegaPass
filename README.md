@@ -27,8 +27,16 @@ There you go. You now have a instance of OmegaPass running on your own machine. 
 ### Developing
 All source code is mounted directly to Docker and its containers. You see changes instantly after reloading of course.
 
-To compile scss Stylesheets you need to run this command.
-``sass --no-source-map --style compressed public/css --watch`` [see install guide](https://sass-lang.com/install).
+To compile **scss stylesheets** ([installation guide](https://sass-lang.com/install)) you need to run this command:
+```bash
+sass --no-source-map --style compressed public/css --watch
+``` 
+
+To minify JavaScript files using **UglifyJS** ([installation guide](https://github.com/mishoo/UglifyJS#install)), you can use the following command:
+```bash
+npx uglifyjs public/js/{{ script }}.js -o public/js/{{ script }}.min.js --compress --mangle
+```
+**Replace `{{ script }}` with the name of your JavaScript file.**
 
 ## Authors
 
@@ -37,7 +45,7 @@ Contributors names and contact info
 * [@Armin Burger](https://github.com/techmaved)
 * [@Johannes Thiem](https://github.com/Fovty)
 * [@Tom](https://github.com/lvlcn-t)
-* [@Dennis](https://github.com/wildehilde6)
+* [@Dennis](https://github.com/WildeHilde6)
 
 ## Version History
 
