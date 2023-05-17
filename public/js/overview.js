@@ -79,6 +79,7 @@ $(document).ready(function () {
         $('#details-username').text('');
         $('#details-password').text('');
         $('#clear-details').hide();
+        $('#copy-to-clipboard').hide();
         $('#show-password').hide();
         $('#details-edit').hide();
         $('#trash-form').hide();
