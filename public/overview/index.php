@@ -329,7 +329,7 @@ switch ($_GET['mode']) {
         <a href="/privacy-policy/">Privacy policy</a>
     </footer>
 
-    <script src="../js/overview.js"></script>
+    <script src="../js/overview.min.js"></script>
 </body>
 
 </html>
