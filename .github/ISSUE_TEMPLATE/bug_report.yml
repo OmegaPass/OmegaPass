@@ -1,0 +1,34 @@
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+inputs:
+  bug_description:
+    description: 'A clear and concise description of what the bug is.'
+    required: true
+
+  reproduction_steps:
+    description: 'Steps to reproduce the behavior.'
+    required: true
+
+  expected_behavior:
+    description: 'A clear and concise description of what you expected to happen.'
+    required: true
+
+  screenshots:
+    description: 'If applicable, add screenshots to help explain your problem.'
+    required: false
+
+  desktop_info:
+    description: 'Desktop information.'
+    required: false
+
+  smartphone_info:
+    description: 'Smartphone information.'
+    required: false
+
+  additional_context:
+    description: 'Any other context about the problem.'
+    required: false
