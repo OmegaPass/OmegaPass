@@ -65,10 +65,10 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
 
 // If the 'newUsername' variable is set in the $_POST array.
 if (isset($_POST['newUsername'])) {
-
+    $username = htmlspecialchars(trim($_POST['newUsername']), ENT_QUOTES, 'UTF-8');
     // Attempt to change the username for the current user to the given new username.
     try {
-        $database->changeUsername($database->getUserId(), trim($_POST['newUsername']));
+        $database->changeUsername($database->getUserId(), $username);
     } catch (Exception $e) {
         // Log the exception for debugging purposes
         error_log($e);

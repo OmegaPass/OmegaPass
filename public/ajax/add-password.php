@@ -23,10 +23,15 @@ $errorMsg = null;
 
 // check if the form has been submitted
 if (isset($_POST['website'], $_POST['username'], $_POST['password'])) {
+    // sanitize the input using htmlentities
+    $website = htmlentities(trim($_POST['website']), ENT_QUOTES, 'UTF-8');
+    $username = htmlentities(trim($_POST['username']), ENT_QUOTES, 'UTF-8');
+    $password = htmlentities(trim($_POST['password']), ENT_QUOTES, 'UTF-8');
+
     // if the form has been submitted, add the password to the database
     // using the add_password() function of the database object
     try {
-        $database->add_password($database->getUserId(), trim($_POST['website']), trim($_POST['username']), trim($_POST['password']));
+        $database->add_password($database->getUserId(), $website, $username, $password);
     } catch (Exception $e) {
         // Log the exception for debugging purposes
         error_log($e);
