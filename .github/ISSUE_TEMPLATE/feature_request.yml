@@ -1,0 +1,22 @@
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+inputs:
+  problem_description:
+    description: 'A clear and concise description of what the problem is.'
+    required: true
+
+  solution_description:
+    description: 'A clear and concise description of what you want to happen.'
+    required: true
+
+  alternatives_description:
+    description: 'A clear and concise description of any alternative solutions or features you've considered.'
+    required: false
+
+  additional_context:
+    description: 'Any other context or screenshots about the feature request.'
+    required: false
