@@ -372,7 +372,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // Log the error
-                    console.log('Ajax request error:', error);
+                    // console.log('Ajax request error:', error);
 
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
@@ -392,23 +392,11 @@ $(document).ready(function () {
 
     const strengthWords = ['calc not avaliable', 'very strong', 'strong', 'medium', 'weak', 'very weak'];
     const strengthColors = ['black', 'lightgreen', 'green', '#fcee59', 'orange', 'red', 'darkred'];
-    let timeout = null;
     // When the password input field is changed, update the password strength meter
     $('#add_password').on('input', function () {
 
         // Get the value of the password input field
         let passwordInput = $('#add_password').val();
-
-        // Define an object to send in an AJAX request to the server
-        let validate = {
-            'passwordStrength': true,
-            'password': passwordInput
-        };
-
-        // Clear the previous timeout and set a new one
-        if (timeout !== null) {
-            clearTimeout(timeout);
-        }
 
         // If the password is empty, hide the password strength meter and exit
         if (passwordInput === '') {
@@ -416,8 +404,8 @@ $(document).ready(function () {
             return;
         }
 
-        // Define a timeout function to get the password strength from the server
-        timeout = setTimeout(getStrength, 20);
+        // Get the password strength
+        getStrength();
 
         function getStrength() {
             // Call the check_password_strength function and get the password strength
