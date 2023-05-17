@@ -43,7 +43,8 @@ body {
           padding: 0;
         }
 
-        a, button {
+        a,
+        button {
           text-decoration: none;
           color: #ffffff;
           display: flex;
@@ -94,7 +95,8 @@ body {
         font-size: 24px;
       }
 
-      button:hover, a:hover {
+      button:hover,
+      a:hover {
         i {
           color: var(--primary-color);
         }
@@ -129,6 +131,7 @@ body {
 
       .overview-passwords {
         width: calc(100% - 20px);
+
         .overview-passwords-info {
           display: grid;
           grid-template-columns: repeat(2, 50%);
@@ -148,6 +151,7 @@ body {
             display: grid;
             grid-template-columns: repeat(2, 50%);
             margin: 10px 0;
+
             p {
               color: #ffffff;
               width: calc(100% - 10px);
@@ -170,10 +174,13 @@ body {
       row-gap: 5px;
 
       #details-error {
-        color: #ff0000; font-weight: bold;
+        color: #ff0000;
+        font-weight: bold;
       }
 
-      a, h4, h5 {
+      a,
+      h4,
+      h5 {
         @include text-overflow;
         margin: 10px 0;
       }
@@ -191,8 +198,9 @@ body {
 
         &:hover {
           text-decoration: underline;
+        }
       }
-      }
+
       .overview-details-buttons {
         display: flex;
         flex-direction: row;
@@ -200,6 +208,7 @@ body {
         row-gap: 5px;
         flex-wrap: wrap;
         @include button;
+
         button {
           min-height: fit-content;
           width: fit-content;
@@ -211,17 +220,19 @@ body {
   dialog[open] {
     animation: show 100ms ease normal;
   }
-  @keyframes show{
+
+  @keyframes show {
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
   }
 
   dialog::backdrop {
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
   }
 
   .errorMsg {
