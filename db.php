@@ -94,9 +94,9 @@ class DataBase {
         if ($mode === 'favorite') {
             $favoriteSelection = true;
         } elseif ($mode === 'trash') {
-            $favoriteSelection = null;
-        } else {
             $favoriteSelection = Medoo::raw('favorite IS NULL OR favorite = true');
+        } else {
+            $favoriteSelection = Medoo::raw('favorite IS NULL OR favorite = true AND trash = null');
         }
 
         $results = $this->database->select('passwords', [
