@@ -91,24 +91,54 @@ class DataBase {
         // Select the website, username, password, and ID for all password entries
         // that belong to the user and meet the specified filtering criteria
 
-        if ($mode === 'favorite') {
-            $favoriteSelection = true;
-        } elseif ($mode === 'trash') {
-            $favoriteSelection = null;
-        } else {
-            $favoriteSelection = Medoo::raw('favorite IS NULL OR favorite = true');
-        }
+        switch ($mode) {
+            case 'trash':
+                $results = $this->database->select('passwords', [
+                    'website',
+                    'username',
+                    'password',
+                    'id'
+                ], [
+                    'user_id' => $userid,
+                    'trash' => true,
+                    'OR' => [
+                        'favorite' => true,
+                        'favorite' => null,
+                        'trash' => true,
+                    ],
+                ]);
+                break;
 
-        $results = $this->database->select('passwords', [
-            'website',
-            'username',
-            'password',
-            'id'
-        ], [
-            'user_id' => $userid,
-            'trash' => $mode === 'trash' ? true : null,
-            'favorite' => $favoriteSelection
-        ]);
+            case 'favorite':
+                $results = $this->database->select('passwords', [
+                    'website',
+                    'username',
+                    'password',
+                    'id'
+                ], [
+                    'user_id' => $userid,
+                    'trash' => null,
+                    'favorite' => true,
+                ]);
+                break;
+
+            default:
+                $results = $this->database->select('passwords', [
+                    'website',
+                    'username',
+                    'password',
+                    'id'
+                ], [
+                    'user_id' => $userid,
+                    'trash' => null,
+                    'OR' => [
+                        'favorite' => true,
+                        'favorite' => null,
+                        'trash' => null,
+                    ],
+                ]);
+                break;
+        }
 
         // Decrypt the password for each result (if it's not empty) using
         // the session's master password
