@@ -138,7 +138,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // Log the error
-                    console.log('Ajax request error:', error);
+                    // console.log('Ajax request error:', error);
 
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
@@ -192,7 +192,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // Log the error
-                    console.log('Ajax request error:', error);
+                    // console.log('Ajax request error:', error);
 
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
@@ -227,7 +227,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // Log the error
-                    console.log('Ajax request error:', error);
+                    // console.log('Ajax request error:', error);
 
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
@@ -301,7 +301,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // Log the error
-                    console.log('Ajax request error:', error);
+                    // console.log('Ajax request error:', error);
 
                     // Display a customized error message based on the error type
                     if (xhr.status === 0) {
@@ -328,7 +328,7 @@ $(document).ready(function () {
         $(this).toggleClass("bi-eye bi-eye-slash");
         const input = $(this).prev('input');
 
-        // If the input's type attribute is 'password' change the input's type attribute to 
+        // If the input's type attribute is 'password' change the input's type attribute to
         // 'text' to show the password.
         if (input.attr("type") === "password") {
             input.attr("type", "text");
