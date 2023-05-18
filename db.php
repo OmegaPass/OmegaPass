@@ -101,7 +101,11 @@ class DataBase {
                 ], [
                     'user_id' => $userid,
                     'trash' => true,
-                    'favorite' => Medoo::raw('favorite = true OR favorite IS NULL AND trash = true'),
+                    'OR' => [
+                        'favorite' => true,
+                        'favorite' => null,
+                        'trash' => true,
+                    ],
                 ]);
                 break;
 
@@ -127,9 +131,13 @@ class DataBase {
                 ], [
                     'user_id' => $userid,
                     'trash' => null,
-                    'favorite' => Medoo::raw('favorite = true OR favorite IS NULL AND trash IS NULL'),
+                    'OR' => [
+                        'favorite' => true,
+                        'favorite' => null,
+                        'trash' => null,
+                    ],
                 ]);
-
+                break;
         }
 
         // Decrypt the password for each result (if it's not empty) using
