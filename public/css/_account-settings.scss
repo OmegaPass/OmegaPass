@@ -1,0 +1,82 @@
+@import "colors";
+@import "mixins";
+
+.modal-content {
+
+  .settings-tabs {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+
+    span {
+      border-radius: 5px;
+      padding: 5px;
+      cursor: pointer;
+
+      &.active {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    span:hover:not(.active) {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .change-username {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+
+    margin-bottom: 20px;
+
+    .change-username-form {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      justify-content: center;
+      align-items: center;
+      @include input;
+    }
+  }
+
+  .change-masterpass {
+    display: none;
+    flex-direction: column;
+    row-gap: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+
+
+    .change-masterpass-form {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      justify-content: center;
+      align-items: center;
+
+      .change-masterpass-form-input {
+        width: 100%;
+        @include input;
+
+        input {
+          width: calc(60% - 20px);
+        }
+      }
+    }
+
+  }
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  margin: 10px 0;
+
+  @include button;
+
+  button {
+    width: 50%;
+  }
+}

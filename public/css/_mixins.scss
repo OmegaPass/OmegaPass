@@ -26,9 +26,9 @@
   text-overflow: ellipsis;
 }
 
-@mixin input {
+@mixin input($width: 60%) {
   input {
-    width: 60%;
+    width: $width;
     height: 20px;
     background: #e0dede;
     padding: 5px;

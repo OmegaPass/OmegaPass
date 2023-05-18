@@ -86,4 +86,3 @@ class DbTest extends TestCase {
         $this->assertEquals('testpassword', $data['password']);
     }
 }
-?>

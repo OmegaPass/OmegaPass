@@ -2,11 +2,13 @@
 
 // Import required dependencies
 require_once 'vendor/autoload.php';
+
 use ZxcvbnPhp\Zxcvbn;
 use Fernet\Fernet;
 
 // Function to generate a random password of a given length, with optional digits and special characters
-function generate_password($length, $digits, $special) {
+function generate_password($length, $digits, $special)
+{
     // Define character sets for letters, digits, and special characters
     $letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $digitsChars = '1234567890';
@@ -49,7 +51,8 @@ function generate_password($length, $digits, $special) {
 
 
 // Function to generate a random user ID string
-function generate_userid () {
+function generate_userid()
+{
 
     // Define character set for the user ID
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -67,7 +70,8 @@ function generate_userid () {
 }
 
 // Function to hash a password string using PHP's password_hash() function
-function hash_pw ($string) {
+function hash_pw($string)
+{
 
     // Convert the string to UTF-8 encoding and hash it using the PASSWORD_DEFAULT algorithm
     $password = utf8_encode($string);
@@ -78,14 +82,16 @@ function hash_pw ($string) {
 }
 
 // Function to check if a password matches a given hash, using PHP's password_verify() function
-function check_pw ($string, $hash) {
+function check_pw($string, $hash)
+{
 
     // Use the password_verify() function to compare the string and hash
     return password_verify($string, $hash);
 }
 
 // Function to check the strength of a password using the Zxcvbn library
-function check_password_strength($password) {
+function check_password_strength($password)
+{
     $zxcvbn = new Zxcvbn();
     $strength = $zxcvbn->passwordStrength($password)['score'];
 
@@ -103,7 +109,8 @@ function check_password_strength($password) {
 }
 
 // Function to encrypt a password using the Fernet symmetric encryption algorithm
-function encrypt($password, $masterPass) {
+function encrypt($password, $masterPass)
+{
     // Generate a SHA-256 hash of the master password and use it as the encryption key
     $key = hash('sha256', $masterPass, true);
     $fernet = new Fernet(base64url_encode($key));
@@ -113,7 +120,8 @@ function encrypt($password, $masterPass) {
 }
 
 // Function to decrypt an encrypted password using the Fernet symmetric encryption algorithm
-function decrypt($encryted, $masterPass) {
+function decrypt($encryted, $masterPass)
+{
     // Generate a SHA-256 hash of the master password and use it as the encryption key
     $key = hash('sha256', $masterPass, true);
 
@@ -125,10 +133,12 @@ function decrypt($encryted, $masterPass) {
 }
 
 // Function to base64url encode data
-function base64url_encode($data) {
+function base64url_encode($data)
+{
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
 // Function to base64url decode data
-function base64url_decode($data) {
+function base64url_decode($data)
+{
     return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
 }

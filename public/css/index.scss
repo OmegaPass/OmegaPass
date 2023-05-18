@@ -18,15 +18,15 @@ body {
   #chk {
     display: none;
 
-    &:checked ~ .signup {
+    &:checked~.signup {
       transform: translateY(-500px);
     }
 
-    &:checked ~ .signup label {
+    &:checked~.signup label {
       transform: scale(1);
     }
 
-    &:checked ~ .login label {
+    &:checked~.login label {
       transform: scale(.6);
     }
   }
