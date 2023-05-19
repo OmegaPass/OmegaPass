@@ -8,7 +8,7 @@ if (isset($_POST['logout']) || (!isset($_SESSION['masterpass']) && !isset($_SESS
     session_regenerate_id(true);
 }
 
-// When not logged in you the client gets redirected to the homepage
+// When not logged in, the client gets redirected to the homepage
 if (!isset($_SESSION['masterpass']) && !isset($_SESSION['username'])) {
     header('Location: /');
 }
@@ -93,13 +93,13 @@ switch ($_GET['mode']) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OmegaPass</title>
-    <meta name="description" content="">
+    <title>OmegaPass - Overview</title>
+    <meta name="description" content="OmegaPass - Overview of Passwords">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/overview.css">
