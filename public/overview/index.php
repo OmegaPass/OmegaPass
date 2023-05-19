@@ -111,6 +111,9 @@ switch ($_GET['mode']) {
 </head>
 
 <body>
+    <header>
+        <h1>Welcome to OmegaPass - Overview</h1>
+    </header>
     <div class="welcome-gif-wrapper">
         <img src="../Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
     </div>

@@ -93,15 +93,17 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 </head>
 
 <body>
+    <header>
+        <h1>Welcome to OmegaPass</h1>
+    </header>
     <div class="main">
-
         <input type="checkbox" id="chk" aria-hidden="true">
-        <span id="errormsg"> <?php echo $errormsg; ?> </span>
+        <span id="errormsg"><?php echo $errormsg; ?></span>
         <div class="login">
             <form method="post" action="index.php">
                 <label for="chk" aria-hidden="true">Login</label>
-                <input type="text" name="username" placeholder="Username" required="">
-                <input type="password" name="pswd" placeholder="Password" required="">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="pswd" placeholder="Password" required>
                 <button type="submit" name="btnLogin">Login</button>
             </form>
         </div>
