@@ -33,6 +33,9 @@ class DbTest extends TestCase {
         $this->assertEquals("Wrong password", $result2);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testAddPassword() {
         $this->database->add_user('testuser', 'testpassword');
         $this->database->login('testuser', 'testpassword');
@@ -47,6 +50,9 @@ class DbTest extends TestCase {
         $this->assertEquals('testpassword', $data[0]['password']);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testChangeUsername() {
         $this->database->add_user('testuser', 'testpassword');
         $this->database->login('testuser', 'testpassword');
@@ -57,6 +63,9 @@ class DbTest extends TestCase {
         $this->assertEquals("Success", $result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testGetPassword() {
         $this->database->add_user('testuser', 'testpassword');
         $this->database->login('testuser', 'testpassword');
@@ -77,4 +86,3 @@ class DbTest extends TestCase {
         $this->assertEquals('testpassword', $data['password']);
     }
 }
-?>

@@ -1,0 +1,64 @@
+@import "colors";
+
+body {
+  background-color: #f5f5f5;
+  padding: 10px;
+
+  .navbar {
+    position: absolute;
+
+    @media (max-width: 1024px) {
+      position: relative;
+      text-align: center;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+    }
+  }
+
+  .privacy-policy {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #333;
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .logo {
+      max-width: 200px;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+}

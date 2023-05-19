@@ -32,16 +32,16 @@ Composition: `term(component)!: xyz`
 - `: or /`: Separator for commits (:) and branches (/)
 - `xyz`: Informative but brief description
 
-| Term       | Example                                    | Description                                                                                             |
-| ---------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| `feat`     | `feat(ui)!: add cancel button frontend`    | Integration of a new feature into the code (with `!`: MAJOR; without `!` MINOR)                         |
-| `fix`      | `fix/#ISSUE-NUMBER`                        | Fixing an error/bug (PATCH)                                                                             |
-| `chore`    | `chore: add temp dir to gitignore`         | Chore                                                                                                   |
-| `docs`     | `docs/improve-dev`                         | Changes are only made in the documentation                                                              |
-| `refactor` | `refactor(db)/schema`                      | A code change that neither fixes a bug nor adds a feature                                               |
-| `test`     | `test: add mock test`                      | Add missing tests or change the existing tests                                                          |
-| `build`    | `build: switch from npm to yarn`           | Changes related to the build system or external dependencies                                            |
-| `ci`       | `ci/tagging`                               | Changes to the [CI config files](.github/workflows), pipeline and scripts                               |
-| `revert`   | `revert: to #435678`                       | When the commit rolls back a previous commit (includes roll back commit's hash)                         |
-| `pref`     | `pref(db): buffer overflow`                | A code change that improves performance                                                                 |
-| `style`    | `style: rm leading spaces`                 | Changes that do not affect the meaning of the code (formatting, semicolons, spaces, etc.)               |
+| Term       | Example                                 | Description                                                                               |
+| ---------- | --------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `feat`     | `feat(ui)!: add cancel button frontend` | Integration of a new feature into the code (with `!`: MAJOR; without `!` MINOR)           |
+| `fix`      | `fix/#ISSUE-NUMBER`                     | Fixing an error/bug (PATCH)                                                               |
+| `chore`    | `chore: add temp dir to gitignore`      | Chore                                                                                     |
+| `docs`     | `docs/improve-dev`                      | Changes are only made in the documentation                                                |
+| `refactor` | `refactor(db)/schema`                   | A code change that neither fixes a bug nor adds a feature                                 |
+| `test`     | `test: add mock test`                   | Add missing tests or change the existing tests                                            |
+| `build`    | `build: switch from npm to yarn`        | Changes related to the build system or external dependencies                              |
+| `ci`       | `ci/tagging`                            | Changes to the [CI config files](.github/workflows), pipeline and scripts                 |
+| `revert`   | `revert: to #435678`                    | When the commit rolls back a previous commit (includes roll back commit's hash)           |
+| `pref`     | `pref(db): buffer overflow`             | A code change that improves performance                                                   |
+| `style`    | `style: rm leading spaces`              | Changes that do not affect the meaning of the code (formatting, semicolons, spaces, etc.) |

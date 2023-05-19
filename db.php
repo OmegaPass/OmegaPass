@@ -95,16 +95,55 @@ class DataBase {
     public function get_all_entries($userid, $mode = null) {
         // Select the website, username, password, and ID for all password entries
         // that belong to the user and meet the specified filtering criteria
-        $results = $this->database->select('passwords', [
-            'website',
-            'username',
-            'password',
-            'id'
-        ], [
-            'user_id' => $userid,
-            'trash' => $mode === 'trash' ? true : null,
-            'favorite' => $mode === 'favorite' ? true : Medoo::raw('favorite IS NULL OR favorite = true')
-        ]);
+
+        switch ($mode) {
+            case 'trash':
+                $results = $this->database->select('passwords', [
+                    'website',
+                    'username',
+                    'password',
+                    'id'
+                ], [
+                    'user_id' => $userid,
+                    'trash' => true,
+                    'OR' => [
+                        'favorite' => true,
+                        'favorite' => null,
+                        'trash' => true,
+                    ],
+                ]);
+                break;
+
+            case 'favorite':
+                $results = $this->database->select('passwords', [
+                    'website',
+                    'username',
+                    'password',
+                    'id'
+                ], [
+                    'user_id' => $userid,
+                    'trash' => null,
+                    'favorite' => true,
+                ]);
+                break;
+
+            default:
+                $results = $this->database->select('passwords', [
+                    'website',
+                    'username',
+                    'password',
+                    'id'
+                ], [
+                    'user_id' => $userid,
+                    'trash' => null,
+                    'OR' => [
+                        'favorite' => true,
+                        'favorite' => null,
+                        'trash' => null,
+                    ],
+                ]);
+                break;
+        }
 
         // Decrypt the password for each result (if it's not empty) using
         // the session's master password
@@ -176,14 +215,28 @@ class DataBase {
     }
 
     // This method retrieves the user ID for the currently logged-in user
-    public function getUserId() {
-        $query = $this->database->select('users', [
-            'user_id'
-        ], [
-            'username' => $_SESSION['username']
-        ]);
 
-        return $query[0]['user_id'];
+    /**
+     * @throws Exception
+     */
+    public function getUserId() {
+        if (!isset($_SESSION['userId'])) {
+            $query = $this->database->select('users', [
+                'user_id'
+            ], [
+                'username' => $_SESSION['username']
+            ]);
+
+            if (!empty($query)) {
+                $userId = $query[0]['user_id'];
+                $_SESSION['userId'] = $userId;
+
+                return $userId;
+            }
+            throw new Exception();
+        }
+
+        return $_SESSION['userId'];
     }
 
     // This method changes the username for the specified user
@@ -246,6 +299,10 @@ class DataBase {
     }
 
     // This method deletes password entries that have been in the trash for more than 30 days
+
+    /**
+     * @throws Exception
+     */
     public function deleteAfterThirtyDays() {
         $trashedPasswords = $this->database->select('passwords', [
             'id',
@@ -266,4 +323,3 @@ class DataBase {
         }
     }
 }
-?>

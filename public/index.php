@@ -1,22 +1,21 @@
 <?php
-session_start(); // Start a new or existing session
-include 'db.php'; // Include the file with the database connection
+// Import required dependencies
+include_once '../config.php';
+include '../db.php'; // Include the file with the database connection
 $database = new DataBase(); // Create a new instance of the database connection class
 
 $errormsg = ""; // Initialize the error message variable as an empty string
 
 // Check if username and password are set in the $_POST superglobal array
-if (isset($_POST['username']) && isset($_POST['pswd']))
-{
+if (isset($_POST['username']) && isset($_POST['pswd'])) {
     // If the 'btnSignup' button was pressed, attempt to add a new user to the database
-    if(isset($_POST['btnSignup']))
-    {
+    if (isset($_POST['btnSignup'])) {
         // Check if the password and confirm password fields match
-        if ($_POST['conf_pswd'] == $_POST['pswd']){
-            // Call the add_user method of the database object to add a new user and 
+        if ($_POST['conf_pswd'] == $_POST['pswd']) {
+            // Call the add_user method of the database object to add a new user and
             // store the result
             switch ($database->add_user($_POST['username'], $_POST['pswd'], $_POST['email'])) {
-                // If the user was added successfully, set the session variables and 
+                // If the user was added successfully, set the session variables and
                 // redirect to the overview page
                 case 'Success':
                     $_SESSION['masterpass'] = $_POST['pswd'];
@@ -31,7 +30,7 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
                 case 'This email-address is already taken':
                     $errormsg = 'This email-address is already taken';
                     break;
-                // If an unknown error occurred, set the error message variable
+                    // If an unknown error occurred, set the error message variable
                 default:
                     $errormsg = 'error';
             }
@@ -43,9 +42,8 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
     }
 
     // If the 'btnLogin' button was pressed, attempt to log in the user
-    if(isset($_POST['btnLogin']))
-    {  
-        // Call the login method of the database object to authenticate the user and 
+    if (isset($_POST['btnLogin'])) {
+        // Call the login method of the database object to authenticate the user and
         // store the result
         $result = $database->login($_POST['username'], $_POST['pswd']);
         switch ($result) {
@@ -61,11 +59,11 @@ if (isset($_POST['username']) && isset($_POST['pswd']))
             case 'Wrong password':
                 $errormsg = 'Wrong password';
                 break;
-            // If the username is not found, set the error message variable
+                // If the username is not found, set the error message variable
             case 'Username not found':
                 $errormsg = 'Username not found';
                 break;
-            // If an unknown error occurred, set the error message variable
+                // If an unknown error occurred, set the error message variable
             default:
                 $errormsg = 'error';
         }
@@ -83,45 +81,48 @@ if (isset($_SESSION['username']) && isset($_SESSION['masterpass'])) {
 <!-- The following HTML code defines a login and signup form -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>OmegaPass</title>
-	<link rel="stylesheet" href="css/index.css">
+    <title>OmegaPass</title>
+    <link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="omegapass.jpg">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+    <script src="js/index.min.js"></script>
 </head>
 
 <body>
-<div class="welcome-gif-wrapper">
-    <img src="Omegapass.gif" alt="Welcome gif to OmegaPass" class="welcome-gif">
-</div>
-	<div class="main">
+    <div class="main">
 
-		<input type="checkbox" id="chk" aria-hidden="true">
-            <span id="errormsg"> <?php echo $errormsg; ?> </span>
-			<div class="login">
-				<form method="post" action="index.php">
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="text" name="username" placeholder="Username" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button type="submit" name="btnLogin">Login</button>
-				</form>
-			</div>
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <span id="errormsg"> <?php echo $errormsg; ?> </span>
+        <div class="login">
+            <form method="post" action="index.php">
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="text" name="username" placeholder="Username" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button type="submit" name="btnLogin">Login</button>
+            </form>
+        </div>
 
-            <div class="signup">
-				<form method="post" action="index.php">
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="username" placeholder="Username" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-                    <input type="password" name="conf_pswd" placeholder="Confirm password" required="">
-					<button type="submit" name="btnSignup">Sign up</button>
-				</form>
-			</div>
-	</div>
+        <div class="signup">
+			<form method="post" action="index.php">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" name="username" placeholder="Username" required="">
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <input type="password" name="conf_pswd" placeholder="Confirm password" required="">
+                <button type="submit" name="btnSignup">Sign up</button>
+			</form>
+		</div>
+    </div>
+    <footer>
+        <a href="/imprint/">Imprint</a>
+        <a href="/privacy-policy/">Privacy policy</a>
+    </footer>
 </body>
+
 </html>
