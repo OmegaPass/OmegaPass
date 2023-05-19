@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OmegaPass</title>
     <link rel="stylesheet" href="../css/privacy-policy.css">
-    <link rel="icon" href="../omegapass.jpg">
+    <link rel="icon" href="../favicon.ico">
 </head>
 
 <body>
