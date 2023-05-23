@@ -49,9 +49,8 @@ Contributors names and contact info
 
 ## Version History
 
-* 0.1.0
-    * Initial Release
+You can see all of our versions at [releases](https://github.com/2223-Project-1/OmegaPass/releases).
 
 ## License
 
-This project is licensed under the [] License - see the LICENSE.md file for details
+This project is licensed under the GNU General Public License v2.0 License - see the LICENSE file for details.
