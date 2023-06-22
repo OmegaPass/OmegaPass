@@ -72,6 +72,24 @@ $(document).ready(function () {
             });
     });
 
+    // Function that handles on input search results
+    $('#search').on('input', function () {
+        var query = $(this).val();
+
+        $.ajax({
+            url: "/ajax/ajax.php",
+            type: "POST",
+            data: {query: query},
+            success: function(response) {
+                console.log(response);
+                $(".overview-passwords-listing").html(response);
+            },
+            error: function() {
+                // TODO: Handle any errors here
+            }
+        });
+    });
+
     // Function that handles click events on the "Clear" button
     $('#clear-details').click(function () {
         // Hide the password details and buttons
