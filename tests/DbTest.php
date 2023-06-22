@@ -85,4 +85,34 @@ class DbTest extends TestCase {
         $this->assertEquals('testusername', $data['username']);
         $this->assertEquals('testpassword', $data['password']);
     }
+
+    public function testSearchEntries()
+    {
+        $this->database->add_user('testuser', 'testpassword');
+        $this->database->login('testuser', 'testpassword');
+        $_SESSION['username'] = 'testuser';
+        $_SESSION['masterpass'] = 'testpassword';
+        $this->database->add_password('testId', 'testwebsite', 'testusername', 'testpassword');
+
+        $query = 'testusername';  
+        $expectedResults = [
+            [
+                'website' => 'testwebsite',
+                'username' => 'testusername',
+                'password' => 'testpassword',
+                'id' => 'testEntryId1',
+            ],
+            [
+                'website' => 'testwebsite',
+                'username' => 'testusername2',
+                'password' => 'testpassword',
+                'id' => 'testEntryId2',
+            ],
+        ];
+        
+        $results = $this->database->searchEntries('testId', $query);
+        
+        // Assert that the function returns the expected results
+        $this->assertEquals($expectedResults, $results);
+    }
 }
