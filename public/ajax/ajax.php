@@ -26,13 +26,13 @@ if (isset($_GET['getPass'])) {
 }
 
 if (isset($_POST['query'])) {
-    $searchQuery = htmlspecialchars($_POST['query'], ENT_QUOTES, 'UTF-8');
+    $searchQuery = $_POST['query'];
 
     $entries = $database->searchEntries($database->getUserId(), $searchQuery);
     foreach ($entries as $key => $entry) {
         echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
-        echo "<p>" . $entry['website'] . "</p>";
-        echo "<p>" . $entry['username'] . "</p>";
+        echo "<p>" . htmlspecialchars($entry['website'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "<p>" . htmlspecialchars($entry['username'], ENT_QUOTES, 'UTF-8') . "</p>";
         echo "</li>";
     }
     exit;
