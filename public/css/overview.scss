@@ -111,10 +111,30 @@ body {
 
       .overview-passwords-header {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         color: #ffffff;
+    
+        #search {
+          background: rgba(0, 0, 0, 0);
+          margin-left: 10px;
+          padding: 5px;
+          font-size: 16px;
+          width: 200px; 
+          border-radius: 5px;
+          border: 2px solid var(--primary-color);
+          outline: none;
+          color: #fff;
+          
+          &:focus {
+            border: 4px solid var(--primary-color-hover);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          }
+    
+          &::placeholder {
+            color: #fff;
+          }
+        }
 
         @include button;
 
