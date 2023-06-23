@@ -6,7 +6,8 @@ $phpUnitTestMode = true;
 
 require_once __DIR__ . '/../db.php';
 
-class DbTest extends TestCase {
+class DbTest extends TestCase
+{
     private DataBase $database;
 
     public function setUp(): void
@@ -14,18 +15,21 @@ class DbTest extends TestCase {
         $this->database = new DataBase();
     }
 
-    public function testAddUser() {
+    public function testAddUser()
+    {
         $result = $this->database->add_user('testuser', 'testpassword');
         $this->assertEquals("Success", $result);
     }
 
-    public function testDuplicateUsername() {
+    public function testDuplicateUsername()
+    {
         $this->database->add_user('testuser', 'testpassword');
         $result = $this->database->add_user('testuser', 'testpassword');
         $this->assertEquals("Username already taken", $result);
     }
 
-    public function testLogin() {
+    public function testLogin()
+    {
         $this->database->add_user('testuser', 'testpassword');
         $result1 = $this->database->login('testuser', 'testpassword');
         $result2 = $this->database->login('testuser', 'wrongpassword');
@@ -36,7 +40,8 @@ class DbTest extends TestCase {
     /**
      * @throws Exception
      */
-    public function testAddPassword() {
+    public function testAddPassword()
+    {
         $this->database->add_user('testuser', 'testpassword');
         $this->database->login('testuser', 'testpassword');
         $_SESSION['username'] = 'testuser';
@@ -53,7 +58,8 @@ class DbTest extends TestCase {
     /**
      * @throws Exception
      */
-    public function testChangeUsername() {
+    public function testChangeUsername()
+    {
         $this->database->add_user('testuser', 'testpassword');
         $this->database->login('testuser', 'testpassword');
         $userid = $this->database->getUserId();
@@ -66,7 +72,8 @@ class DbTest extends TestCase {
     /**
      * @throws Exception
      */
-    public function testGetPassword() {
+    public function testGetPassword()
+    {
         $this->database->add_user('testuser', 'testpassword');
         $this->database->login('testuser', 'testpassword');
         $_SESSION['username'] = 'testuser';
@@ -95,7 +102,7 @@ class DbTest extends TestCase {
         $this->database->add_password('testId', 'testwebsite', 'testusername', 'testpassword');
         $this->database->add_password('testId', 'testwebsite', 'testusername2', 'testpassword');
 
-        $query = 'testusername';  
+        $query = 'testusername';
         $expectedResults = [
             [
                 'website' => 'testwebsite',
@@ -108,7 +115,7 @@ class DbTest extends TestCase {
                 'password' => 'testpassword',
             ],
         ];
-        
+
         $results = $this->database->searchEntries('testId', $query);
 
         $this->assertEquals(count($expectedResults), count($results));
@@ -117,5 +124,5 @@ class DbTest extends TestCase {
             $this->assertEquals($expectedResult['username'], $results[$index]['username']);
             $this->assertEquals($expectedResult['password'], $results[$index]['password']);
         }
-    }    
+    }
 }
