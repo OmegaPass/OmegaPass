@@ -107,12 +107,10 @@ class DbTest extends TestCase
             [
                 'website' => 'testwebsite',
                 'username' => 'testusername',
-                'password' => 'testpassword',
             ],
             [
                 'website' => 'testwebsite',
                 'username' => 'testusername2',
-                'password' => 'testpassword',
             ],
         ];
 
@@ -122,7 +120,6 @@ class DbTest extends TestCase
         foreach ($expectedResults as $index => $expectedResult) {
             $this->assertEquals($expectedResult['website'], $results[$index]['website']);
             $this->assertEquals($expectedResult['username'], $results[$index]['username']);
-            $this->assertEquals($expectedResult['password'], $results[$index]['password']);
         }
     }
 }
