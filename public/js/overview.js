@@ -81,7 +81,7 @@ $(document).ready(function () {
             type: "POST",
             data: {query: query},
             success: function(response) {
-                console.log(response);
+                // console.log(response);
                 $(".overview-passwords-listing").html(response);
             },
             error: function(response) {
