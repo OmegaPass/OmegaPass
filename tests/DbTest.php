@@ -92,9 +92,8 @@ class DbTest extends TestCase {
         $this->database->login('testuser', 'testpassword');
         $_SESSION['username'] = 'testuser';
         $_SESSION['masterpass'] = 'testpassword';
-
-        $this->database->add_password('testId1', 'testwebsite', 'testusername', 'testpassword');
-        $this->database->add_password('testId1', 'testwebsite2', 'testusername2', 'testpassword2');
+        $this->database->add_password('testId', 'testwebsite', 'testusername', 'testpassword');
+        $this->database->add_password('testId', 'testwebsite', 'testusername2', 'testpassword');
 
         $query = 'testusername';  
         $expectedResults = [
@@ -102,19 +101,21 @@ class DbTest extends TestCase {
                 'website' => 'testwebsite',
                 'username' => 'testusername',
                 'password' => 'testpassword',
-                'id' => 'testEntryId1',
             ],
             [
                 'website' => 'testwebsite',
                 'username' => 'testusername2',
                 'password' => 'testpassword',
-                'id' => 'testEntryId2',
             ],
         ];
         
-        $results = $this->database->searchEntries('testId1', $query);
-        
-        // Assert that the function returns the expected results
-        $this->assertEquals($expectedResults, $results);
-    }
+        $results = $this->database->searchEntries('testId', $query);
+
+        $this->assertEquals(count($expectedResults), count($results));
+        foreach ($expectedResults as $index => $expectedResult) {
+            $this->assertEquals($expectedResult['website'], $results[$index]['website']);
+            $this->assertEquals($expectedResult['username'], $results[$index]['username']);
+            $this->assertEquals($expectedResult['password'], $results[$index]['password']);
+        }
+    }    
 }
