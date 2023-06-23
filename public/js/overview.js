@@ -84,8 +84,8 @@ $(document).ready(function () {
                 console.log(response);
                 $(".overview-passwords-listing").html(response);
             },
-            error: function() {
-                // TODO: Handle any errors here
+            error: function(response) {
+                // console.log(response);
             }
         });
     });
