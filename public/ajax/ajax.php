@@ -24,3 +24,16 @@ if (isset($_GET['getPass'])) {
     echo json_encode($password);
     exit;
 }
+
+if (isset($_POST['query'])) {
+    $searchQuery = $_POST['query'];
+
+    $entries = $database->searchEntries($database->getUserId(), $searchQuery);
+    foreach ($entries as $key => $entry) {
+        echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
+        echo "<p>" . htmlspecialchars($entry['website'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "<p>" . htmlspecialchars($entry['username'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "</li>";
+    }
+    exit;
+}

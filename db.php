@@ -315,4 +315,27 @@ class DataBase {
             }
         }
     }
+
+    public function searchEntries($userId, $query) {
+        if (empty(trim($query))) {
+            // If the query is empty or all spaces, return all entries for the user
+            return $this->get_all_entries($userId);
+        } 
+        
+        $query = "%$query%";
+        $results = $this->database->select('passwords', [
+            'website',
+            'username',
+            'password',
+            'id'
+        ], [
+            'user_id' => $userId,
+            'OR' => [
+                'website[~]' => $query,
+                'username[~]' => $query
+            ]
+        ]);
+        return $results;
+    }
+
 }
