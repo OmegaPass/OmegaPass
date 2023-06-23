@@ -92,7 +92,9 @@ class DbTest extends TestCase {
         $this->database->login('testuser', 'testpassword');
         $_SESSION['username'] = 'testuser';
         $_SESSION['masterpass'] = 'testpassword';
-        $this->database->add_password('testId', 'testwebsite', 'testusername', 'testpassword');
+
+        $this->database->add_password('testId1', 'testwebsite', 'testusername', 'testpassword');
+        $this->database->add_password('testId1', 'testwebsite2', 'testusername2', 'testpassword2');
 
         $query = 'testusername';  
         $expectedResults = [
@@ -110,7 +112,7 @@ class DbTest extends TestCase {
             ],
         ];
         
-        $results = $this->database->searchEntries('testId', $query);
+        $results = $this->database->searchEntries('testId1', $query);
         
         // Assert that the function returns the expected results
         $this->assertEquals($expectedResults, $results);
