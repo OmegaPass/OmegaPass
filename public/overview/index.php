@@ -149,7 +149,9 @@ switch ($_GET['mode']) {
         <div class="overview-passwords">
             <div class="overview-passwords-header">
                 <h3>Passwords</h3>
-                <input type="text" id="search" placeholder="Search..."/>
+                <form autocomplete="off">
+                    <input type="text" id="search" placeholder="Search..." autocomplete="off"/>
+                </form>
                 <button id="add-password">
                     <i class="bi bi-plus-lg"></i>
                 </button>
