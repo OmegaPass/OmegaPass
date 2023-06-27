@@ -23,15 +23,13 @@
 
         <h2>Information according to &sect; 5 TMG</h2>
         <h3>Publisher</h3>
-        <p>OStD Dr. Joachim Selzam, Headmaster<br />
-            Goldbergstra&szlig;e 5<br />
-            State Vocational School Lichtenfels<br />
-            96215 Lichtenfels</p>
+        <p>Kultusminister Prof. Dr. Michael Piazolo<br />
+            Salvatorstraße 2<br />
+            80333 München</p>
 
         <h3>Contact</h3>
-        <p>Phone: 09571 9574-0<br />
-            Fax: 09571 9574-29<br />
-            Email: 5019.verwaltung@schule.bayern.de</p>
+        <p>Phone: 089 2186-0<br />
+            Email: poststelle@stmuk.bayern.de</p>
 
 
         <h2>Consumer Dispute Resolution/Universal Dispute Resolution Body</h2>
