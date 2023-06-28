@@ -183,6 +183,23 @@ switch ($_GET['mode']) {
                     ?>
                 </ul>
             </section>
+
+            <section class="overview_page_selection">
+                <?php
+                $totalCount = $database->getCountOfEntries($database->getUserId());
+                $possiblePages = floor(($totalCount / 10));
+
+                for ($i = 1; $i < $possiblePages + 1; $i++) {
+                    $selectClass = '';
+
+                    if ($i === 1) {
+                        $selectClass = 'selected';
+                    }
+
+                    echo "<button class='page_selector " . $selectClass . "' data-page_number='$i'>$i</button>";
+                }
+                ?>
+            </section>
         </div>
 
         <section class="overview-details">
