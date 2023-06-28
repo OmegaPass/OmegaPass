@@ -37,3 +37,17 @@ if (isset($_POST['query'])) {
     }
     exit;
 }
+
+if (isset($_POST['pageNumber'])) {
+    $pageNumber = $_POST['pageNumber'];
+
+    $entries = $database->get_all_entries($database->getUserId(), null, $pageNumber);
+
+    foreach ($entries as $key => $entry) {
+        echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
+        echo "<p>" . htmlspecialchars($entry['website'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "<p>" . htmlspecialchars($entry['username'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "</li>";
+    }
+    exit;
+}

@@ -502,6 +502,27 @@ $(document).ready(function () {
             sessionStorage.setItem('visited', 'true');
         }
     }
+
+    $('.page_selector').click(function () {
+        const pageSelectedNumber = $(this).attr('data-page_number');
+        const pageSeletorButton = $(this);
+
+        $.ajax({
+            url: "/ajax/ajax.php",
+            type: "POST",
+            data: {pageNumber: pageSelectedNumber},
+            success: function(response) {
+                $('.page_selector').each(function(){
+                    $(this).removeClass('selected')
+                });
+                pageSeletorButton.addClass('selected');
+
+                $(".overview-passwords-listing").html(response);
+            },
+            error: function(response) {
+            }
+        });
+    });
 });
 
 
