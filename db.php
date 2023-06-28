@@ -87,7 +87,7 @@ class DataBase {
     // Returns an array of associative arrays, each containing the website,
     // username, password (decrypted), and ID for a password entry that
     // belongs to the user and meets the specified filtering criteria.
-    public function get_all_entries($userid, $mode = null) {
+    public function get_all_entries($userid, $mode = null, $page = null) {
         // Select the website, username, password, and ID for all password entries
         // that belong to the user and meet the specified filtering criteria
 
@@ -106,6 +106,7 @@ class DataBase {
                         'favorite' => null,
                         'trash' => true,
                     ],
+                    'LIMIT' => [($page ?? 1) * 10, 10]
                 ]);
                 break;
 
@@ -119,6 +120,7 @@ class DataBase {
                     'user_id' => $userid,
                     'trash' => null,
                     'favorite' => true,
+                    'LIMIT' => [($page ?? 1) * 10, 10]
                 ]);
                 break;
 
@@ -136,6 +138,7 @@ class DataBase {
                         'favorite' => null,
                         'trash' => null,
                     ],
+                    'LIMIT' => [($page ?? 1) * 10, 10]
                 ]);
                 break;
         }
@@ -320,8 +323,8 @@ class DataBase {
         if (empty(trim($query))) {
             // If the query is empty or all spaces, return all entries for the user
             return $this->get_all_entries($userId);
-        } 
-        
+        }
+
         $query = "%$query%";
         $results = $this->database->select('passwords', [
             'website',
@@ -336,6 +339,12 @@ class DataBase {
             ]
         ]);
         return $results;
+    }
+
+    public function getCountOfEntries($userId) {
+        return $this->database->count('passwords', [
+            'user_id' => $userId
+        ]);
     }
 
 }

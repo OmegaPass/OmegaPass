@@ -65,7 +65,7 @@ $database->deleteAfterThirtyDays();
 switch ($_GET['mode']) {
     case 'trash':
         try {
-            $entries = $database->get_all_entries($database->getUserId(), 'trash');
+            $entries = $database->get_all_entries($database->getUserId(), 'trash', (int) $_GET['page']);
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
@@ -74,7 +74,7 @@ switch ($_GET['mode']) {
 
     case 'favorite':
         try {
-            $entries = $database->get_all_entries($database->getUserId(), 'favorite');
+            $entries = $database->get_all_entries($database->getUserId(), 'favorite', (int) $_GET['page']);
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
@@ -83,7 +83,7 @@ switch ($_GET['mode']) {
 
     default:
         try {
-            $entries = $database->get_all_entries($database->getUserId());
+            $entries = $database->get_all_entries($database->getUserId(), null, (int) $_GET['page']);
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
