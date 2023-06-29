@@ -83,7 +83,7 @@ switch ($_GET['mode']) {
 
     default:
         try {
-            $entries = $database->get_all_entries($database->getUserId(), null);
+            $entries = $database->get_all_entries($database->getUserId());
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
