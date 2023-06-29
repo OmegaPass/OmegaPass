@@ -87,7 +87,7 @@ class DataBase {
     // Returns an array of associative arrays, each containing the website,
     // username, password (decrypted), and ID for a password entry that
     // belongs to the user and meets the specified filtering criteria.
-    public function get_all_entries($userid, $mode = null, $page = null) {
+    public function get_all_entries($userid, $mode = null, $page = 1) {
         // Select the website, username, password, and ID for all password entries
         // that belong to the user and meet the specified filtering criteria
 
@@ -106,7 +106,7 @@ class DataBase {
                         'favorite' => null,
                         'trash' => true,
                     ],
-                    'LIMIT' => [($page ?? 1) * 10, 10]
+                    'LIMIT' => [$page === 1 ? 0 : ($page * 10), 10]
                 ]);
                 break;
 
@@ -120,7 +120,7 @@ class DataBase {
                     'user_id' => $userid,
                     'trash' => null,
                     'favorite' => true,
-                    'LIMIT' => [($page ?? 1) * 10, 10]
+                    'LIMIT' => [$page === 1 ? 0 : ($page * 10), 10]
                 ]);
                 break;
 
@@ -131,6 +131,7 @@ class DataBase {
                     'password',
                     'id'
                 ], [
+                    'LIMIT' => [$page * 10, 10],
                     'user_id' => $userid,
                     'trash' => null,
                     'OR' => [
@@ -138,7 +139,7 @@ class DataBase {
                         'favorite' => null,
                         'trash' => null,
                     ],
-                    'LIMIT' => [($page ?? 1) * 10, 10]
+                    'LIMIT' => [$page === 1 ? 0 : ($page * 10), 10]
                 ]);
                 break;
         }
@@ -341,10 +342,24 @@ class DataBase {
         return $results;
     }
 
-    public function getCountOfEntries($userId) {
-        return $this->database->count('passwords', [
-            'user_id' => $userId
-        ]);
+    public function getCountOfEntries($userId, $mode) {
+        switch ($mode) {
+            case 'trash':
+                $modeClause = ['trash' => true];
+                break;
+
+            case 'favorite':
+                $modeClause = ['favorite' => true, 'trash' => null];
+                break;
+
+            default:
+                $modeClause = [];
+                break;
+        }
+
+        $whereClause = array_merge(['user_id' => $userId], $modeClause);
+
+        return $this->database->count('passwords', $whereClause);
     }
 
 }

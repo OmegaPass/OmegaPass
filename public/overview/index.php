@@ -65,7 +65,7 @@ $database->deleteAfterThirtyDays();
 switch ($_GET['mode']) {
     case 'trash':
         try {
-            $entries = $database->get_all_entries($database->getUserId(), 'trash', (int) $_GET['page']);
+            $entries = $database->get_all_entries($database->getUserId(), 'trash');
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
@@ -74,7 +74,7 @@ switch ($_GET['mode']) {
 
     case 'favorite':
         try {
-            $entries = $database->get_all_entries($database->getUserId(), 'favorite', (int) $_GET['page']);
+            $entries = $database->get_all_entries($database->getUserId(), 'favorite');
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
@@ -83,7 +83,7 @@ switch ($_GET['mode']) {
 
     default:
         try {
-            $entries = $database->get_all_entries($database->getUserId(), null, (int) $_GET['page']);
+            $entries = $database->get_all_entries($database->getUserId(), null);
         } catch (Exception $e) {
             // Log the exception for debugging purposes
             error_log($e);
@@ -186,7 +186,7 @@ switch ($_GET['mode']) {
 
             <section class="overview_page_selection">
                 <?php
-                $totalCount = $database->getCountOfEntries($database->getUserId());
+                $totalCount = $database->getCountOfEntries($database->getUserId(), $_GET['mode']);
                 $possiblePages = floor(($totalCount / 10));
 
                 for ($i = 1; $i < $possiblePages + 1; $i++) {
