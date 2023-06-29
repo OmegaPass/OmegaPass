@@ -503,9 +503,14 @@ $(document).ready(function () {
         }
     }
 
+    // checks if page button is selected. if not make ajax request to fetch more passwords
     $('.page_selector').click(function () {
         const pageSelectedNumber = $(this).attr('data-page_number');
         const pageSeletorButton = $(this);
+
+        if (pageSeletorButton.hasClass('selected')) {
+            return;
+        }
 
         $.ajax({
             url: "/ajax/ajax.php",
