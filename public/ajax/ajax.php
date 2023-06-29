@@ -39,7 +39,7 @@ if (isset($_POST['query'])) {
 }
 
 if (isset($_POST['pageNumber'])) {
-    $pageNumber = $_POST['pageNumber'];
+    $pageNumber = (int) $_POST['pageNumber'];
 
     $entries = $database->get_all_entries($database->getUserId(), null, $pageNumber);
 
