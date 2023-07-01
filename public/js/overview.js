@@ -510,25 +510,23 @@ $(document).ready(function () {
         const pageSelectedNumber = $(this).attr('data-page_number');
         const pageSeletorButton = $(this);
 
-        if (pageSeletorButton.hasClass('selected')) {
-            return;
+        if (!pageSeletorButton.hasClass('selected')) {
+            $.ajax({
+                url: "/ajax/ajax.php",
+                type: "POST",
+                data: {pageNumber: pageSelectedNumber},
+                success: function(response) {
+                    $('.page_selector').each(function(){
+                        $(this).removeClass('selected')
+                    });
+                    pageSeletorButton.addClass('selected');
+
+                    $(".overview-passwords-listing").html(response);
+                },
+                error: function(response) {
+                }
+            });
         }
-
-        $.ajax({
-            url: "/ajax/ajax.php",
-            type: "POST",
-            data: {pageNumber: pageSelectedNumber},
-            success: function(response) {
-                $('.page_selector').each(function(){
-                    $(this).removeClass('selected')
-                });
-                pageSeletorButton.addClass('selected');
-
-                $(".overview-passwords-listing").html(response);
-            },
-            error: function(response) {
-            }
-        });
     });
 
     function getPageNumbers(query = null) {
