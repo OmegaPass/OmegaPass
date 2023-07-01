@@ -51,3 +51,18 @@ if (isset($_POST['pageNumber'])) {
     }
     exit;
 }
+
+if (isset($_GET['getPageNumbers'])) {
+    $totalCount = $database->getCountOfEntries($database->getUserId(), $_GET['mode'], $_GET['query']);
+    $possiblePages = floor(($totalCount / 10));
+
+    for ($i = 1; $i < $possiblePages + 1; $i++) {
+        $selectClass = '';
+
+        if ($i === 1) {
+            $selectClass = 'selected';
+        }
+
+        echo "<button class='page_selector " . $selectClass . "' data-page_number='$i'>$i</button>";
+    }
+}

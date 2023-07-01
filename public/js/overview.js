@@ -2,6 +2,7 @@
 $(document).ready(function () {
 
     showLoadingScreen();
+    getPageNumbers();
 
     // Object to store the current password and whether it is being displayed or hidden
     let showPass = { 'password': '', 'show': true };
@@ -82,6 +83,7 @@ $(document).ready(function () {
             data: {query: query},
             success: function(response) {
                 // console.log(response);
+                getPageNumbers(query);
                 $(".overview-passwords-listing").html(response);
             },
             error: function(response) {
@@ -504,7 +506,7 @@ $(document).ready(function () {
     }
 
     // checks if page button is selected. if not make ajax request to fetch more passwords
-    $('.page_selector').click(function () {
+    $('body').on('click', '.page_selector', function() {
         const pageSelectedNumber = $(this).attr('data-page_number');
         const pageSeletorButton = $(this);
 
@@ -528,6 +530,28 @@ $(document).ready(function () {
             }
         });
     });
+
+    function getPageNumbers(query = null) {
+
+        let currentUrl = new URL(window.location);
+        let currentUrlParams = new URLSearchParams(currentUrl.search);
+        let mode = currentUrlParams.get('mode') ?? null;
+
+        $.ajax({
+            url: "/ajax/ajax.php",
+            type: "GET",
+            data: {
+                getPageNumbers: true,
+                mode: mode,
+                query: query
+            },
+            success: function(response) {
+                $('.overview_page_selection').html(response);
+            },
+            error: function(response) {
+            }
+        });
+    }
 });
 
 

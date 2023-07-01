@@ -337,12 +337,13 @@ class DataBase {
             'OR' => [
                 'website[~]' => $query,
                 'username[~]' => $query
-            ]
+            ],
+            'LIMIT' => [0, 10]
         ]);
         return $results;
     }
 
-    public function getCountOfEntries($userId, $mode) {
+    public function getCountOfEntries($userId, $mode, $query) {
         switch ($mode) {
             case 'trash':
                 $modeClause = ['trash' => true];
@@ -357,7 +358,13 @@ class DataBase {
                 break;
         }
 
-        $whereClause = array_merge(['user_id' => $userId], $modeClause);
+        $whereClause = array_merge([
+            'user_id' => $userId,
+            'OR' => [
+                'website[~]' => $query,
+                'username[~]' => $query
+            ]
+        ], $modeClause);
 
         return $this->database->count('passwords', $whereClause);
     }
