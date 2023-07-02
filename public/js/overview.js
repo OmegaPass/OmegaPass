@@ -2,12 +2,13 @@
 $(document).ready(function () {
 
     showLoadingScreen();
+    getPageNumbers();
 
     // Object to store the current password and whether it is being displayed or hidden
     let showPass = { 'password': '', 'show': true };
 
     // When a password entry is clicked, fetch the password details and display them
-    $(".entries").click(function () {
+    $('body').on('click', '.entries', function () {
         // Get the ID of the clicked entry
         const id = $(this).attr('data-id');
 
@@ -87,6 +88,7 @@ $(document).ready(function () {
             data: {query: query},
             success: function(response) {
                 // console.log(response);
+                getPageNumbers(query);
                 $(".overview-passwords-listing").html(response);
             },
             error: function(response) {
@@ -506,6 +508,52 @@ $(document).ready(function () {
 
             sessionStorage.setItem('visited', 'true');
         }
+    }
+
+    // checks if page button is selected. if not make ajax request to fetch more passwords
+    $('body').on('click', '.page_selector', function() {
+        const pageSelectedNumber = $(this).attr('data-page_number');
+        const pageSeletorButton = $(this);
+
+        if (!pageSeletorButton.hasClass('selected')) {
+            $.ajax({
+                url: "/ajax/ajax.php",
+                type: "POST",
+                data: {pageNumber: pageSelectedNumber},
+                success: function(response) {
+                    $('.page_selector').each(function(){
+                        $(this).removeClass('selected')
+                    });
+                    pageSeletorButton.addClass('selected');
+
+                    $(".overview-passwords-listing").html(response);
+                },
+                error: function(response) {
+                }
+            });
+        }
+    });
+
+    function getPageNumbers(query = null) {
+
+        let currentUrl = new URL(window.location);
+        let currentUrlParams = new URLSearchParams(currentUrl.search);
+        let mode = currentUrlParams.get('mode') ?? null;
+
+        $.ajax({
+            url: "/ajax/ajax.php",
+            type: "GET",
+            data: {
+                getPageNumbers: true,
+                mode: mode,
+                query: query
+            },
+            success: function(response) {
+                $('.overview_page_selection').html(response);
+            },
+            error: function(response) {
+            }
+        });
     }
 });
 

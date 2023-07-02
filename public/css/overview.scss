@@ -108,6 +108,8 @@ body {
       width: calc(65% - 20px + 50px);
       padding: 10px;
       padding-left: 20px;
+      display: flex;
+      flex-direction: column;
 
       @media screen and (max-width: 900px) {
         width: calc(100% - 50px - 20px);
@@ -187,6 +189,20 @@ body {
             }
           }
         }
+      }
+    }
+
+    .overview_page_selection {
+      margin-top: auto;
+
+      display: flex;
+      flex-direction: row;
+      column-gap: 5px;
+
+      @include button;
+
+      .selected {
+        background: var(--primary-color-hover);
       }
     }
 

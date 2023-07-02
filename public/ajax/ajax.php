@@ -37,3 +37,32 @@ if (isset($_POST['query'])) {
     }
     exit;
 }
+
+if (isset($_POST['pageNumber'])) {
+    $pageNumber = (int) $_POST['pageNumber'];
+
+    $entries = $database->get_all_entries($database->getUserId(), null, $pageNumber);
+
+    foreach ($entries as $key => $entry) {
+        echo "<li class='entries' id='entry-{$key}' data-id='{$entry['id']}'>";
+        echo "<p>" . htmlspecialchars($entry['website'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "<p>" . htmlspecialchars($entry['username'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "</li>";
+    }
+    exit;
+}
+
+if (isset($_GET['getPageNumbers'])) {
+    $totalCount = $database->getCountOfEntries($database->getUserId(), $_GET['mode'], $_GET['query']);
+    $possiblePages = floor(($totalCount / 10));
+
+    for ($i = 1; $i < $possiblePages + 1; $i++) {
+        $selectClass = '';
+
+        if ($i === 1) {
+            $selectClass = 'selected';
+        }
+
+        echo "<button class='page_selector " . $selectClass . "' data-page_number='$i'>$i</button>";
+    }
+}
