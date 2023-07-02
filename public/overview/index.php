@@ -185,6 +185,10 @@ switch ($_GET['mode']) {
                     ?>
                 </ul>
             </section>
+
+            <section class="overview_page_selection">
+
+            </section>
         </div>
 
         <section class="overview-details">
