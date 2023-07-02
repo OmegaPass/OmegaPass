@@ -8,7 +8,7 @@ $(document).ready(function () {
     let showPass = { 'password': '', 'show': true };
 
     // When a password entry is clicked, fetch the password details and display them
-    $(".entries").click(function () {
+    $('body').on('click', '.entries', function () {
         // Get the ID of the clicked entry
         const id = $(this).attr('data-id');
 
