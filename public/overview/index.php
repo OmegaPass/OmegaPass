@@ -194,22 +194,22 @@ switch ($_GET['mode']) {
         <section class="overview-details">
             <section class="details-heading">
                 <h3>Details</h3>
-                <button id="clear-details" style="display: none">
+                <button class="clear-details" style="display: none">
                     <i class="bi bi-x-lg"></i>
                 </button>
             </section>
-            <p id="details-error"></p>
+            <p class="details-error"></p>
             <h4>Website</h4>
-            <a href="" target="_blank" id="details-website-link"></a>
+            <a href="" target="_blank" class="details-website-link"></a>
             <h4>Username</h4>
-            <h5 id="details-username"></h5>
+            <h5 class="details-username"></h5>
             <h4>Password</h4>
-            <h5 id="details-password"></h5>
+            <h5 class="details-password"></h5>
             <div class="overview-details-buttons">
-                <button id="copy-to-clipboard" style="display: none">Copy</button>
-                <button id="show-password" style="display: none">Show</button>
-                <button id="details-edit" style="display: none">Edit</button>
-                <form id="trash-form" method="post" style="display: none">
+                <button class="copy-to-clipboard" style="display: none">Copy</button>
+                <button class="show-password" style="display: none">Show</button>
+                <button class="details-edit" style="display: none">Edit</button>
+                <form class="trash-form" method="post" style="display: none">
                     <input type="hidden" name="id" class="entryId">
                     <button type="submit" name="trash" value="trash">
                         <?php
@@ -224,7 +224,7 @@ switch ($_GET['mode']) {
                         ?>
                     </button>
                 </form>
-                <form id="favorite-form" method="post" action="" style="display: none">
+                <form class="favorite-form" method="post" action="" style="display: none">
                     <input type="hidden" name="id" class="entryId">
                     <button type="submit" name="favorite" value="favorite">
                         <?php
@@ -241,6 +241,58 @@ switch ($_GET['mode']) {
             </div>
         </section>
     </div>
+
+    <dialog id="overview-details-mobile">
+        <div class="modal-content">
+            <section class="details-heading">
+                <h3>Details</h3>
+                <button class="clear-details" style="display: none">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </section>
+            <p class="details-error"></p>
+            <h4>Website</h4>
+            <a href="" target="_blank" class="details-website-link"></a>
+            <h4>Username</h4>
+            <h5 class="details-username"></h5>
+            <h4>Password</h4>
+            <h5 class="details-password"></h5>
+            <div class="overview-details-buttons">
+                <button class="copy-to-clipboard" style="display: none">Copy</button>
+                <button class="show-password" style="display: none">Show</button>
+                <button class="details-edit" style="display: none">Edit</button>
+                <form class="trash-form" method="post" style="display: none">
+                    <input type="hidden" name="id" class="entryId">
+                    <button type="submit" name="trash" value="trash">
+                        <?php
+                        // If the user is currently in "trash" mode, display a button to move
+                        // the entry out of the trash; otherwise, display a button to move
+                        // the entry to the trash
+                        if ($_GET['mode'] === 'trash') {
+                            echo 'Move out of trash';
+                        } else {
+                            echo 'Move to trash';
+                        }
+                        ?>
+                    </button>
+                </form>
+                <form class="favorite-form" method="post" action="" style="display: none">
+                    <input type="hidden" name="id" class="entryId">
+                    <button type="submit" name="favorite" value="favorite">
+                        <?php
+                        // If the user has favorited the entry, display a button to remove it
+                        // from their favorites; otherwise, display a button to add it to their favorites
+                        if ($_GET['mode'] === 'favorite') {
+                            echo 'Unfavorite';
+                        } else {
+                            echo 'Favorite';
+                        }
+                        ?>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
     <dialog id="edit-modal">
         <div class="modal-content">

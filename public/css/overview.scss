@@ -111,6 +111,10 @@ body {
       display: flex;
       flex-direction: column;
 
+      @media screen and (max-width: 900px) {
+        width: calc(100% - 50px - 20px);
+      }
+
       .overview-passwords-header {
         display: flex;
         align-items: center;
@@ -210,7 +214,11 @@ body {
       flex-direction: column;
       row-gap: 5px;
 
-      #details-error {
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+
+      .details-error {
         color: #ff0000;
         font-weight: bold;
       }
@@ -229,7 +237,7 @@ body {
         @include button;
       }
 
-      #details-website-link {
+      .details-website-link {
         color: #fff;
         text-decoration: none;
 
@@ -290,6 +298,10 @@ body {
 
   #add-modal {
     @import "add-password";
+  }
+
+  #overview-details-mobile {
+    @import "details";
   }
 
 

@@ -1,0 +1,46 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+
+  .details-error {
+    color: #ff0000;
+    font-weight: bold;
+  }
+
+  a,
+  h4,
+  h5 {
+    @include text-overflow;
+    margin: 10px 0;
+  }
+
+  .details-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include button;
+  }
+
+  .details-website-link {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .overview-details-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    row-gap: 5px;
+    flex-wrap: wrap;
+    @include button;
+
+    button {
+      min-height: fit-content;
+      width: fit-content;
+    }
+  }
+}

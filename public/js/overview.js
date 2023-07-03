@@ -13,12 +13,12 @@ $(document).ready(function () {
         const id = $(this).attr('data-id');
 
         // Show the password details and buttons
-        $('#clear-details').show();
-        $('#copy-to-clipboard').show();
-        $('#show-password').show();
-        $('#details-edit').show();
-        $('#trash-form').show();
-        $('#favorite-form').show();
+        $('.clear-details').show();
+        $('.copy-to-clipboard').show();
+        $('.show-password').show();
+        $('.details-edit').show();
+        $('.trash-form').show();
+        $('.favorite-form').show();
 
         // Build the AJAX URL based on the entry ID and the current URL parameters
         let currentUrl = new URL(window.location);
@@ -40,15 +40,20 @@ $(document).ready(function () {
                 return Promise.reject()
             })
             .then((res) => {
-                // Display the retrieved password details in the appropriate elements
-                $('#details-website-link').text(res.website);
-                if (res.website.includes('http://') || res.website.includes('https://')) {
-                    $("#details-website-link").prop("href", res.website);
-                } else {
-                    $("#details-website-link").prop("href", 'http://' + res.website);
+
+                if ($(window).width() <= 900) {
+                    document.getElementById('overview-details-mobile').showModal();
                 }
-                $('#details-username').text(res.username);
-                $('#details-password').text('*********');
+
+                // Display the retrieved password details in the appropriate elements
+                $('.details-website-link').text(res.website);
+                if (res.website.includes('http://') || res.website.includes('https://')) {
+                    $(".details-website-link").prop("href", res.website);
+                } else {
+                    $(".details-website-link").prop("href", 'http://' + res.website);
+                }
+                $('.details-username').text(res.username);
+                $('.details-password').text('*********');
                 $('input.entryId').val(res.id);
 
                 // Store the retrieved password in a variable to enable showing/hiding the password
@@ -57,7 +62,7 @@ $(document).ready(function () {
 
                 // Logic for 'Copy to Clipboard' button
                 // .off('click') method removes any previous click handlers to prevent multiple handlers from being attached each time an entry is clicked.
-                $('#copy-to-clipboard').off('click').on('click', function () {
+                $('.copy-to-clipboard').off('click').on('click', function () {
                     navigator.clipboard.writeText(showPass.password)
                         .then(() => {
                             // console.log('Password copied to clipboard');
@@ -69,7 +74,7 @@ $(document).ready(function () {
 
             })
             .catch(() => {
-                $('#details-error').text('Error during details gathering');
+                $('.details-error').text('Error during details gathering');
             });
     });
 
@@ -93,28 +98,28 @@ $(document).ready(function () {
     });
 
     // Function that handles click events on the "Clear" button
-    $('#clear-details').click(function () {
+    $('.clear-details').click(function () {
         // Hide the password details and buttons
-        $('#details-website-link').text('');
-        $('#details-username').text('');
-        $('#details-password').text('');
-        $('#clear-details').hide();
-        $('#copy-to-clipboard').hide();
-        $('#show-password').hide();
-        $('#details-edit').hide();
-        $('#trash-form').hide();
-        $('#favorite-form').hide();
-        $('#details-error').text('');
+        $('.details-website-link').text('');
+        $('.details-username').text('');
+        $('.details-password').text('');
+        $('.clear-details').hide();
+        $('.copy-to-clipboard').hide();
+        $('.show-password').hide();
+        $('.details-edit').hide();
+        $('.trash-form').hide();
+        $('.favorite-form').hide();
+        $('.details-error').text('');
     });
 
     // Function that handles click events on the "Show Password" button
-    $('#show-password').click(function () {
+    $('.show-password').click(function () {
         // Toggle between showing and hiding the password
         if (!showPass.show) {
-            $('#details-password').text(showPass.password);
+            $('.details-password').text(showPass.password);
             showPass.show = true;
         } else {
-            $('#details-password').text('*********');
+            $('.details-password').text('*********');
             showPass.show = false;
         }
 
@@ -122,11 +127,11 @@ $(document).ready(function () {
 
     // * Edit entry modal
     // Define a click event handler for the edit button
-    $('#details-edit').click(function () {
+    $('.details-edit').click(function () {
         // Show the edit modal
         document.getElementById('edit-modal').showModal();
-        $('#edit_website').val($('#details-website-link').text());
-        $('#edit_username').val($('#details-username').text());
+        $('#edit_website').val($('.details-website-link').text());
+        $('#edit_username').val($('.details-username').text());
     });
 
     // Define a click event handler for the edit change button
